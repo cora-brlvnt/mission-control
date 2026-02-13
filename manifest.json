@@ -1,6 +1,6 @@
 {
-  "name": "Mission Control - Knowledge Atlas",
-  "short_name": "Mission Control",
+  "name": "2Brain - Knowledge Atlas",
+  "short_name": "2Brain",
   "description": "Personal knowledge management system for documents, research, and contacts",
   "start_url": "/",
   "display": "standalone",
