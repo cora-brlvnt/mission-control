@@ -96,25 +96,237 @@
     const docs = [
       {
         slug: "journal/2026-02-13",
-        title: "2026-02-13 — Heartbeat Fix & Trigger.dev",
+        title: "2026-02-13 — 2Brain Launch + OpenClaw Research",
         date: "2026-02-13",
-        tags: ["journal", "daily", "heartbeat"],
-        content: `# 2026-02-13 — Heartbeat Fix & Trigger.dev Setup
+        tags: ["journal", "daily", "2brain", "research", "openclaw"],
+        content: `# 2026-02-13 — 2Brain Launch + OpenClaw Research Complete
 
-## Problem: Heartbeat Generating Garbage
-Ollama (llama3.2:3b) was configured for heartbeat checks. When the heartbeat prompt came in, Ollama got confused by massive system context and started analyzing instead of checking HEARTBEAT.md.
+## Fixed Heartbeat (Critical Fix)
+- **Problem**: Ollama (llama3.2:3b) generating garbage responses when heartbeat prompt fired
+- **Root cause**: Ollama confused by massive system context, started analyzing framework docs
+- **Solution**: Changed heartbeat model to anthropic/claude-haiku-4-5 via gateway config.patch
+- **Then**: Disabled hourly broadcasts (every: "0") — no more noisy Telegram status messages
+- **Result**: Clean, reliable system
 
-## Solution: Switched to Claude Haiku
-- Config issue: agents.defaults.heartbeat.model was ollama/llama3.2:3b
-- Changed to: anthropic/claude-haiku-4-5
-- Gateway restarted successfully
-- Heartbeat now disabled (no hourly broadcasts)
+## 2Brain (Mission Control) — SHIPPED
+Built static HTML knowledge management system for capturing ideas and concepts.
 
-## Trigger.dev Integration
-- Account created
-- Framework: Open-source background jobs (async workflows, queuing, retries, monitoring)
-- Extensions available: Prisma, Python, Playwright, Puppeteer, FFmpeg
-- Next: Set up first workflow`
+**Architecture:**
+- Single \`index.html\` file (~387 lines), vanilla JS, zero dependencies
+- Works offline, no build process, instant load
+- Document viewer with markdown support, tag filtering, real-time search
+- Dark theme (Tailwind colors), Cmd+Space launcher
+
+**Why static HTML?**
+- Next.js had React hydration issues on Safari (client fetch not firing)
+- Frameworks add complexity we don't need for a KB
+- Single file = easy backup, fork, deploy, modify
+
+**GitHub Repo:** https://github.com/cora-brlvnt/mission-control
+
+## Cron Job: Auto-Capture (Every 6 Hours)
+- Fires at: 0, 6, 12, 18 hours
+- Job: Reviews today's work, decisions, ideas
+- Extracts:
+  - New concepts/research findings
+  - Project status & tasks
+  - Lessons learned
+- Action: Updates 2Brain index.html, commits to GitHub, announces on Telegram
+
+## OpenClaw Research: Last 7 Days Trending
+Used last30days skill + Bird CLI to pull Reddit + X data on trending OpenClaw topics.
+
+**Top Findings (by engagement):**
+
+1. **Sub-Agent Behavior Fixes** (86 pts) — Users forcing agents to actually execute instead of roleplaying/planning
+2. **Prompt Format Conversion** (66 pts) — Converting human language to OpenClaw native format
+3. **Local Model Tuning** (65 pts):
+   - Qwen 30b: \`"no code fences unless asked; prefer strict JSON"\`
+   - Devstral 24b works well with 132k context window
+   - OpenClaw's heavy system prompt needs compression for local models
+4. **Prompt Injection Firewalls** (58 pts) — Security layer with credential protection + audit logging
+5. **Context Bloat** (53 pts) — Default system prompt too heavy, causing slowness
+
+**Stats:** 14 Reddit threads (577 upvotes, 62 comments), X supplementary data, 18 articles
+
+## macOS App Setup
+- Created \`/Applications/2Brain.app\` launcher
+- Launch: Cmd+Space → "2brain"
+- Terminal alias: \`2brain\` (added to ~/.zshrc)
+
+## System Maintenance
+- Updated OpenClaw: 2026.2.9 → 2026.2.12
+- Memory preserved (backed up before update)
+- All systems nominal
+
+## Active Projects Now
+- **2Brain**: ✅ SHIPPED (GitHub + cron + macOS app)
+- **Cora Copilot**: Ready to build (Chrome extension spec done)
+- **PersonaPlex/RunPod**: Research phase
+- **Trigger.dev**: Account ready, workflow setup next`
+      },
+      {
+        slug: "concepts/2brain-system",
+        title: "2Brain: Static HTML Knowledge Atlas",
+        tags: ["concepts", "systems", "2brain", "knowledge-management"],
+        content: `# 2Brain: Static HTML Knowledge Atlas
+
+## What It Is
+A zero-dependency knowledge management system built entirely in vanilla HTML/CSS/JS. Single file, works offline, instant load, searchable.
+
+## Why Static HTML?
+After trying Next.js and hitting React hydration issues on Safari, realized the KB didn't need a framework.
+
+**Comparison:**
+- Next.js: Build complexity, hydration issues, overkill
+- Static HTML: Single file, works everywhere, easy to modify
+
+## Architecture
+- **File**: \`/Users/cora/.openclaw/workspace/mission-control/index.html\` (~387 lines)
+- **Data structure**: \`docs\` array with slug, title, date, tags, content
+- **Features**:
+  - Real-time search (title + content)
+  - Tag filtering (Journal vs. Concepts)
+  - Dark theme (Tailwind colors)
+  - People directory (contacts with roles, emails)
+  - Markdown rendering (basic: headings, lists, bold, code)
+
+## Organization
+- **Journal entries**: Daily work logs, decisions, insights (\`journal/YYYY-MM-DD\`)
+- **Concepts**: Reusable knowledge, frameworks, systems (\`concepts/TOPIC\`)
+- **Contacts**: People directory (relationships, emails, notes)
+
+## Launching 2Brain
+- **Spotlight**: Cmd+Space → "2brain"
+- **Terminal**: \`2brain\` (alias in ~/.zshrc)
+- **Dock**: Pinnable as macOS app
+
+## Integration with OpenClaw
+Cron job (every 6 hours) automatically captures work, updates index.html, commits to GitHub.
+No manual steps — knowledge stays fresh.
+
+## Future Enhancements
+- Multi-file documents (split large entries)
+- Backlink graph visualization
+- Collaborative mode (CRDT-based sync)
+- Mobile view optimization`
+      },
+      {
+        slug: "concepts/openclaw-trending-findings",
+        title: "OpenClaw Trending Topics: Feb 2026",
+        tags: ["concepts", "research", "openclaw", "architecture"],
+        content: `# OpenClaw Trending Topics: February 2026
+
+## Research Method
+Used last30days skill + Bird CLI to pull Reddit + X/Twitter data from past 7 days.
+Engagement-weighted ranking (upvotes, comments, retweets).
+
+## Top 5 Findings
+
+### 1. Sub-Agent Behavior Fixes (86 engagement points)
+**Problem**: Agents planning/thinking aloud instead of executing.
+**Solution**: Force execution with explicit prompts ("Do this now. No planning.")
+**Takeaway**: Training agents to act, not roleplay.
+
+### 2. Prompt Format Conversion (66 pts)
+Converting human language to OpenClaw native format.
+- System context compression
+- JSON-first output
+- Removing preambles
+
+### 3. Local Model Tuning (65 pts)
+**Qwen 30b:** \`"no code fences unless asked; prefer strict JSON"\`
+**Devstral 24b:** Works well with 132k context
+**Key issue**: OpenClaw's system prompt too heavy for local models
+**Fix**: Compress system context, run local models separately
+
+### 4. Prompt Injection Firewalls (58 pts)
+Security layer emerging in production systems:
+- Credential protection (env vars, keys)
+- Audit logging
+- Input validation
+- Model switching on suspicious patterns
+
+### 5. Context Bloat (53 pts)
+Default system prompt causing slowness in many deployments.
+Community pushing for modular, lightweight prompts.
+
+## Data Sources
+- **Reddit**: 14 threads, 577 upvotes, 62 comments
+- **X/Twitter**: Bird CLI queries (organic engagement data)
+- **Web**: 18 articles on architecture, security, skills
+
+## Strategic Implications
+1. **Local models gaining traction** — People want offline, controllable agents
+2. **Security becoming standard** — Prompt injection awareness rising
+3. **Simplicity wins** — Heavy prompts losing to compressed, focused instructions
+4. **Execution over planning** — Users want agents that *do*, not think aloud`
+      },
+      {
+        slug: "concepts/sub-agent-behavior-fixes",
+        title: "Sub-Agent Behavior: From Planning to Execution",
+        tags: ["concepts", "agents", "behavior", "openclaw"],
+        content: `# Sub-Agent Behavior: From Planning to Execution
+
+## The Problem
+Sub-agents often think aloud, plan, or roleplay instead of actually executing tasks.
+
+Example bad behavior:
+\`\`\`
+Agent: "I'll now analyze the data... let me think about this... 
+the best approach would be... in my analysis... I recommend..."
+\`\`\`
+
+## The Fix
+Force execution with explicit, immediate prompts.
+
+Example good prompt:
+\`\`\`
+Task: [Do this immediately. No planning, no thinking aloud.]
+[Action: Get data from X]
+[Action: Process with Y]
+[Action: Return result to Z]
+\`\`\`
+
+## Patterns That Work
+1. **Action-first language**: "Do X" not "Let's think about doing X"
+2. **No thinking steps**: Remove internal monologue
+3. **Explicit output format**: JSON > prose narratives
+4. **Clear boundaries**: Agent knows exactly when to stop
+
+## Why This Matters
+- Token waste (thinking = no progress)
+- User frustration (verbose agents feel slow)
+- Determinism (execution > randomness of thought)
+
+## In OpenClaw Context
+When spawning sub-agents:
+- Use task-centric language
+- Remove preambles in system prompts
+- Expect structured output (JSON)
+- Short timeouts (force completion, no rambling)`
+      },
+      {
+        slug: "journal/2026-02-12",
+        title: "2026-02-12 — Mission Control Build & Research",
+        date: "2026-02-12",
+        tags: ["journal", "daily", "mission-control"],
+        content: `# 2026-02-12 — Mission Control Build & Research
+
+## Mission Control (2nd Brain) System
+- Built and deployed Next.js 14 app
+- Features: Document viewer, sidebar nav, People Directory, tag filtering
+- Design: Dark theme, upgraded with 21st.dev components
+
+## Research Completed
+- Elementor WordPress integration: Custom REST endpoint approach
+- PhantomBuster LinkedIn: Email-first outreach strategy
+- last30days skill: Installed, Reddit research enabled
+
+## Progress
+- CONTACTS.md created with Kate Mangan, Paul Chambers
+- Codex CLI installed and authenticated
+- First concept doc: phantombuster-linkedin-outreach.md`
       },
       {
         slug: "journal/2026-02-12",
