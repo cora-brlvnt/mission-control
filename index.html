@@ -95,6 +95,104 @@
   <script>
     const docs = [
       {
+        slug: "journal/2026-02-14-systems-ready",
+        title: "2026-02-14 — Cora Voice Deployed, Telegram Memory Live, ClickUp Clean",
+        date: "2026-02-14",
+        tags: ["journal", "daily", "deployment", "systems"],
+        content: `# 2026-02-14 — Cora Voice Deployed, Telegram Memory Live, ClickUp Clean
+
+## Cora Voice (Voice App) — ✅ DEPLOYED & REFINED
+
+**URL:** https://cora-voice.fly.dev/app (live on Fly.io)
+
+**Deployment (Feb 14, ~01:46 EST):**
+- System prompt refined to answer ONLY what's asked (no info-dumping)
+- Conversation behavior fixed: max 1-2 sentences per response, natural flow
+- All changes committed and deployed to Fly.io
+
+**Architecture:**
+- Frontend: React + Vite (WebSocket client)
+- Backend: WebSocket bridge → Deepgram Nova-3 STT → OpenClaw → ElevenLabs TTS
+- Database: Supabase auto-archives conversations with OpenAI embeddings
+- Memory: Every input + response saved with semantic embeddings
+- Search: \`/api/search\` endpoint for semantic search across past conversations
+- History: \`/api/history/{sessionId}\` retrieves full conversation sessions
+
+**Why this matters:**
+- Authority engine: Live demo of AI capability
+- Product engine: Scalable, customer-ready tool
+- Revenue engine: Shows enterprise-grade sophistication
+
+**Known issue:** May cut off user mid-speech (Deepgram STT timeout) — separate tuning needed
+
+## Telegram Memory System — ✅ LIVE & CAPTURING
+
+**Problem solved:** Session compactions were losing Telegram chat context. Needed persistent, semantic archive.
+
+**Solution: Supabase + OpenAI Embeddings**
+- Database: PostgreSQL + pgvector for semantic search
+- Automatic capture: Every 30 minutes, polls Telegram for new messages
+- Storage: Message ID, chat ID, user ID, text, OpenAI embedding, timestamp
+- Search: SQL function \`search_telegram_messages()\` for similarity queries
+
+**Architecture Details:**
+- Supabase project: oucpashabmqeninqghhv.supabase.co
+- Tables: \`telegram_messages\` (500MB free tier ≈ 100k messages), \`facts\` (key-value store)
+- Indexes: ivfflat vector index on embeddings for fast semantic search
+- Scripts: \`telegram-capture.mjs\` (execution), \`supabase-schema-setup.sql\` (schema)
+
+**Cron job:**
+- ID: e9dab4a1-d14c-458e-9a85-6f7efe914695
+- Schedule: Every 30 minutes
+- Payload: Isolated agentTurn (executes JavaScript)
+- Status: Running, 0 new messages captured (Renzo just came online)
+
+**Why this matters:**
+- Revenue engine: Helps Renzo stay sharp in calls, retain deals
+- Removes dependency on session history
+- Semantic search finds context even when exact keywords don't match
+
+**Cost:** ~$1-5/month for embeddings, free Supabase tier sufficient
+
+## ClickUp — ✅ CLEANED & ORGANIZED
+
+**Tasks closed (8 total):**
+- Antfarm workflows
+- Marketing skills
+- OpenClaw version update (now 2026.2.13)
+- ElevenLabs account top-up
+- Discord setup
+- Cora security updates
+- Duplicate Copilot task
+- Old Cora Voice status notes
+- Elementor integration
+
+**Active tasks (2):**
+1. 🚨 Cora Copilot — Chrome Extension Build (URGENT, paused until Feb 23)
+2. 🔄 Heartbeat & proactive check-ins (IN PROGRESS)
+
+**Backlog (2):**
+- DataForSEO MCP Server — Local Setup
+- PersonaPlex deployment script
+
+**Rule established:** Only track Cora's own tasks in "Cora" space. Renzo's action items become reminders, not assignments.
+
+## System Readiness (Pre-Rome Trip)
+
+All systems green for Renzo's Feb 15-23 travel:
+- **2Brain** cron: Running every 6 hours, auto-captures work
+- **Telegram memory**: Capturing every 30 minutes
+- **Cora Voice**: Live and accessible (no internet dependency)
+- **Heartbeat**: Stable, reliable, no more garbage output
+- **Memory tracking**: Clean, no blockers
+
+## Next Phase
+Feb 24: Resume full development velocity
+- Start Cora Copilot build (Chrome extension)
+- PersonaPlex/RunPod live demo setup
+- Lead gen outreach program architecture`
+      },
+      {
         slug: "journal/2026-02-14",
         title: "2026-02-14 — Rome Trip Eve & Systems Ready",
         date: "2026-02-14",
@@ -389,6 +487,202 @@ When spawning sub-agents:
 - CONTACTS.md created with Kate Mangan, Paul Chambers
 - Codex CLI installed and authenticated
 - First concept doc: phantombuster-linkedin-outreach.md`
+      },
+      {
+        slug: "concepts/telegram-memory-system",
+        title: "Telegram Memory System: Semantic Archive with Supabase",
+        tags: ["concepts", "systems", "telegram", "memory", "semantics"],
+        content: `# Telegram Memory System: Semantic Archive with Supabase
+
+## Problem
+Session compactions lose Telegram chat context. Each session restart means starting fresh — no access to conversation history or prior context.
+
+## Solution
+Persistent semantic archive with automatic capture and semantic search.
+
+## Architecture
+
+### Database (Supabase PostgreSQL + pgvector)
+**Tables:**
+- \`telegram_messages\`: (message_id, chat_id, user_id, text, embedding, timestamp)
+- \`facts\`: key-value store for cached metadata
+
+**Indexes:**
+- ivfflat vector index on embeddings for fast semantic search
+- B-tree index on timestamp for recency filtering
+
+### Capture Pipeline
+**Trigger:** Cron job every 30 minutes
+**Payload:** \`telegram-capture.mjs\` (isolated agentTurn)
+**Process:**
+1. Poll Telegram API for new messages (since last capture)
+2. Generate OpenAI embeddings (text-embedding-3-small)
+3. Upsert to Supabase \`telegram_messages\` table
+4. Update \`facts.last_message_id\` for next run
+
+### Search
+**Endpoint:** \`/api/search?q=<query>&limit=<n>\`
+**Process:**
+1. Embed query using same model as messages
+2. Run SQL function \`search_telegram_messages()\`
+3. Return top-N similar messages by cosine distance
+
+**Example:**
+\`\`\`
+Query: "What did Renzo say about the Rome trip?"
+→ Searches semantic meaning, not exact keywords
+→ Finds messages about "citizenship", "Feb 15", "flight", etc.
+\`\`\`
+
+### History
+**Endpoint:** \`/api/history/{sessionId}\`
+**Returns:** Full conversation session (all messages + timestamps)
+
+## Implementation Details
+
+**Supabase Project:** oucpashabmqeninqghhv.supabase.co
+
+**Schema setup:**
+\`\`\`sql
+-- Table
+CREATE TABLE telegram_messages (
+  id BIGSERIAL PRIMARY KEY,
+  message_id TEXT UNIQUE NOT NULL,
+  chat_id TEXT NOT NULL,
+  user_id TEXT NOT NULL,
+  text TEXT NOT NULL,
+  embedding vector(1536),
+  timestamp TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Vector index for similarity search
+CREATE INDEX ON telegram_messages USING ivfflat (embedding vector_cosine_ops);
+
+-- Search function
+CREATE FUNCTION search_telegram_messages(
+  query_embedding vector(1536),
+  match_count int DEFAULT 10
+) RETURNS TABLE (...) AS $$
+  SELECT * FROM telegram_messages
+  ORDER BY embedding <=> query_embedding
+  LIMIT match_count;
+$$ LANGUAGE SQL;
+\`\`\`
+
+**Cron Job:**
+- ID: e9dab4a1-d14c-458e-9a85-6f7efe914695
+- Schedule: Every 1800000ms (30 minutes)
+- Status: Running, capturing messages automatically
+
+## Cost
+- **Supabase**: Free tier covers 500MB (≈100k messages)
+- **OpenAI embeddings**: ~$0.02-0.05 per 1M tokens
+- **Monthly**: ~$1-5 depending on volume
+
+## Why This Works
+1. **No session loss**: Context survives session compactions
+2. **Semantic search**: Finds meaning, not just keywords
+3. **Automatic**: Zero manual effort (cron does capture)
+4. **Scalable**: Supabase handles growth automatically
+5. **Privacy**: All data stays in Supabase (not leaked to OpenClaw)
+
+## Strategic Value
+- **Revenue engine**: Helps Renzo stay sharp in calls
+- **Decision-making**: Instant access to past context
+- **Deal retention**: Remembers client conversations
+- **Proof of concept**: Demonstrates AI memory architecture`
+      },
+      {
+        slug: "concepts/cora-voice-live-deployment",
+        title: "Cora Voice: Live Deployment & Architecture",
+        tags: ["concepts", "systems", "voice", "deployment", "product"],
+        content: `# Cora Voice: Live Deployment & Architecture
+
+## Overview
+**Live URL:** https://cora-voice.fly.dev/app
+
+Real-time voice conversation web app. Ask Cora questions, get instant audio responses.
+
+## Technical Architecture
+
+### Frontend (React + Vite)
+- WebSocket client for real-time communication
+- Microphone input (Web Audio API)
+- Audio playback (Web Audio API speaker output)
+- Dark UI matching Cora brand
+
+### Backend (WebSocket Bridge)
+Process:
+1. User speaks into microphone
+2. Frontend sends audio stream to WebSocket
+3. Backend routes to Deepgram Nova-3 (real-time STT)
+4. Deepgram returns transcription
+5. Transcription sent to OpenClaw session
+6. OpenClaw generates response
+7. Response sent to ElevenLabs TTS
+8. Audio streamed back to frontend
+9. User hears Cora speak
+
+### Components
+- **STT:** Deepgram Nova-3 (fastest, most accurate)
+- **LLM:** OpenClaw (Claude 3.5 Sonnet)
+- **TTS:** ElevenLabs (voice: yM93hbw8Qtvdma2wCnJG, model: eleven_multilingual_v2)
+- **Hosting:** Fly.io (2 regions, auto-scaling)
+
+### Database Integration (Supabase)
+**Automatic conversation archiving:**
+- Every user input + response logged to Supabase
+- Text stored with OpenAI embeddings
+- Timestamps for session tracking
+
+**Endpoints:**
+- \`/api/search\`: Semantic search across conversations
+- \`/api/history/{sessionId}\`: Full conversation retrieval
+
+**Cost:** Minimal (~$0.02/month for embeddings)
+
+## Deployment Details
+
+**Fly.io Configuration:**
+- App name: cora-voice
+- Region: iad (closest to Connecticut)
+- Memory: 256MB
+- Auto-scaling: Yes
+
+**Environment Variables:**
+- OPENAI_API_KEY (for embeddings)
+- TELEGRAM_BOT_TOKEN (for OpenClaw routing)
+- SUPABASE_URL, SUPABASE_KEY (for archival)
+
+**Repo:** https://github.com/cora-brlvnt/cora-voice
+
+## Behavior (Feb 14 Refinement)
+
+**Problem:** System was info-dumping, providing unsolicited context
+
+**Fix:** Updated system prompt
+- Answer ONLY what's asked
+- Max 1-2 sentences per response
+- Natural conversational tone
+- No summaries unless requested
+- No preambles
+
+**Result:** Feels human, not robotic
+
+## Known Issues
+- May cut off user mid-speech (Deepgram timeout) — separate tuning session needed
+- STT sometimes misses final words in rapid speech
+
+## Strategic Value
+- **Authority engine:** Live demo of AI capability (show potential clients)
+- **Product engine:** Scalable, customer-ready tool (could become paid feature)
+- **Revenue engine:** Demonstrates sophistication (enterprise positioning)
+
+## Next Steps
+- Fine-tune Deepgram timeout behavior
+- Add user authentication (identify repeat visitors)
+- Build conversation analytics dashboard
+- Monetize as premium feature (Renzo + team voice calls)`
       },
       {
         slug: "concepts/phantombuster-linkedin-outreach",
