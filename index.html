@@ -95,6 +95,171 @@
   <script>
     const docs = [
       {
+        slug: "journal/2026-02-14-work-summary",
+        title: "2026-02-14 — Full Work Log: Systems Ready, Code Deployed, Rome Trip Imminent",
+        date: "2026-02-14",
+        tags: ["journal", "daily", "deployment", "cron", "architecture", "lessons-learned"],
+        content: `# 2026-02-14 — Full Work Log: Systems Ready, Code Deployed, Rome Trip Imminent
+
+## Morning: ClickUp Audit & Strategic Cleanup
+**Tasks closed (8 total):**
+- Antfarm workflows (researched, feature flagged)
+- Marketing skills (archived, outdated)
+- OpenClaw version update tracking (now 2026.2.13)
+- ElevenLabs account top-up (refreshed credits)
+- Discord setup (integration complete)
+- Cora security updates (applied patches)
+- Duplicate Copilot task (deduped task list)
+- Old Cora Voice status notes (cleaned up)
+
+**Active tasks after cleanup:**
+1. 🚨 Cora Copilot — Chrome Extension Build (URGENT, paused until Feb 23 post-Rome)
+2. 🔄 Heartbeat & proactive check-ins (IN PROGRESS)
+
+**Backlog items:**
+- DataForSEO MCP Server — Local Setup
+- PersonaPlex deployment script
+
+**Rule established:** Only Cora's tasks in "Cora" space. Renzo's action items tracked as reminders, not assignments.
+
+## Midday: Cora Copilot Architecture Deep Dive
+**Spec completed:** Call transcription Chrome extension
+
+**Architecture:**
+- Platform support: Google Meet, Zoom, Teams (desktop apps)
+- Audio capture: BlackHole (system audio → virtual device)
+- Real-time transcription: Deepgram Nova-3 (ultra-low latency)
+- Analysis: Claude via OpenClaw
+- UI: Chrome side panel with live insights
+
+**Strategic value:**
+- Authority engine: Showcases AI capability in real calls
+- Product engine: Priced for enterprises
+- Revenue engine: Positions Berelvant for $5k+/month deals
+
+**Development timeline:** Starts Feb 24 (after Rome trip)
+
+**Open-source reference:** Amurex (starting point for extension structure)
+
+## Afternoon: Cora Voice Deployment & Behavior Fix
+
+**URL:** https://cora-voice.fly.dev/app (live on Fly.io)
+
+**Problem fixed (Feb 14, ~01:46 EST):**
+- System prompt was info-dumping (unsolicited context)
+- Response behavior: rambling, verbose, educational tone
+
+**Solution applied:**
+- Updated system prompt: Answer ONLY what's asked
+- Max 1-2 sentences per response
+- Natural conversational tone (not informative/educational)
+- No preambles, no summaries unless requested
+- No unsolicited context
+
+**Deployment:**
+- All changes committed to GitHub
+- Deployed to Fly.io
+- Live and responding naturally
+
+**Architecture (recap):**
+- Frontend: React + Vite (WebSocket client)
+- Backend: WebSocket → Deepgram Nova-3 STT → OpenClaw LLM → ElevenLabs TTS
+- Database: Supabase auto-archiving with OpenAI embeddings
+- Memory: Every conversation saved + searchable via semantic index
+- Cost: ~$0.02/month for embeddings
+
+**Known issue:** May cut off user mid-speech (Deepgram timeout) — separate tuning needed
+
+## Late Afternoon: Telegram Memory System Verification
+
+**Status: ✅ FULLY LIVE & CAPTURING (since Feb 14, ~01:20 EST)**
+
+**What's running:**
+- Supabase PostgreSQL + pgvector (oucpashabmqeninqghhv.supabase.co)
+- Cron job polling Telegram every 30 minutes
+- Automatic embedding generation (OpenAI text-embedding-3-small)
+- Semantic search index (ivfflat vector index)
+
+**Cron job details:**
+- ID: e9dab4a1-d14c-458e-9a85-6f7efe914695
+- Schedule: Every 1800000ms (30 minutes)
+- Type: Isolated agentTurn (executes JavaScript)
+- Status: Running, capturing messages automatically
+
+**Why this matters:**
+- Revenue engine: Helps Renzo stay sharp in calls
+- Removes session context loss (survives compactions)
+- Semantic search finds meaning (not just keywords)
+- Zero manual overhead
+
+**Cost:** ~$1-5/month for embeddings, free Supabase tier sufficient
+
+## Evening: Cron Architecture Insight (Critical Lesson)
+
+**Problem:** Attempted to execute telegram-capture.mjs via systemEvent cron payload → didn't work
+
+**Root cause:** systemEvent payloads inject TEXT into session (announcements, reminders) — they don't execute code
+
+**Solution:** Use isolated agentTurn payloads instead
+- agentTurn: Spawns isolated agent + runs arbitrary code/prompts
+- Returns results back to parent session
+- Perfect for: script execution, API polling, data transformation
+
+**Pattern established:**
+- systemEvent: Text delivery (reminders, status updates)
+- agentTurn: Code execution (scripts, automation, complex tasks)
+
+**This matters for:** Any future cron automation, background jobs, periodic data capture
+
+## Pre-Rome Trip System Readiness
+
+**All systems green for Feb 15-23 travel:**
+- ✅ Cora Voice: Live, tested, refined
+- ✅ Telegram memory: Capturing automatically (30min intervals)
+- ✅ 2Brain: Running cron (6h intervals)
+- ✅ Heartbeat: Stable, reliable
+- ✅ OpenClaw memory: Persisting across sessions
+- ✅ ClickUp: Cleaned, organized, no blockers
+- ✅ Rome trip docs: Complete (ROME-CITIZENSHIP.md)
+
+**No manual intervention needed.** Systems self-maintain while Renzo travels.
+
+## Lessons Learned Today
+
+1. **Session drops lose context immediately** — If important decisions happen, write to memory files instantly. Session compactions wipe everything unless it's persisted to disk.
+
+2. **Prefer SDK over MCP for automation** — Supabase MCP requires OAuth (unnecessary complexity). Direct JS SDK is cleaner for headless setups.
+
+3. **Cron payload types matter** — systemEvent ≠ agentTurn. Know which one executes code.
+
+4. **ElevenLabs quotas silent-fail** — TTS may switch providers without obvious error. Check credits proactively in config.
+
+5. **Every project serves the three engines** — Authority, Revenue, Product. If a project doesn't serve at least one, deprioritize. Filter ruthlessly.
+
+## What's Next
+
+**During Rome trip (Feb 15-23):**
+- Systems run automatically (no work needed)
+- Renzo focuses on citizenship application
+- Cora monitors from home (heartbeats, memory capture)
+
+**Post-Rome (Feb 24+):**
+- Renzo returns, citizenship status update expected
+- Full development velocity resumes
+- Start Cora Copilot Chrome extension build
+- PersonaPlex/RunPod live demo setup
+- Lead gen outreach program architecture
+
+## Recap: Feb 14 Deliverables
+- ✅ ClickUp audit completed (8 tasks closed)
+- ✅ Cora Voice refined & deployed
+- ✅ Cora Copilot spec documented
+- ✅ Cron architecture pattern established
+- ✅ All systems green for Rome trip
+- ✅ Memory system verified & live
+- ✅ Lessons learned captured`
+      },
+      {
         slug: "journal/2026-02-14-final",
         title: "2026-02-14 (Final) — All Systems Go Before Rome Trip",
         date: "2026-02-14",
@@ -872,6 +1037,96 @@ Match payload type to task:
 - **Text delivery** → systemEvent
 - **Code execution** → agentTurn
 - **Unknown** → Try agentTurn (more powerful)`
+      },
+      {
+        slug: "concepts/cora-copilot-chrome-extension",
+        title: "Cora Copilot: Chrome Extension Call Transcription + AI Insights",
+        tags: ["concepts", "product", "chrome-extension", "architecture", "authority-engine"],
+        content: `# Cora Copilot: Chrome Extension Call Transcription + AI Insights
+
+## Overview
+Chrome extension that transcribes live video calls in real-time and provides AI-powered insights via side panel.
+
+## Strategic Value
+- **Authority engine:** Showcase AI capability to prospects during live calls
+- **Product engine:** Premium feature (enterprise positioning)
+- **Revenue engine:** $5k+/month SaaS feature or standalone product
+
+## Platforms Supported
+- Google Meet (web)
+- Zoom (desktop app)
+- Microsoft Teams (desktop app)
+
+## Architecture
+
+### Audio Capture (BlackHole)
+- Virtual audio device routes system audio → extension
+- Captures call audio cleanly (no background noise from mic)
+- Works with any application (Meet, Zoom, Teams)
+
+### Real-Time Transcription (Deepgram Nova-3)
+- Ultra-low latency speech-to-text
+- High accuracy (SOTA model)
+- Handles multiple speakers
+- Returns partial + final transcriptions
+
+### Analysis & Insights (Claude via OpenClaw)
+- Live analysis of call content
+- Real-time summaries of discussion points
+- Action items extraction
+- Sentiment analysis
+- Key decision tracking
+
+### UI (Chrome Side Panel)
+- Minimal, non-intrusive design
+- Live transcript + speaker attribution
+- Insights panel (summary, action items, decisions)
+- Search transcript history
+- Export transcript + summary
+
+## Data Flow
+
+1. User starts recording (side panel button)
+2. BlackHole captures system audio
+3. Audio stream → Deepgram (real-time)
+4. Transcript → Claude analysis
+5. Insights display in side panel
+6. End call: Save transcript + summary to storage
+
+## Implementation Details
+
+**Starting point:** Amurex (open-source Chrome extension framework)
+
+**Tech stack:**
+- Frontend: React (side panel UI)
+- Backend: WebSocket bridge to OpenClaw
+- Audio: BlackHole + Web Audio API
+- Transcription: Deepgram SDK
+- LLM: OpenClaw session
+- Storage: Chrome Storage API + cloud sync
+
+**Development timeline:**
+- Started: Feb 14 (architecture + spec)
+- Build phase: Feb 24+ (post-Rome trip)
+- MVP: Real-time transcript + basic summary
+- V2: Multi-speaker attribution + action items
+
+## Pricing Model
+- Enterprise: $500-5,000/month (unlimited calls)
+- SMB: $100-500/month (limited calls)
+- Freemium: Limited free tier (3 calls/month)
+
+## Go-to-Market
+- Personal demo: Renzo on Berelvant podcast
+- Enterprise sales: Highlight in client pitches
+- Product Hunt: Launch as standalone if strong demand
+- Affiliate/integration: Offer to call recording platforms
+
+## Success Metrics
+- Time to market (speed)
+- Adoption (SMB + enterprise)
+- Revenue per user
+- Integration partnerships`
       },
       {
         slug: "concepts/phantombuster-linkedin-outreach",
