@@ -95,6 +95,120 @@
   <script>
     const docs = [
       {
+        slug: "journal/2026-02-14-final",
+        title: "2026-02-14 (Final) — All Systems Go Before Rome Trip",
+        date: "2026-02-14",
+        tags: ["journal", "daily", "deployment", "cron", "architecture"],
+        content: `# 2026-02-14 (Final) — All Systems Go Before Rome Trip
+
+## Telegram Memory System — ✅ FULLY WIRED & CAPTURING
+
+**Status: LIVE as of ~01:20 EST**
+
+The missing link in our architecture: persistent semantic context that survives session compactions.
+
+**What's Running:**
+- Supabase PostgreSQL + pgvector (https://oucpashabmqeninqghhv.supabase.co)
+- Cron job: Every 30 minutes, captures new Telegram messages
+- Embeddings: OpenAI text-embedding-3-small
+- Search function: SQL-based semantic similarity queries
+- Cost: ~$1-5/month (embeddings), free Supabase tier = 100k messages
+
+**Why this matters:**
+- Session restart no longer = context loss
+- Semantic search finds meaning (not just keywords)
+- Automatic capture (zero manual work)
+- Renzo stays sharp in calls, remembers deal context, client history
+
+**Cron Job Details:**
+- ID: e9dab4a1-d14c-458e-9a85-6f7efe914695
+- Payload: Isolated agentTurn executing telegram-capture.mjs
+- Status: Running, polling Telegram every 30 min
+- Currently: 0 new messages (Renzo just came online)
+
+**Key Files:**
+- Setup script: /Users/cora/.openclaw/workspace/telegram-capture.mjs
+- Setup guide: /Users/cora/.openclaw/workspace/TELEGRAM-MEMORY-SETUP.md
+- Schema: Deployed to Supabase (tables: telegram_messages, facts)
+
+## Cora Voice (Voice App) — ✅ DEPLOYMENT COMPLETE
+
+**URL:** https://cora-voice.fly.dev/app (live on Fly.io)
+
+**Feb 14 Refinements:**
+- System prompt fixed: answers ONLY what's asked (no info-dumping)
+- Conversation behavior: max 1-2 sentences per response
+- Deployed ~01:46 EST
+- All changes committed to GitHub
+
+**Architecture at a Glance:**
+- WebSocket bridge (frontend ↔ backend)
+- Deepgram Nova-3 for STT
+- OpenClaw for LLM
+- ElevenLabs for TTS (voice: yM93hbw8Qtvdma2wCnJG)
+- Supabase auto-archiving with embeddings
+
+**Why useful:**
+- Authority engine: Live demo for clients
+- Product engine: Scalable, customer-ready
+- Revenue engine: Shows enterprise sophistication
+
+## Systems Readiness Pre-Rome Trip (Feb 15-23)
+
+All automation running. Renzo can travel without interruption.
+
+**Running Background Systems:**
+1. **2Brain cron** — Every 6 hours, captures work ideas, commits to GitHub
+2. **Telegram memory** — Every 30 minutes, archives messages with semantic search
+3. **Heartbeat** — Runs periodically, no longer noisy
+4. **OpenClaw memory** — Persisting across sessions
+
+**No manual intervention required.** Systems self-maintain while Renzo is in Rome.
+
+## Architecture Lesson: Cron Payload Types
+
+Built a critical insight into OpenClaw cron system:
+
+**systemEvent payloads** = text messages into session (good for announcements, reminders)
+**agentTurn payloads** = run isolated agent with prompt (good for script execution, complex tasks)
+
+**Wrong approach:** Tried systemEvent to execute telegram-capture.mjs → didn't work
+**Right approach:** Used isolated agentTurn → works perfectly
+
+This matters for future automation: choose payload type based on what you need executed.
+
+## ClickUp Status — CLEAN & ORGANIZED
+
+**Closed:** 8 tasks (Antfarm, Discord, ElevenLabs, OpenClaw update, etc.)
+**Active:** 2 tasks (Cora Copilot, Heartbeat)
+**Backlog:** 2 tasks (DataForSEO MCP, PersonaPlex deployment)
+
+**Rule established:** Only Cora's tasks in "Cora" space. Renzo's action items tracked as reminders, not assignments.
+
+## Deployment Checklist (Pre-Rome)
+
+- ✅ Cora Voice live on Fly.io
+- ✅ Telegram memory capturing (cron running)
+- ✅ 2Brain auto-capture (6h intervals)
+- ✅ Heartbeat stable
+- ✅ Memory system persistent (survives session restarts)
+- ✅ ClickUp cleaned
+- ✅ All docs committed to GitHub
+
+## What's Paused Until Feb 24
+
+- **Cora Copilot** (Chrome extension) — Ready to build, starts after Rome
+- **PersonaPlex/RunPod** — Research phase, paused
+- **Lead gen program** — Paused, resumes post-trip
+
+## Next Phase
+
+Feb 24: Renzo returns. Full development velocity resumes.
+- Build Cora Copilot (Chrome extension for call transcription)
+- Launch PersonaPlex live demo setup
+- Build lead gen outreach program (email cadence, targeting, messaging)`
+      },
+      {
         slug: "journal/2026-02-14-systems-ready",
         title: "2026-02-14 — Cora Voice Deployed, Telegram Memory Live, ClickUp Clean",
         date: "2026-02-14",
@@ -683,6 +797,81 @@ Process:
 - Add user authentication (identify repeat visitors)
 - Build conversation analytics dashboard
 - Monetize as premium feature (Renzo + team voice calls)`
+      },
+      {
+        slug: "concepts/openclaw-cron-payload-patterns",
+        title: "OpenClaw Cron: Choosing Payload Types (systemEvent vs agentTurn)",
+        tags: ["concepts", "openclaw", "cron", "architecture", "automation"],
+        content: `# OpenClaw Cron: Choosing Payload Types
+
+## The Problem
+Built Telegram memory capture automation. Tried systemEvent cron payload to execute telegram-capture.mjs script.
+Result: Didn't work. systemEvent injects text into session, not shell execution.
+
+## The Solution
+Use **isolated agentTurn** instead.
+
+## Payload Types Explained
+
+### systemEvent (Text-based)
+**Use for:** Announcements, reminders, system messages
+**What it does:** Injects text into current session
+**Example:**
+\`\`\`json
+{
+  "kind": "systemEvent",
+  "text": "🔔 Reminder: Rome trip departs in 2 hours (7:30 PM)"
+}
+\`\`\`
+**Limitation:** Doesn't execute code, just sends text
+
+### agentTurn (Execution-based)
+**Use for:** Script execution, complex tasks, autonomous workflows
+**What it does:** Spawns isolated agent, runs arbitrary code/prompts
+**Example:**
+\`\`\`json
+{
+  "kind": "agentTurn",
+  "message": "Execute telegram-capture.mjs to fetch new messages"
+}
+\`\`\`
+**Benefit:** Full code execution, returns results back to cron
+
+## When to Use Each
+
+| Need | Type | Why |
+|------|------|-----|
+| "Send a text reminder" | systemEvent | Fast, simple, text-only |
+| "Run a script" | agentTurn | Can execute code |
+| "Poll an API" | agentTurn | Needs network + code |
+| "Announce progress" | systemEvent | Just informational |
+| "Capture/transform data" | agentTurn | Needs processing |
+
+## Real Example: Telegram Memory Capture
+
+**Cron job:** Every 30 minutes
+
+**Payload (agentTurn):**
+\`\`\`json
+{
+  "kind": "agentTurn",
+  "message": "Run telegram-capture.mjs to fetch new messages from Telegram, generate embeddings, upsert to Supabase"
+}
+\`\`\`
+
+**What happens:**
+1. OpenClaw spawns isolated agent
+2. Agent executes telegram-capture.mjs
+3. Script fetches Telegram messages
+4. Script generates OpenAI embeddings
+5. Script upserts to Supabase
+6. Results returned to cron (summary announced on Telegram)
+
+## Key Takeaway
+Match payload type to task:
+- **Text delivery** → systemEvent
+- **Code execution** → agentTurn
+- **Unknown** → Try agentTurn (more powerful)`
       },
       {
         slug: "concepts/phantombuster-linkedin-outreach",
