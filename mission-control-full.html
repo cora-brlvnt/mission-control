@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission Control</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0a0a0a; color: #e0e0e0; }
+    .container { display: flex; height: 100vh; }
+    .sidebar { width: 360px; border-right: 1px solid #222; background: linear-gradient(to bottom, #0a0a0a, #1a1a1a); overflow-y: auto; padding: 24px; display: flex; flex-direction: column; }
+    .sidebar h1 { font-size: 24px; margin: 0 0 8px; color: #fff; display: flex; align-items: center; gap: 8px; }
+    .sidebar > .subtitle { font-size: 12px; color: #888; margin-bottom: 24px; }
+    .tabs { display: flex; gap: 12px; margin-bottom: 24px; }
+    .tab { padding: 8px 16px; border-radius: 8px; background: #1a1a1a; border: 1px solid #222; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.2s; }
+    .tab.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+    .search-box { margin-bottom: 24px; }
+    .search-box input { width: 100%; padding: 10px 12px; border-radius: 8px; background: #1a1a1a; border: 1px solid #222; color: #e0e0e0; font-size: 14px; }
+    .sidebar-section h3 { font-size: 11px; text-transform: uppercase; color: #888; margin: 20px 0 12px; letter-spacing: 1px; }
+    .doc-list { display: flex; flex-direction: column; gap: 8px; }
+    .doc-item { padding: 12px; border-radius: 8px; background: #1a1a1a; border: 1px solid #222; cursor: pointer; transition: all 0.2s; }
+    .doc-item:hover { background: #242424; border-color: #3b82f6; }
+    .doc-item.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+    .doc-title { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+    .doc-meta { font-size: 11px; color: #888; }
+    .doc-item.active .doc-meta { color: rgba(255,255,255,0.7); }
+    .tags-section { margin-bottom: 24px; }
+    .tags-section h3 { font-size: 11px; text-transform: uppercase; color: #888; margin-bottom: 12px; letter-spacing: 1px; }
+    .tag-pill { display: inline-block; padding: 4px 12px; border-radius: 12px; background: rgba(59, 130, 246, 0.2); border: 1px solid #3b82f6; color: #3b82f6; font-size: 11px; margin-right: 6px; margin-bottom: 6px; cursor: pointer; transition: all 0.2s; }
+    .tag-pill:hover { background: rgba(59, 130, 246, 0.3); }
+    .tag-pill.active { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+    .main { flex: 1; border-left: 1px solid #222; padding: 40px; overflow-y: auto; display: flex; flex-direction: column; }
+    .main-empty { display: flex; align-items: center; justify-content: center; height: 100%; color: #888; font-size: 16px; }
+    .doc-content { line-height: 1.6; }
+    .doc-content h1 { font-size: 28px; margin: 0 0 12px; color: #fff; }
+    .doc-header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #222; }
+    .doc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .tag { display: inline-block; background: rgba(59, 130, 246, 0.2); color: #3b82f6; padding: 4px 12px; border-radius: 12px; font-size: 11px; }
+    .doc-body p { margin-bottom: 16px; }
+    .doc-body h2 { font-size: 20px; margin: 32px 0 16px; color: #fff; }
+    .doc-body h3 { font-size: 16px; margin: 24px 0 12px; color: #fff; }
+    .doc-body ul, .doc-body ol { margin: 16px 0 16px 24px; }
+    .doc-body li { margin-bottom: 8px; }
+    .doc-body code { background: #1a1a1a; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 14px; }
+    .doc-body pre { background: #1a1a1a; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0; }
+    .doc-body pre code { background: none; padding: 0; }
+    .people-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .person-card { background: #1a1a1a; border: 1px solid #222; border-radius: 8px; padding: 16px; }
+    .person-name { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+    .person-role { font-size: 12px; color: #3b82f6; margin-bottom: 12px; font-weight: 500; }
+    .person-info { font-size: 12px; color: #aaa; line-height: 1.8; }
+    .person-info div { margin-bottom: 4px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h1>🧭 <span>MISSION CONTROL</span></h1>
+      <div class="subtitle">Knowledge atlas</div>
+
+      <div class="tabs">
+        <div class="tab active" data-tab="documents">📖 Documents</div>
+        <div class="tab" data-tab="people">👥 People</div>
+      </div>
+
+      <div id="docs-panel">
+        <div class="search-box">
+          <input type="text" id="search" placeholder="Search notes" />
+        </div>
+
+        <div class="tags-section">
+          <h3>Tags</h3>
+          <div id="tags-container"></div>
+        </div>
+
+        <div id="sections-container"></div>
+      </div>
+
+      <div id="people-panel" class="hidden">
+        <div class="search-box">
+          <input type="text" id="people-search" placeholder="Search people" />
+        </div>
+        <div id="people-container"></div>
+      </div>
+    </div>
+
+    <div class="main" id="main">
+      <div class="main-empty">Select a document to begin.</div>
+    </div>
+  </div>
+
+  <script>
+    const docs = [
+      {
+        slug: "journal/2026-02-13",
+        title: "2026-02-13 — Heartbeat Fix & Trigger.dev",
+        date: "2026-02-13",
+        tags: ["journal", "daily", "heartbeat"],
+        content: `# 2026-02-13 — Heartbeat Fix & Trigger.dev Setup
+
+## Problem: Heartbeat Generating Garbage
+Ollama (llama3.2:3b) was configured for heartbeat checks. When the heartbeat prompt came in, Ollama got confused by massive system context and started analyzing instead of checking HEARTBEAT.md.
+
+## Solution: Switched to Claude Haiku
+- Config issue: agents.defaults.heartbeat.model was ollama/llama3.2:3b
+- Changed to: anthropic/claude-haiku-4-5
+- Gateway restarted successfully
+- Heartbeat now disabled (no hourly broadcasts)
+
+## Trigger.dev Integration
+- Account created
+- Framework: Open-source background jobs (async workflows, queuing, retries, monitoring)
+- Extensions available: Prisma, Python, Playwright, Puppeteer, FFmpeg
+- Next: Set up first workflow`
+      },
+      {
+        slug: "journal/2026-02-12",
+        title: "2026-02-12 — Mission Control Build & Research",
+        date: "2026-02-12",
+        tags: ["journal", "daily", "mission-control"],
+        content: `# 2026-02-12 — Mission Control Build & Research
+
+## Mission Control (2nd Brain) System
+- Built and deployed Next.js 14 app
+- Features: Document viewer, sidebar nav, People Directory, tag filtering
+- Design: Dark theme, upgraded with 21st.dev components
+
+## Research Completed
+- Elementor WordPress integration: Custom REST endpoint approach
+- PhantomBuster LinkedIn: Email-first outreach strategy
+- last30days skill: Installed, Reddit research enabled
+
+## Progress
+- CONTACTS.md created with Kate Mangan, Paul Chambers
+- Codex CLI installed and authenticated
+- First concept doc: phantombuster-linkedin-outreach.md`
+      },
+      {
+        slug: "concepts/phantombuster-linkedin-outreach",
+        title: "PhantomBuster LinkedIn Outreach Strategy",
+        tags: ["linkedin", "automation", "lead-gen", "phantombuster", "outreach"],
+        content: `# PhantomBuster LinkedIn Outreach Strategy
+
+## Overview
+Using PhantomBuster for LinkedIn lead generation with email-first outreach.
+
+## Why Email-First?
+- LinkedIn is monitored for spam/bot activity
+- Email is direct - lands in inbox, more personal
+- Higher conversion - less suspicious than "add me" + message
+
+## Workflow
+1. PhantomBuster → Extract LinkedIn profile data
+2. Get email addresses (Hunter.io, Apollo, or manual research)
+3. Send personalized cold emails (lemlist, Instantly, Mailshake)
+4. Follow up via LinkedIn after email engagement
+
+## Tools
+- **PhantomBuster**: LinkedIn scraper + profile extractor
+- **Hunter.io**: Email finding
+- **lemlist**: Email sequences
+- **LinkedIn**: Follow-up after email engagement
+
+## Compliance
+- Respect LinkedIn ToS (no scrapers that trigger account locks)
+- Use email as primary channel
+- Keep sequences short and personal`
+      }
+    ];
+
+    const contacts = [
+      {
+        name: "Kate Mangan",
+        email: "kate.mangan@aubergeresorts.com",
+        relationship: "Wife",
+        notes: "Auberge Resorts"
+      },
+      {
+        name: "Paul Chambers",
+        email: "pchambers@trackerproducts.com",
+        notes: "Tracker Products"
+      }
+    ];
+
+    let selectedDoc = null;
+    let selectedTag = null;
+    let searchTerm = "";
+
+    function getAllTags() {
+      const tags = new Set();
+      docs.forEach(d => d.tags.forEach(t => tags.add(t)));
+      return Array.from(tags).sort();
+    }
+
+    function renderTags() {
+      const container = document.getElementById("tags-container");
+      const allTags = getAllTags();
+      container.innerHTML = "<div class=\"tag-pill " + (selectedTag === null ? "active" : "") + "\" onclick=\"selectTag(null)\">All</div>";
+      allTags.forEach(tag => {
+        const active = selectedTag === tag ? "active" : "";
+        container.innerHTML += `<div class="tag-pill ${active}" onclick="selectTag('${tag}')">${tag}</div>`;
+      });
+    }
+
+    function renderSidebar() {
+      const container = document.getElementById("sections-container");
+      const journals = docs.filter(d => d.tags.includes("journal"));
+      const concepts = docs.filter(d => !d.tags.includes("journal"));
+
+      container.innerHTML = "";
+      
+      if (journals.length) {
+        container.innerHTML += "<div class=\"sidebar-section\"><h3>Journal</h3><div class=\"doc-list\">";
+        journals.forEach(doc => {
+          const match = matchesFilters(doc);
+          const visible = match ? "" : "hidden";
+          const active = selectedDoc === doc.slug ? "active" : "";
+          container.innerHTML += `
+            <div class="doc-item ${active} ${visible}" data-slug="${doc.slug}" onclick="selectDoc('${doc.slug}')">
+              <div class="doc-title">${doc.title}</div>
+              <div class="doc-meta">${doc.date || 'Concept'}</div>
+            </div>
+          `;
+        });
+        container.innerHTML += "</div></div>";
+      }
+
+      if (concepts.length) {
+        container.innerHTML += "<div class=\"sidebar-section\"><h3>Concepts</h3><div class=\"doc-list\">";
+        concepts.forEach(doc => {
+          const match = matchesFilters(doc);
+          const visible = match ? "" : "hidden";
+          const active = selectedDoc === doc.slug ? "active" : "";
+          container.innerHTML += `
+            <div class="doc-item ${active} ${visible}" data-slug="${doc.slug}" onclick="selectDoc('${doc.slug}')">
+              <div class="doc-title">${doc.title}</div>
+            </div>
+          `;
+        });
+        container.innerHTML += "</div></div>";
+      }
+    }
+
+    function matchesFilters(doc) {
+      const matchesSearch = searchTerm === "" || doc.title.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesTag = selectedTag === null || doc.tags.includes(selectedTag);
+      return matchesSearch && matchesTag;
+    }
+
+    function selectDoc(slug) {
+      selectedDoc = slug;
+      const doc = docs.find(d => d.slug === slug);
+      if (doc) renderDoc(doc);
+      renderSidebar();
+    }
+
+    function selectTag(tag) {
+      selectedTag = tag;
+      renderTags();
+      renderSidebar();
+    }
+
+    function renderDoc(doc) {
+      const tagsHtml = doc.tags.map(t => `<span class="tag">${t}</span>`).join("");
+      const main = document.getElementById("main");
+      main.innerHTML = `
+        <div class="doc-content">
+          <div class="doc-header">
+            <h1>${doc.title}</h1>
+            <div class="doc-tags">${tagsHtml}</div>
+          </div>
+          <div class="doc-body">${renderMarkdown(doc.content)}</div>
+        </div>
+      `;
+    }
+
+    function renderMarkdown(text) {
+      let html = text
+        .replace(/^# (.*?)$/gm, '<h1>$1</h1>')
+        .replace(/^## (.*?)$/gm, '<h2>$1</h2>')
+        .replace(/^### (.*?)$/gm, '<h3>$1</h3>')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/^- (.*?)$/gm, '<li>$1</li>')
+        .replace(/(<li>.*?<\/li>)/s, '<ul>$1</ul>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/`(.*?)`/g, '<code>$1</code>')
+        .replace(/^\n/gm, '');
+      return '<p>' + html + '</p>';
+    }
+
+    function renderPeople() {
+      const container = document.getElementById("people-container");
+      const searchTerm = document.getElementById("people-search").value.toLowerCase();
+      const filtered = contacts.filter(c => 
+        c.name.toLowerCase().includes(searchTerm) || c.email.toLowerCase().includes(searchTerm)
+      );
+      
+      container.innerHTML = "<div class=\"people-grid\">" + filtered.map(c => `
+        <div class="person-card">
+          <div class="person-name">${c.name}</div>
+          ${c.relationship ? `<div class="person-role">${c.relationship}</div>` : ""}
+          <div class="person-info">
+            <div>📧 ${c.email}</div>
+            ${c.notes ? `<div>📝 ${c.notes}</div>` : ""}
+          </div>
+        </div>
+      `).join("") + "</div>";
+    }
+
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        
+        const tabName = tab.dataset.tab;
+        document.getElementById("docs-panel").classList.toggle("hidden", tabName !== "documents");
+        document.getElementById("people-panel").classList.toggle("hidden", tabName !== "people");
+        
+        if (tabName === "people") renderPeople();
+      });
+    });
+
+    document.getElementById("search").addEventListener("input", (e) => {
+      searchTerm = e.target.value;
+      renderSidebar();
+    });
+
+    document.getElementById("people-search").addEventListener("input", () => {
+      renderPeople();
+    });
+
+    renderTags();
+    renderSidebar();
+    if (docs.length) selectDoc(docs[0].slug);
+  </script>
+</body>
+</html>
