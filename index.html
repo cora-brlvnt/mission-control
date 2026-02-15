@@ -95,6 +95,98 @@
   <script>
     const docs = [
       {
+        slug: "journal/2026-02-15-rome-departure",
+        title: "2026-02-15 — Rome Trip Departure (12:00 AM) — All Systems Running",
+        date: "2026-02-15",
+        tags: ["journal", "daily", "rome-trip", "systems", "departure"],
+        content: `# 2026-02-15 — Rome Trip Departure (12:00 AM) — All Systems Running
+
+## Rome Trip Departing Today
+**Flight:** DL0230 JFK→FCO departs Feb 15, 7:30 PM EST (14 hours from now)
+**Return:** DL0231 FCO→JFK Feb 23, 12:00 PM CET
+
+## Pre-Departure Checklist
+
+**Documentation:**
+- ✅ Passport, birth certificates prepared
+- ✅ Daughter's birth certificate (Feb 13, 2021 NYC) packed
+- ✅ N-662 Transcription ready (name discrepancy resolution)
+- ✅ AIRE registration proof (Renzo already registered)
+- ✅ Italian translator booked (Feb 14)
+- ⏳ Marca da bollo (€250 digital stamp) — final confirmation
+
+**Travel:**
+- ✅ Flight bookings confirmed
+- ✅ Hotel in Rome booked
+- ✅ Ufficio Atti Esteri appointment: Via Petroselli 50, sportello 11
+  - Contact: Francesca Barbanti (francesca.barbanti@comune.roma.it, 06 6710 4069)
+  - Hours: Tue/Wed 8:30-13:00 (20 ppl), Thu 8:30-16:30 (32 ppl)
+
+**Personal:**
+- ✅ All systems running (no intervention needed during trip)
+- ✅ Memory files updated
+- ✅ ClickUp cleaned and organized
+
+## Systems Status (Autonomous Operation)
+
+**Running while Renzo travels:**
+1. **Telegram memory capture** — Every 30 minutes, auto-captures messages to Supabase
+   - Job ID: e9dab4a1-d14c-458e-9a85-6f7efe914695
+   - Polling: Telegram every 30 min
+   - Storage: Supabase PostgreSQL + pgvector
+
+2. **2Brain cron** — Every 6 hours, captures work ideas and commits to GitHub
+   - Scheduled: 0, 6, 12, 18 UTC (approx)
+   - Action: Updates mission-control/index.html, commits, announces on Telegram
+
+3. **Heartbeat monitoring** — Daily check-ins (no more noise)
+   - Status: Clean, reliable
+   - Action: Alerts only if something needs attention
+
+4. **Cora Voice app** — Live at https://cora-voice.fly.dev/app
+   - Status: Online, accessible, auto-archiving conversations
+   - Cost: Minimal (~$0.02/month)
+
+5. **Memory persistence** — All sessions back MEMORY.md and daily files
+   - Daily log: memory/YYYY-MM-DD.md
+   - Long-term: MEMORY.md
+   - No loss on session restart
+
+## Development Status
+
+**Paused (resuming Feb 24+):**
+- Cora Copilot (Chrome extension build)
+- PersonaPlex/RunPod live demo setup
+- Lead gen outreach program
+
+**No blockers for Feb 15-23.**
+All critical systems self-maintain.
+
+## Timeline (Next 8 Days)
+
+**Today (Feb 15):**
+- Renzo departs JFK at 7:30 PM
+- Systems auto-capture continues (Telegram, 2Brain, heartbeat)
+- Cora monitors from home
+
+**Feb 16-22 (Italy):**
+- Citizenship application process at Ufficio Atti Esteri
+- Renzo focuses on paperwork, translations, interviews
+- Cora: Monitor and capture any new context
+
+**Feb 23:**
+- Renzo departs FCO at 12:00 PM
+- Expected return to NYC ~3:55 PM EST
+
+**Feb 24+:**
+- Resume full development velocity
+- Start Cora Copilot build
+- Expect citizenship status update
+
+## Systems Confidence Level
+✅ **HIGH** — Everything tested, running, autonomous. No manual intervention needed.`
+      },
+      {
         slug: "journal/2026-02-14-work-summary",
         title: "2026-02-14 — Full Work Log: Systems Ready, Code Deployed, Rome Trip Imminent",
         date: "2026-02-14",
