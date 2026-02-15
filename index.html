@@ -1432,6 +1432,356 @@ Using PhantomBuster for LinkedIn lead generation with email-first outreach.
 - Respect LinkedIn ToS (no scrapers that trigger account locks)
 - Use email as primary channel
 - Keep sequences short and personal`
+      },
+      {
+        slug: "journal/2026-02-15-noon-final-systems-check",
+        title: "2026-02-15 — 12:00 PM — Final Autonomous Systems Check (Departure in 7.5h)",
+        date: "2026-02-15",
+        tags: ["journal", "daily", "systems", "autonomy", "operations", "cron"],
+        content: `# 2026-02-15 — 12:00 PM — Final Autonomous Systems Check
+
+## Context
+Renzo departs JFK at 7:30 PM EST (7.5 hours from this checkpoint). All systems verified running autonomously. No manual intervention required for 8-day Rome citizenship trip (Feb 15-23).
+
+## Systems Live & Running
+
+### Telegram Memory (Semantic Search Archive)
+- **Cron:** Every 30 minutes
+- **Job ID:** e9dab4a1-d14c-458e-9a85-6f7efe914695
+- **Function:** Auto-capture all Telegram messages to Supabase with OpenAI embeddings
+- **Storage:** PostgreSQL + pgvector (https://oucpashabmqeninqghhv.supabase.co)
+- **Survives:** Session compactions; persistent semantic index across reconnects
+- **Status:** ✅ LIVE (deployed Feb 14, 01:20 EST)
+
+### 2Brain Knowledge Cron
+- **Schedule:** Every 6 hours (0, 6, 12, 18 UTC)
+- **Function:** Auto-capture work ideas, tasks, lessons from daily logs
+- **Action:** Commits to GitHub repo (mission-control/index.html)
+- **Deployment:** `/Applications/2Brain.app` (native macOS) + web version (localhost:8888)
+- **Status:** ✅ LIVE, running during Rome trip
+
+### Heartbeat Monitoring
+- **Frequency:** Daily (or as configured)
+- **Behavior:** Clean, low-noise; alerts only when action needed
+- **Status:** ✅ OPERATIONAL
+
+### Cora Voice Web App
+- **URL:** https://cora-voice.fly.dev/app
+- **Tech:** WebSocket bridge, Deepgram Nova-3 STT, ElevenLabs TTS, Supabase logging
+- **Deployment:** Fly.io (iad region), automated Docker
+- **Cost:** ~$5-10/mo
+- **Repo:** https://github.com/cora-brlvnt/cora-voice
+- **Status:** ✅ LIVE, auto-archiving conversations
+
+## Decisions Locked (Feb 15)
+1. **Cora Copilot build:** PAUSED until Feb 24 (post-Rome)
+2. **PersonaPlex demo:** PAUSED until Feb 24
+3. **Development lane:** Cleared; no blockers during Rome trip
+4. **Berelvant automation strategy:** Delivered Feb 14 (3-phase roadmap, $150-265K/year potential)
+
+## Memory Discipline (Working)
+- **Daily logs:** memory/YYYY-MM-DD.md (raw, append-only)
+- **Long-term:** MEMORY.md (curated, durable facts)
+- **Weekly distillation:** Planned for Feb 24 (post-Rome)
+- **This cron:** Auto-capturing to Mission Control every 6 hours
+
+## Key Insight: Autonomy Confirmed
+All critical systems designed to run unattended. No human intervention required for 8 days. This validates:
+- Architecture: Cron-driven, event-based, stateless
+- Resilience: Services auto-restart, processes resume after interruption
+- Transparency: All captures logged, searchable, auditable
+
+## Next Checkpoints
+- **Feb 16, 9:45 AM CET:** Renzo arrives Rome (citizenship appointment begins)
+- **Feb 23, 3:55 PM EST:** Renzo lands NYC (expect citizenship status update)
+- **Feb 24:** Resume full development velocity (Copilot build, demo work)
+
+---
+
+**This cron job run:** 12:00 PM EST, Feb 15
+**System readiness:** 100% autonomous
+**Renzo focus:** Rome citizenship application (Feb 16-22)`
+      },
+      {
+        slug: "concepts/autonomous-systems-operation-playbook",
+        title: "Autonomous Systems Operation Playbook — Cron-Driven Architecture",
+        date: "2026-02-15",
+        tags: ["concept", "architecture", "systems", "automation", "cron", "operations", "design-pattern"],
+        content: `# Autonomous Systems Operation Playbook
+
+## Definition
+Systems that run unattended, capture their own state, and report via scheduled jobs. Designed for operator continuity during travel, pauses, or high-context work.
+
+## Core Principles
+
+### 1. **Cron as the Heartbeat**
+- Every system fires on a schedule (every 30 min, 6 hours, daily, etc.)
+- No manual polling; no "check the dashboard" required
+- Each job is idempotent (safe to run multiple times)
+
+### 2. **Capture > Alert**
+- Default: capture everything (Telegram messages, work ideas, task changes)
+- Store in persistent, searchable index (Supabase + pgvector for embeddings)
+- Alert only when action required (not noise)
+
+### 3. **Persistent State**
+- All systems log to durable storage (GitHub, Supabase, local files)
+- Sessions can restart; data is not lost
+- Daily logs (`memory/YYYY-MM-DD.md`) + curated facts (`MEMORY.md`)
+
+### 4. **Low Latency on Resume**
+- After outage/travel, system picks up where it left off
+- No "catch-up" phase; continuous operation
+- Latest state always available via semantic search
+
+## Components (Current Implementation)
+
+### Telegram Memory (30-min cron)
+```
+Telegram API → 30-min polling → Supabase embeddings → Semantic search index
+```
+- Captures every new message since last run
+- Generates OpenAI embeddings for each message
+- Enables "search all conversations" across sessions
+
+### 2Brain Knowledge (6-hour cron)
+```
+Daily logs (memory/YYYY-MM-DD.md) → Parse ideas/tasks/lessons → GitHub commit
+```
+- Extracts structured work items
+- Commits to version control (auditable, reversible)
+- Syncs to web app (mission-control/index.html)
+
+### Heartbeat (daily cron)
+```
+Check system status → If blockers exist, alert → Otherwise, quiet
+```
+- Clean, low-noise monitoring
+- Alerts only on meaningful state change
+- Prevents notification fatigue
+
+### Cora Voice App (continuous)
+```
+User voice input → WebSocket → Claude → Deepgram STT + ElevenLabs TTS → Supabase log
+```
+- Every conversation auto-archived with embeddings
+- No manual export; always indexed
+- Accessible via semantic search
+
+## Benefits
+
+| Benefit | How |
+|---------|-----|
+| **Continuity** | Renzo travels 8 days; systems capture everything; returns to full context |
+| **Scale** | Add new systems without increasing manual ops work |
+| **Audit trail** | Every action logged; compliance-ready |
+| **Low context** | Operator doesn't need to remember state; cron jobs do |
+| **Resilience** | Services fail; cron reschedules; state persists |
+
+## When to Use This Playbook
+- Multi-day trips or focus blocks
+- High-volume operations (hundreds of tasks/messages daily)
+- Need for compliance/audit trails
+- Teams need async updates without real-time monitoring
+
+## When NOT to Use
+- Real-time systems (trading, gaming, live chat support)
+- Sub-second latency requirements
+- Highly interactive workflows (design, video editing)
+
+## Next Evolution (Ideas)
+1. **Smart alerts** — Detect anomalies (sudden drop in captures, error spikes)
+2. **Automated recovery** — If task fails 3x, escalate or page
+3. **Context synthesis** — Weekly AI-generated summary: "here's what happened while you were away"
+4. **Distributed operation** — Cron jobs across multiple machines (HA)`
+      },
+      {
+        slug: "concepts/three-engine-framework",
+        title: "The Three-Engine Framework — Authority → Revenue → Product → Independence",
+        date: "2026-02-15",
+        tags: ["concept", "strategy", "framework", "positioning", "growth", "business-model"],
+        content: `# The Three-Engine Framework — Renzo's Strategic Model
+
+## Overview
+Three aligned, reinforcing engines that compound over time:
+1. **Authority Engine** — Build trust + thought leadership
+2. **Revenue Engine** — Generate cash (retainers, consulting)
+3. **Product Engine** — Scale without time (productized tools, communities)
+
+Each feeds the others. Authority attracts Revenue customers. Revenue funds Product. Product multiplies Authority reach.
+
+## Engine 1: Authority (Trust)
+
+**Purpose:** Establish Renzo as credible AI growth architect (not "marketer who runs ads")
+
+### Activities
+- **SCORE Marketing Chair** — Teach 16+/year workshops (Westport, Connecticut)
+- **LinkedIn thought leadership** — Regular AI + automation insights
+- **Speaking** — Conferences, panels, podcasts
+- **Live demos** — PersonaPlex, Cora Copilot (shows sophistication)
+- **Startup mentor** — Westport/SCORE network (builds referral pipeline)
+
+### Metrics
+- LinkedIn growth rate + engagement
+- Workshop attendance + feedback scores
+- Speaking invitations
+- Referral revenue from SCORE network
+
+### Timeline
+- Feb 17: SCORE workshop (Demo GHL automation, collect leads)
+- Feb 24: Resume PersonaPlex live demo (viral potential)
+- Q1/Q2: Regular LinkedIn content + 2-3 speaking gigs
+
+---
+
+## Engine 2: Revenue (Cash)
+
+**Purpose:** Fund growth, pay team, validate positioning
+
+### Current Client
+- **Forex.com (GCG + GGMI)** — Core client, $80-120K/year (compliance-heavy, regulated)
+- **Forecast:** 3-5 new retainers (Berelvant, Phase 1: $90-165K/year potential)
+
+### Offer
+- **Enterprise AI systems** — Automation, lead gen, voice agents
+- **Productized workflows** — GHL templates ($5-10K per setup)
+- **SLAs & compliance** — For regulated industries (fintech, forex)
+
+### Pipeline
+- **Authority → Leads:** SCORE workshops generate 5-10 warm leads/month
+- **Leads → Sales:** GHL automation demo → personalized pitch → 30-40% close rate (target)
+- **Sales → Retainer:** $7.5-15K/mo per client (Berelvant bill)
+
+### 2026 Target
+- Forge.com: $100K/year (core)
+- Berelvant Phase 1: 3-5 clients × $7.5-15K/mo = $270-900K/year
+- **Total ARR:** $370-1M
+
+---
+
+## Engine 3: Product (Scale)
+
+**Purpose:** Multiply revenue without adding time
+
+### Products (In Development)
+1. **FastTrack Hub** ($39/mo community)
+   - 200-500 members, dynamic pricing
+   - Weekly Q&As, peer network, co-built sessions
+   - Organic + SCORE upsell
+   - Year 1 target: 300 members = $11.7K/mo
+
+2. **CVRedi** + **Voice app** + **Copilot**
+   - Productized AI tools for lead gen, sales, support
+   - License to agencies + resellers
+   - Platform play (eventually SaaS)
+
+3. **Automation templates** (GHL, HubSpot, Zapier)
+   - Pre-built workflows sold to FastTrack Hub members
+   - $500-2K per template
+   - Monthly updates = recurring engagement
+
+### Model
+- **B2C (DTC):** FastTrack Hub ($39/mo) → 1-5% conversion from workshops → $10-50K/mo at 500 members
+- **B2B (Reseller):** Agencies buy Copilot + templates → white-label → 30% margin
+- **B2B2C (Platform):** FastTrack Hub becomes agency tool → agencies sell to customers → 20% revenue share
+
+### 2026 Target
+- FastTrack Hub: 100-300 members = $3.9-11.7K/mo (launch Q1/Q2)
+- Template sales: 10-20 templates × $1K avg = $10-20K/mo
+- **Total:** $13.9-31.7K/mo product revenue
+
+---
+
+## The Flywheel
+
+```
+AUTHORITY (Workshops, LinkedIn, Speaking)
+    ↓
+Leads (Warm intro via SCORE)
+    ↓
+REVENUE (Berelvant retainers, Forex.com growth)
+    ↓
+Capital (Fund product, content, tools)
+    ↓
+PRODUCT (FastTrack Hub, templates, tools)
+    ↓
+More authority (Case studies, community proof)
+    ↓
+[Loop repeats, compounding]
+```
+
+## Why It Works
+
+| Factor | Benefit |
+|--------|---------|
+| **Alignment** | Each engine supports the others (no cannibalization) |
+| **Leverage** | Authority multiplies Revenue. Revenue funds Product. Product amplifies Authority. |
+| **Defensibility** | Hard to copy: requires credibility + code + community |
+| **Scalability** | Authority stays fixed (1 person). Revenue scales (more clients). Product scales (1000s of users). |
+| **Resilience** | If one engine falters, others support (Forex.com down? → Focus on workshops & product) |
+
+## Positioning Statement
+
+**Renzo Proano builds AI infrastructure for mid-market + enterprise.**
+
+Not: "I'm a marketer who builds custom solutions."
+Not: "I teach people about AI."
+**Real:** "I architect automated revenue systems for regulated industries."
+
+---
+
+## Current State (Feb 2026)
+
+### Authority
+- ✅ SCORE 16+/year confirmed
+- ✅ LinkedIn ~500 followers (growing)
+- ⏳ First viral demo (PersonaPlex) — Feb 24+
+
+### Revenue
+- ✅ Forex.com: $100K/year (core)
+- ⏳ Berelvant: 0 retainers (3-5 target in Q1)
+- 🎯 Automation demo ready (Feb 17 workshop)
+
+### Product
+- ✅ Cora Voice app live (demo, not revenue)
+- ✅ CVRedi research phase
+- ⏳ FastTrack Hub (Circle platform, launch Q2?)
+- 🎯 Templates (GHL, HubSpot — pricing, positioning TBD)
+
+---
+
+## Next 90 Days (Milestones)
+
+| Week | Authority | Revenue | Product |
+|------|-----------|---------|---------|
+| **Feb 17** | SCORE workshop demo | Present GHL automation | Collect FastTrack Hub interest |
+| **Feb 24** | PersonaPlex live demo | Follow up workshop leads | GHL template pricing analysis |
+| **Mar 3-7** | LinkedIn + speaking | Close 1-2 Berelvant Phase 1 | FastTrack Hub platform decision |
+| **Mar 24** | Mid-cycle review | 2+ Berelvant signed | FastTrack Hub beta launch |
+| **Apr** | Refine messaging | Revenue pipeline $300K+ | Product revenue: $5K/mo target |
+| **May** | Authority flywheel | 4-5 retainers signed | 100+ Hub members, $3.9K/mo |
+
+---
+
+## Risks & Mitigations
+
+| Risk | Mitigation |
+|------|-----------|
+| **Authority plateau** | Diversify: LinkedIn + speaking + podcast appearances |
+| **Revenue churn** | Build 12-month contracts + strong ops (Berelvant team) |
+| **Product-market fit unknown** | Launch FastTrack Hub beta → measure churn (target: <5%/mo) |
+| **Time bottleneck** | Delegate ops to María Claudia; Renzo focuses on sales + strategy |
+
+---
+
+## Measurement
+
+**Monthly scorecard (report every 30 days):**
+- Authority: LinkedIn growth %, workshop NPS, speaking invites
+- Revenue: Pipeline $, closed $, customer count, churn %
+- Product: Signups, active users, churn %, MRR
+
+**Quarterly:** Full P&L, unit economics, cohort analysis, strategy adjust`
       }
     ];
 
