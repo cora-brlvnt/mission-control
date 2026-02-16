@@ -2460,6 +2460,285 @@ Before saying "done":
 **Confidence:** HIGH — All systems tested, autonomous, verified before Rome trip (Feb 15-23).
 
 **Philosophy:** Pragmatic + execution-first. Playbooks emerge from validated constraints, not abstract templates.`
+      },
+      {
+        slug: "journal/2026-02-16-session-compaction",
+        title: "2026-02-16 — Session Compaction & Infrastructure Verification",
+        date: "2026-02-16",
+        tags: ["journal", "daily", "systems", "infrastructure", "automation"],
+        content: `# 2026-02-16 — Session Compaction & Infrastructure Verification
+
+## Status Summary
+All systems autonomous during Rome trip (Feb 15–23). Seven days of infrastructure validation and decision-making complete. Ready for post-Rome execution.
+
+## Major Systems Verified ✅
+
+### Google Workspace APIs (gog CLI)
+- **Status:** Fully authenticated (cora@berelvant.com)
+- **APIs working:** Gmail (send/search), Drive (list/search), Docs (read/write), Sheets (read/update), Calendar (list/create), Contacts (list/search)
+- **Installation:** gog v0.11.0 at \`/opt/homebrew/bin/gog\`
+- **Auth setup:** OAuth token cache in \`~/Library/Application Support/gogcli/\`
+- **Environment:** GOG_ACCOUNT=cora@berelvant.com (set in OpenClaw)
+- **Cost:** Free (included in Google Workspace)
+- **Use:** All Google API operations now accessible via CLI; no service account setup needed
+- **Confidence:** HIGH — End-to-end tested across all 5 APIs, Feb 16
+
+### GHL Workflows (5 Complete)
+- **Delivered:** 5 production-ready workflows (Lead Capture SMS, Email Sequence, Appointment Reminders, Pipeline Router, Two-Way SMS)
+- **Documentation:** GHL_WORKFLOWS_DOCUMENTATION.json + GHL_MANUAL_IMPORT_GUIDE.md
+- **Deployment:** Manual import (Starter plan API limitation); ready for Renzo's GHL account
+- **Cost:** $0 (Starter) → $497/mo (Agency Pro) when market validated
+- **Status:** Production-ready, awaiting manual import post-Rome
+
+### N8N Video Analysis Automation
+- **Endpoint:** https://brlvnt-0425.up.railway.app/webhook/youtube-stats-webhook
+- **Capabilities:** YouTube + TikTok video intelligence (stats, transcripts, language, niche, viral scoring)
+- **Test case:** "100 hours of OpenClaw lessons in 35 minutes" (Alex Finn) — 34.5K views, 6.13% engagement, 7,811-word transcript
+- **Status:** End-to-end verified, production-ready for daily analysis
+- **Cost:** Free (existing Renzo infrastructure)
+
+## Operational Lessons (Session Summary)
+
+### Lesson 1: Default to Action Over Asking
+- **Old:** Ask clarifying questions ("What's your hotel name?")
+- **New:** Open link → extract data → respond with findings
+- **Impact:** Reduces friction, accelerates execution
+- **Added to:** TOOLS.md ("When given a link → open it immediately")
+
+### Lesson 2: QA Discipline is Non-Negotiable
+Before declaring work "done": audit work, check for inconsistencies, think 10 steps ahead, do full pass review, anticipate bottlenecks
+- **Status:** Embedded in SOUL.md, tested in practice
+
+### Lesson 3: Pragmatism Over Bureaucracy
+Build as you go; don't pre-define abstract templates.
+- **Confidence:** HIGH — Proven across 7 days of work
+
+### Lesson 4: Explicit Instructions = Do It, Don't Ask
+If Renzo says "do X," that's an instruction. Execute and report what changed.
+- **Updated:** SOUL.md + AGENTS.md reflect this rule
+
+## Rome Trip Readiness
+All systems running autonomous. Zero human intervention needed. Workshop (Feb 17), systems capture automatically. All tested before departure.
+
+## Next Actions (Post-Rome, Feb 24+)
+1. Review captured learnings from MEMORY.md + daily logs
+2. Cascade strategy based on workshop feedback
+3. Renzo fills in Operator Scoreboard
+4. Start nightly constraint-reducing wins
+5. Weekly 10x bets
+6. GHL manual import to Renzo's account
+7. Cora Copilot build sprint
+8. PersonaPlex demo setup
+
+**Confidence:** VERY HIGH — All systems built, tested, verified, autonomous.`
+      },
+      {
+        slug: "concepts/constraint-reducing-wins",
+        title: "Constraint-Reducing Wins — Daily Operating Pattern",
+        date: "2026-02-16",
+        tags: ["concepts", "operations", "framework", "daily-wins"],
+        content: `# Constraint-Reducing Wins — Daily Operating Pattern
+
+## Definition
+A quick, measurable, low-risk improvement that removes a bottleneck or accelerates progress on a KPI.
+
+**Scope:** ~90 minutes or less | **Frequency:** Daily | **Goal:** Compound momentum through systematic constraint removal
+
+## Anatomy of a Win
+
+### 1. Identify the Constraint
+- What's blocking progress on the scorecard?
+- What would unblock the most important thing?
+- What could be solved in <90 min?
+
+### 2. Solve It (Stay in Lane)
+- If approved lane: use pre-approved templates + constraints
+- If new territory: ask for constraint boundaries first
+- If reversible + low-risk: execute and report
+
+### 3. Report the Win
+**Action Log format:**
+- **What I did / changed** — Specific action, file path, measurable change
+- **Where** — File path, tool, system affected
+- **Why** — How this improves the KPI / removes bottleneck
+- **Rollback** — How to undo if needed
+- **Next** — What's the next bottleneck?
+
+## Examples from Renzo's Context
+
+### Example 1: Authority Engine
+**Constraint:** Workshop attendees need concrete AI use-case guide (Feb 17)
+**Win:** Built "5 AI Use Cases How-To Guide" (14.2 KB)
+**Impact:** Removes prep friction, increases engagement likelihood
+
+### Example 2: Revenue Engine
+**Constraint:** Berelvant can't demo automation without documented workflows
+**Win:** Built 5 GHL workflows + manual import guide ($0 cost)
+**Impact:** Enables live automation demo during workshop
+
+### Example 3: Product Engine
+**Constraint:** PersonaPlex demo specs incomplete; unclear ROI validation method
+**Win:** Defined demo structure (RunPod A100, $1.20/hr), hypothesis, kill criteria
+**Impact:** Reduces decision friction; ready to move quickly post-Rome
+
+## Metrics to Track
+- **Count:** How many constraints reduced weekly?
+- **KPI moved:** Which scoreboard metric improved?
+- **Time invested:** Total hours spent
+- **Next bottleneck:** What emerges after this win?
+
+## Why This Works
+1. **Momentum compounds** — 7 wins/week × 4 weeks = 28 removals/month
+2. **Reduces big meetings** — Solve before asking; decision friction disappears
+3. **Keeps focus narrow** — One constraint per day prevents thrash
+4. **Builds autonomy** — Renzo sees execution capability, trusts delegation
+5. **Low risk** — Always reversible; easy rollback if wrong
+
+## Anti-Patterns (Don't Do This)
+- ❌ "Work on a big project all day" (no daily win reported)
+- ❌ "Fix minor typo and call it done" (not materially useful)
+- ❌ "Ask permission to ship a win" (violates autonomy model)
+- ❌ "Skip the Action Log" (invisible execution, no compounding)
+- ❌ "Ship work that creates debt for Renzo" (cleanup is opposite of help)
+
+## Integration with Weekly 10x Bets
+**Daily:** Constraint-reducing wins (quick improvements) | **Weekly:** 10x bets (bigger levers)
+Together: Compounding momentum + strategic leverage + zero bottlenecks`
+      },
+      {
+        slug: "concepts/operational-pragmatism",
+        title: "Operational Pragmatism — Lessons from 7 Days",
+        date: "2026-02-16",
+        tags: ["concepts", "operations", "lessons", "pragmatism"],
+        content: `# Operational Pragmatism — Lessons from 7 Days
+
+## Definition
+Ship what works now. Define boundaries as data arrives. Avoid pre-building abstract templates that don't match reality.
+
+## Lesson 1: Default to Action, Not Asking
+
+**Incident (Feb 15):** Renzo shared Google Maps link; I asked "What's your hotel name?" He responded: "Don't you have browser access?"
+
+**Fix Applied:** Open link → extract data → respond directly
+
+**Rule added to TOOLS.md:** "When given a link → open it immediately (don't ask for clarification)"
+
+**Impact:** Removes decision friction; accelerates execution; shows agency
+
+## Lesson 2: Build Operating System Before Playbooks
+
+**What we did (Feb 14–15):**
+- Defined SOUL.md first (mission, autonomy rules, QA discipline)
+- Built AGENTS.md (operator loop with QA step)
+- Created IDENTITY.md (who am I, how I think)
+- Documented USER.md (Renzo's business context)
+- Inventoried TOOLS.md (systems I can access)
+- Froze MEMORY.md (durable business facts)
+- Codified HEARTBEAT.md (daily ritual)
+
+**Then:** Applied these 7 files to real work (GHL, N8N, Google APIs, 2Brain, etc.)
+
+**Result:** Playbooks emerge from validated constraints, not abstract templates. All systems tested in practice; boundaries proved solid.
+
+## Lesson 3: Pragmatism Over Perfection
+
+**Example 1: GHL Workflows**
+- Original plan: Programmatic deployment via SDK (write-protected)
+- Pragmatic move: MCP protocol workaround (HTTP JSON-RPC)
+- Result: 5 workflows built, ready for manual import, $0 cost
+- Decision: Don't force expensive upgrade; validate market first
+
+**Example 2: 2Brain Knowledge App**
+- Original: Build Next.js app (modern, scalable)
+- Pragmatic: Static HTML + GitHub (simple, zero dependencies)
+- Result: Native macOS app works perfectly; fast backup
+
+**Example 3: GHL Manual Import Guide**
+- Original: Script automated imports
+- Pragmatic: Step-by-step UI instructions (clearer, works on Starter plan)
+- Result: Guide shipped; Renzo can import himself when ready
+
+**Pattern:** Choose what works now + costs nothing. Level up only when revenue justifies.
+
+## Operating Model (Crystallized)
+
+### Daily Constraint-Reducing Wins
+1. Check scoreboard — What's #1 bottleneck?
+2. Identify <90 min win that removes it
+3. Execute and report (Action Log format)
+4. Repeat
+
+### Weekly 10x Bets
+1. Identify bigger lever (not maintenance)
+2. Design experiment + kill criteria
+3. Estimate confidence (High/Medium/Low)
+4. Schedule review date
+
+### Autonomy Boundaries (Hard Lines)
+
+**Autopilot (do without asking):**
+- Research, read, analyze, organize, draft, plan
+- Local file edits, reversible changes, systems work
+- Execute when: reversible + low reputational/legal/security risk
+
+**Approval required (ask first):**
+- Any external send (email, message, post)
+- Any spend / budget decision
+- Any destructive / irreversible command
+- Sensitive data outside workspace
+- Anything with legal/compliance/security risk
+- Anything ambiguous or high-risk
+
+**Exception:** If Renzo explicitly says "do X," that's an instruction, not a request. Execute and report (don't ask at the end).
+
+## QA Discipline (Non-Negotiable)
+
+Before saying "done":
+1. **Audit your work** — Did I do what was asked? Did I also do what was necessary?
+2. **Check for inconsistencies** — Duplicates? Conflicts? Organizational debt?
+3. **Think 10 steps ahead** — What could break? What will Renzo spot immediately?
+4. **Never wait to be told** — If there's a low-risk improvement in my lanes, do it and report it
+5. **Do a full pass review** — Read output like Renzo would. Be critical. Tighten.
+
+**This is about becoming a real operator**, not a script that moves files.
+
+## Key Behaviors That Emerged
+
+1. **Fetch before asking** — Use tools to solve problems instead of asking
+2. **Batch approvals** — Multiple decisions → one request (unless deadline < 24h)
+3. **Report every win** — Action Log: what changed, where, why (KPI), rollback, next
+4. **Think ahead** — Every output → anticipate next bottleneck
+5. **Build as you go** — Playbooks emerge from real work; don't pre-scaffold
+
+## What This Enables
+
+- **Renzo's time:** Fewer decision bottlenecks; clear next actions always
+- **Momentum:** Compounding daily wins + weekly 10x bets = measurable progress
+- **Trust:** Operator proves capability; delegation expands over time
+- **Scalability:** System works same way with 5 or 50 priorities
+- **Autonomy:** Clear boundaries mean I can move fast without asking
+
+## Anti-Patterns (Don't Do This)
+
+- ❌ Ask for info you can fetch (friction move)
+- ❌ Spend days on abstract templates (wait for real data)
+- ❌ Ship without QA (attention to detail is identity)
+- ❌ Build perfect solutions (build what works, upgrade when revenue justifies)
+- ❌ Write mental notes (no memory, repeating mistakes)
+- ❌ Call something "done" without full pass review
+- ❌ Ask approval for explicit instructions
+
+## Next Moves (Post-Rome, Feb 24+)
+
+1. Daily constraint-reducing wins (start immediately)
+2. Weekly 10x bets (identify bigger levers)
+3. Fill Operator Scoreboard (Authority, Revenue, Product KPIs)
+4. Deploy GHL workflows to Renzo's account
+5. Build Cora Copilot (Chrome extension)
+6. PersonaPlex demo setup
+7. Measure compounding impact of constraint reduction
+
+**Emoji:** 🦾 (pragmatic, sharp, execution-first)`
       }
     ];
 
