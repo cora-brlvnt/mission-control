@@ -95,6 +95,193 @@
   <script>
     const docs = [
       {
+        slug: "journal/2026-02-16-eod",
+        title: "2026-02-16 — End of Day: API Integration & QA Discipline Breakthrough",
+        date: "2026-02-16",
+        tags: ["journal", "daily", "api", "qa-discipline", "infrastructure", "breakthrough"],
+        content: `# 2026-02-16 — End of Day: API Integration & QA Discipline Breakthrough
+
+## Work Completed
+
+### ✅ Google Workspace API Integration (gog CLI) — PRODUCTION READY
+**Status:** Fully authenticated and tested (Feb 16, 15:30 EST)
+
+**Setup:**
+- OAuth credential configuration: \`/Users/cora/.openclaw/secrets/google-client-secret.json\`
+- Environment: \`GOG_ACCOUNT=cora@berelvant.com\`
+- Cached tokens: \`~/Library/Application Support/gogcli/\`
+
+**APIs Verified Working:**
+- Gmail (send/search) — ✅ Tested
+- Google Drive (list/search) — ✅ Tested
+- Google Docs (read/write markdown) — ✅ Tested
+- Google Sheets (get/update) — ✅ Tested
+- Calendar (list/create events) — ✅ Tested
+- Contacts (list/search) — ✅ Tested
+
+**Impact:** All Google operations now fully automated; email sends, document management, calendar automation ready for deployment.
+
+### ✅ GHL Workflows Documentation Complete
+**Files Created:**
+- \`GHL_WORKFLOWS_DOCUMENTATION.json\` — Full specs for all 5 workflows
+- \`GHL_MANUAL_IMPORT_GUIDE.md\` — Step-by-step UI import instructions
+
+**5 Workflows Ready:**
+1. Lead Capture + SMS → CRM entry + immediate notification
+2. Email Nurture Sequence → Day 1, 3, 6, 9 auto-sequences
+3. Appointment Reminders → SMS + email before meetings
+4. Pipeline Router → Deal stage changes trigger routing + alerts
+5. Two-Way SMS → Inbound parse → route → respond
+
+### 🚨 CRITICAL: QA Discipline Breakthrough
+**Root Cause:** Lost Hoxton Rome client due to fabricated facts + no verification checkpoint
+**Fix:** Mandatory QA gate for client-facing work (fact-check → audit → checkpoint)
+**Rule:** Trust > Speed. Always.
+
+### ✅ N8N Video Analysis Automation — END-TO-END VERIFIED
+**Endpoint:** https://brlvnt-0425.up.railway.app/webhook/youtube-stats-webhook
+**Test Case:** "100 hours of OpenClaw lessons in 35 minutes" — 34.5K views, 7,811-word transcript, 6.13% engagement
+**Output:** Video metrics + transcripts + Claude-ready analysis + Airtable data
+
+## Operational Lessons
+
+**Lesson 1: Don't ask for info you can fetch** — Default to opening links, extracting data, responding  
+**Lesson 2: Playbooks emerge from data, not templates** — Build frameworks after understanding patterns  
+**Lesson 3: Pragmatism over bureaucracy** — GHL manual import guide better than failed API attempts  
+**Lesson 4: Explicit instructions = execute without asking** — Updated autonomy rules in SOUL.md  
+**Lesson 5: CRITICAL — QA before sending client work** — Verify facts, label assumptions, get approval first
+
+## Infrastructure Status: ALL SYSTEMS AUTONOMOUS
+
+| System | Status | Last Check |
+|--------|--------|-----------|
+| Telegram Memory | ✅ LIVE | Feb 16, 6 PM |
+| 2Brain Capture | ✅ LIVE | Feb 16, 6 PM |
+| Cora Voice App | ✅ LIVE | Feb 16, 6 PM |
+| Google APIs (gog) | ✅ PRODUCTION | Feb 16, 3:30 PM |
+| GHL Workflows | ✅ READY | Feb 16, 4 PM |
+| N8N Video Analysis | ✅ PRODUCTION | Feb 16, 5 PM |
+
+**Rome trip (Feb 15-23):** All systems autonomous. Zero intervention needed.
+
+## Next Actions (Post-Rome, Feb 24+)
+
+1. Resume Cora Copilot (Chrome extension)
+2. Deploy GHL workflows (market validation)
+3. Daily constraint-reducing wins (~90 min)
+4. Weekly 10x bets (identify bigger levers)`
+      },
+      {
+        slug: "concepts/qa-discipline-client-facing-work",
+        title: "QA Discipline for Client-Facing Work — Critical Protocol",
+        date: "2026-02-16",
+        tags: ["concepts", "qa", "client-facing", "discipline", "protocol", "critical"],
+        content: `# QA Discipline for Client-Facing Work — Critical Protocol
+
+## Why This Matters
+**Cost of skipping QA:** Lost client (Hoxton Rome), damaged credibility  
+**Root cause:** Fabricated facts + mixed assumptions with verified claims + no verification checkpoint
+
+## Three-Phase QA Protocol (MANDATORY)
+
+### Phase 1: Fact-Check Phase
+- Is this verified or assumption?
+- Did I use web_search/web_fetch to verify?
+- Could this be wrong? What's the risk?
+
+### Phase 2: Credibility Audit
+- Would Renzo's client trust this with their business decision?
+- Am I mixing facts with speculation?
+- Could this damage reputation if wrong?
+
+### Phase 3: QA Checkpoint (BEFORE SENDING)
+- Show Renzo the QA notes (facts, assumptions, confidence)
+- Wait for explicit approval before sending to client
+- Never bypass this for speed
+
+## Examples of QA Failures
+
+**Fabricated Facts:**
+- ❌ "Peninsula Rome costs $1200/night" (never verified, guessed)
+- ✅ "I checked Peninsula Rome on Booking.com; current rate is $1150-1450/night"
+
+**Mixed Facts + Assumptions:**
+- ❌ "Estimated 30% conversion lift from copywriting (unverified)"
+- ✅ "Industry average: 5-15% lift. Conservative estimate for your case: +3-5%"
+
+**No Verification Gate:**
+- ❌ Sent report directly to client without Renzo seeing QA
+- ✅ Show Renzo QA notes + get approval + send
+
+## Rule: Trust > Speed
+
+Missing one QA step costs Renzo clients and credibility. Non-negotiable.`
+      },
+      {
+        slug: "concepts/google-apis-automation-production",
+        title: "Google Workspace APIs — Production Automation Ready (gog CLI)",
+        date: "2026-02-16",
+        tags: ["concepts", "google-apis", "automation", "production", "infrastructure"],
+        content: `# Google Workspace APIs — Production Automation Ready (gog CLI)
+
+## Overview
+Complete OAuth-authenticated access to all Google Workspace APIs via CLI (\`gog\`). All operations ready for production automation.
+
+## Setup (Completed Feb 16)
+
+**Authentication:**
+- Tool: \`gog\` CLI (v0.11.0)
+- Account: \`cora@berelvant.com\` (Berelvant workspace)
+- Credentials: \`/Users/cora/.openclaw/secrets/google-client-secret.json\`
+- Environment: \`GOG_ACCOUNT=cora@berelvant.com\` (set in OpenClaw)
+
+## APIs Verified Working
+
+### Gmail Operations
+\`\`\`bash
+gog gmail send --to=renzo@berelvant.com --subject="Subject" --body="Email body"
+gog gmail search "query"
+\`\`\`
+
+### Google Drive Operations
+\`\`\`bash
+gog drive list
+gog drive search "filename"
+\`\`\`
+
+### Google Docs Operations
+\`\`\`bash
+gog docs cat <docId>       # Read doc
+gog docs write <docId> "text"  # Append to doc
+\`\`\`
+
+### Google Sheets Operations
+\`\`\`bash
+gog sheets get <sheetId> <range>
+gog sheets update <sheetId> <range> <values>
+\`\`\`
+
+### Google Calendar Operations
+\`\`\`bash
+gog calendar list
+gog calendar create --title="Event" --start="2026-02-17T10:00:00"
+\`\`\`
+
+## Use Cases Ready Now
+
+1. **Automated Email Delivery** — Nightly summaries, campaign notifications
+2. **Document Management** — Auto-generate proposals, archive campaigns
+3. **Calendar Automation** — Schedule reminders, meeting-based triggers
+4. **Spreadsheet Automation** — Log leads, track metrics in real-time
+5. **Contact Management** — Sync prospects, cross-reference histories
+
+## Cost
+**$0** — Included with Google Workspace
+
+## Status
+✅ Production-ready | ✅ All 6 APIs verified | ✅ Authentication complete`
+      },
+      {
         slug: "journal/2026-02-15-end-of-day",
         title: "2026-02-15 — End of Day: Core Operating System Complete, All Systems Autonomous",
         date: "2026-02-15",
