@@ -95,6 +95,214 @@
   <script>
     const docs = [
       {
+        slug: "concepts/2026-02-20-onboarding-platform-phase-2",
+        title: "Phase 2 Onboarding Platform — Complete Production Stack",
+        date: "2026-02-20",
+        tags: ["concepts", "product", "infrastructure", "onboarding", "supabase", "next.js", "production"],
+        content: `# Phase 2 Onboarding Platform — Complete Production Stack
+
+**Date:** February 20, 2026  
+**Status:** ✅ Live  
+**Tech:** Next.js 14 + React 18 + Supabase + Railway  
+**Cost:** ~$5-10/month (Railway hosting)  
+**Repo:** https://github.com/cora-brlvnt/onboarding-platform
+
+---
+
+## Overview
+
+Production-grade onboarding platform for Berelvant client lifecycle management. Phase 2 adds real-time Supabase authentication, full CRUD operations for clients and workflows, and live dashboard data integration.
+
+## Key Features
+
+### Client Management
+- Create, read, update, delete client records
+- Client dashboard with active count + revenue metrics
+- Real-time filtering and search
+- Soft-delete safety
+
+### Workflow Management
+- Pre-built templates (Lead Capture, Email Sequence, Appointment Reminders, Pipeline Router, Two-Way SMS)
+- Workflow assignment to clients
+- Status tracking and activation metrics
+
+### Architecture
+- **Frontend:** Next.js 14, React 18, TypeScript, Shadcn/ui
+- **Backend:** Supabase PostgreSQL + RLS policies
+- **Deployment:** Railway (auto-deploy from GitHub)
+- **URL:** https://berelvant-onboarding-platform-production.up.railway.app/
+
+## Integration Points
+- GHL workflows (lead capture → auto-client creation)
+- Email sequences (post-onboarding trigger)
+- Pipeline router (deal stage → workflow assignments)
+- Telegram notifications (new signups)
+- ClickUp task updates
+
+## Measurement (KPIs)
+- Active clients: Target 10-20 by March 31
+- Onboarding completion: Target 70%+ (Day 1 → Day 7)
+- Workflow adoption: Target 80%+
+- Churn: Target <5% monthly
+- NPS: Target 8+ (post-launch survey)
+
+## Status
+✅ Production-ready | ✅ Live and tested | ✅ Ready for client onboarding`
+      },
+      {
+        slug: "concepts/2026-02-20-marketing-asset-generator-skill",
+        title: "Marketing Asset Generator Skill — Production Ready",
+        date: "2026-02-20",
+        tags: ["concepts", "skill", "marketing", "automation", "assets", "gemini", "production"],
+        content: `# Marketing Asset Generator Skill — Production Ready
+
+**Date:** February 20, 2026  
+**Status:** ✅ Production-ready  
+**Tech:** Gemini 3 Pro Image (nano-banana-pro skill)  
+**Cost:** Free (uses existing API credits)
+
+---
+
+## Overview
+
+Production-grade OpenClaw skill for batch-generating marketing assets across 10+ platforms. Supports tone variations, A/B testing, brand compliance, and platform-specific optimization. Fully integrated with centralized brand management system.
+
+## Supported Platforms
+
+**Social Media:** Instagram (feed, stories, reels), Facebook (feed, ads, carousel), LinkedIn (posts, articles), TikTok, X/Twitter  
+**Email & Web:** Email headers, landing page heroes, blog thumbnails, website banners  
+**Video:** YouTube thumbnails (CTR-optimized), video cards, teaser graphics
+
+## Key Features
+
+- **Tone variations:** Professional, playful, data-driven, storytelling
+- **A/B testing:** Generate 2-3 variations per asset
+- **Brand compliance:** Uses centralized brand library
+- **Batch generation:** Create 5-10 assets in single request
+- **Platform optimization:** Correct aspect ratios, safe zones, text sizing
+- **Multi-brand support:** Switch between brands seamlessly
+
+## Capabilities
+
+- Batch asset generation (5-10 assets per request)
+- Copy generation (headlines, body, CTA buttons)
+- Alt text (accessible, SEO-optimized)
+- Metadata export (Claude-ready analysis)
+- Airtable-formatted data for client delivery
+
+## Integration Points
+
+- **Brand Management System:** Uses centralized library (logos, fonts, colors, guidelines)
+- **Google Drive:** Auto-upload generated assets to `/Berelvant/Marketing Assets/`
+- **ClickUp:** Link generated assets to campaigns
+- **Measurement:** Engagement tracking (Instagram insights, YouTube CTR, email conversion)
+
+## Use Cases
+
+- Campaign launches (hero images + social variations)
+- Content marketing (batch blog thumbnails, social quotes)
+- Ads & promotion (Facebook/Instagram creatives, display ads)
+- Multi-brand agency work (batch across brands without manual rebranding)
+
+## Measurement
+
+- Time saved on asset creation
+- Brand consistency score (100% target)
+- Assets per hour (5-10 target)
+- Engagement rates (Instagram, email, landing page)
+- Adoption frequency (weekly, campaigns/month)
+
+## Status
+✅ Production-ready | ✅ Integrated with brand system | ✅ Ready for deployment`
+      },
+      {
+        slug: "concepts/2026-02-20-brand-management-system",
+        title: "Brand Management System — Centralized Library",
+        date: "2026-02-20",
+        tags: ["concepts", "brands", "infrastructure", "library", "guidelines", "assets", "production"],
+        content: `# Brand Management System — Centralized Library
+
+**Date:** February 20, 2026  
+**Status:** ✅ Live  
+**Location:** /Users/cora/.openclaw/workspace/brands/  
+**Tech:** JSON manifests + file-based asset storage  
+**Cost:** Free (local storage)
+
+---
+
+## Overview
+
+Centralized multi-brand asset library supporting Berelvant, client brands, and internal projects. Powers the Marketing Asset Generator skill and enables rapid, consistent asset creation across brands and platforms.
+
+## Directory Structure
+
+\`\`\`
+brands/
+├── berelvant/
+│   ├── manifest.json         # Brand identity + guidelines
+│   ├── logos/                # Logo files (full, dark, mark, favicon)
+│   ├── images/               # Brand imagery (hero, team, office, product)
+│   ├── fonts/                # Typography assets
+│   ├── guidelines.md         # Brand voice, tone, usage rules
+│   └── palette.json          # Color definitions + accessibility
+└── [other-brands]/
+\`\`\`
+
+## Brand Manifest (JSON)
+
+Each brand includes:
+- **Identity:** Positioning, mission, tone
+- **Colors:** Primary, secondary, accent, neutrals with accessibility ratios
+- **Typography:** Heading, body, CTA fonts with sizing + weight
+- **Assets:** Logo, hero images, favicon references
+- **Guidelines:** Logo clearspace, min width, color contrast, brand voice keywords
+- **Metadata:** Created date, owner, domains
+
+## Integration with Marketing Asset Generator
+
+- Generator reads brand manifest before rendering
+- Applies colors, typography, logo according to guidelines
+- Validates brand compliance (contrast ratio, font sizing)
+- Prevents "off-brand" asset generation
+
+## Multi-Brand Workflow
+
+**Adding a new client brand:**
+1. Create folder: \`brands/client-name/\`
+2. Copy manifest template
+3. Add logos, images, fonts
+4. Update manifest with client specifics
+5. Test generation
+
+**Generating for multiple brands:**
+```
+openclaw skill run marketing-asset-generator \\
+  --brands="berelvant,client-a,client-b" \\
+  --platform="instagram,linkedin" \\
+  --batch
+```
+
+Output: All variations organized by brand and platform
+
+## Governance
+
+- Version control all changes (git history preserved)
+- Review brand images annually
+- Maintain WCAG AA contrast minimum
+- Archive obsolete assets (don't delete)
+- Notify team of guideline changes
+
+## Measurement
+
+- Consistency score: % assets compliant with guidelines (target: 100%)
+- Brand recognition: How often brand triggers immediate recognition
+- Asset reuse: Campaign materials using library
+- Time to market: Request to final asset (target: <2 hours for batch)
+
+## Status
+✅ Live | ✅ Integrated with Marketing Asset Generator | ✅ Ready for multi-brand production`
+      },
+      {
         slug: "journal/2026-02-20-daily-capture",
         title: "2026-02-20 — Daily Capture: Autonomous Systems Stable, Day 5 of Rome Trip",
         date: "2026-02-20",
