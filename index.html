@@ -100,6 +100,148 @@
     const CACHE_BUST = "20260222-v3";
     const docs = [
       {
+        slug: "journal/2026-02-22-evening",
+        title: "February 22, 2026 Evening — Client Integration Complete",
+        date: "2026-02-22",
+        tags: ["journal", "daily", "mission-control", "client-integration", "user-manual", "ecosystem-map"],
+        content: `# February 22 Evening (6:04 PM) — Client Integration System Complete
+
+**Status:** Phase 2 complete, ready for deployment
+
+---
+
+## What Was Built (Afternoon/Evening)
+
+### 1. Client Integration System ✅
+- Client intake form (Onboarding Platform)
+- Client dropdown in Mission Control
+- All 7 agents updated to use client data
+- Approval workflow (pending → complete → in_review → approved)
+- Database schema ready (SQL migration needed)
+
+**Impact:** Agents know client tone/brand → on-brand outputs
+
+### 2. User Manual ✅
+- Complete step-by-step guide (11.4 KB)
+- How to create tasks, wait for agents, review deliverables
+- What each agent contributes
+- How to read and use outputs
+
+**Audience:** Team + future clients
+
+### 3. Berelvant Ecosystem Map ✅
+- Strategic positioning (Authority → Revenue → Product engines)
+- How Mission Control fits into bigger picture
+- Integration points + data flows
+- Business case + timeline
+
+**Value:** Shows Mission Control as core system enabling scale
+
+### 4. OAuth Implementation ✅
+- Google OAuth via Supabase
+- Custom callback handling
+- Session management + redirects
+- 5 commits debugging + final fix
+
+**Status:** Ready for testing
+
+---
+
+## System Status
+
+| Component | Status |
+|-----------|--------|
+| Phase 1 Dashboard | ✅ Live |
+| Phase 2 Agent System | ✅ Live |
+| Client Management | ✅ Built |
+| User Documentation | ✅ Complete |
+| OAuth Authentication | ✅ Ready |
+| Database Schema | ⏳ Manual SQL |
+| Production Deployment | ⏳ Ready |
+
+**Timeline:** All code complete, awaiting final setup steps
+
+---
+
+## Next Actions (For Renzo)
+
+1. Run SQL migration in Supabase
+2. Deploy updated code to Railway
+3. Test full client → task → agents → deliverables flow
+4. Verify agents use client tone + brand data`
+      },
+      {
+        slug: "concepts/client-integration-system",
+        title: "Concept: Client Integration System",
+        date: "2026-02-22",
+        tags: ["concepts", "mission-control", "client-data", "integration", "on-brand"],
+        content: `# Client Integration System
+
+Connects Onboarding Platform (client data) with Mission Control (agent outputs).
+
+---
+
+## What It Does
+
+**Before:** Generic agent outputs (no client context)  
+**After:** On-brand outputs (agents use client tone + brand guidelines)
+
+**Data flow:**
+```
+Onboarding Platform (add client)
+  ↓ (clients table)
+Mission Control (select client when creating task)
+  ↓ (task linked to client_id)
+Agent Runner (fetch client data before running agents)
+  ↓ (all agents receive client context)
+Agents (Echo uses tone, Pixel uses brand colors, etc.)
+  ↓
+Deliverables (all on-brand)
+```
+
+---
+
+## Database Changes
+
+**New clients table:**
+- name, company, industry, email, website
+- tone_of_voice (how agents should write)
+- google_drive_folder (for brand assets)
+
+**Updated tasks table:**
+- client_id (link to clients)
+- approval_status (pending → complete → in_review → approved)
+
+---
+
+## Agent Behavior
+
+**Vision:** Client-industry keywords  
+**Echo:** Client-specific tone  
+**Pixel:** Client brand colors + fonts  
+**Social:** Client voice × platform tone
+
+All agents use client context → consistent brand voice
+
+---
+
+## Approval Workflow
+
+Task status: pending → complete → in_review → approved
+
+Renzo can track + update status in dashboard
+
+---
+
+## Setup
+
+Run SQL migration in Supabase (copy-paste provided)
+
+Deploy updated code (client dropdown + agent integration)
+
+Test: Add client → create task → verify agents use data`
+      },
+      {
         slug: "journal/2026-02-22-midday",
         title: "February 22, 2026 Midday — Mission Control Ecosystem Complete",
         date: "2026-02-22",
