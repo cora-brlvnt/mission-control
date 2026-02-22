@@ -100,6 +100,136 @@
     const CACHE_BUST = "20260222-v3";
     const docs = [
       {
+        slug: "concepts/7-agent-marketing-team",
+        title: "7-Agent Marketing Team Architecture — Phase 1 Build Started",
+        date: "2026-02-21",
+        tags: ["concepts", "marketing", "automation", "agents", "architecture", "decision", "high-impact"],
+        content: `# 7-Agent Marketing Team Architecture
+
+**Status:** ✅ APPROVED & BUILD IN PROGRESS  
+**Timeline:** Feb 21-28 (production-ready)  
+**Decision:** "I'll go with your recommendation. Start now."
+
+---
+
+## Overview
+
+Complete marketing automation via 7 specialized agents coordinated by Cora Orchestrator. Based on proven SiteGPT model. Solves 120+ hrs/week bottleneck: social content (40-60 hrs), video scripting (30-40 hrs), campaign planning (20-30 hrs), email sequences (15-20 hrs).
+
+## Architecture
+
+**Team:**
+1. Vision (SEO) — GSC, GA4, Data4SEO
+2. Apex (PPC) — SA360, Google Ads
+3. Nova (Analytics) — GA4, GTM, measurement
+4. Echo (Copywriter) — Headlines, sequences, CTAs
+5. Pixel (Designer) — Thumbnails, social cards, layouts
+6. Reel (Video) — Scripts, production notes, storyboards
+7. Social (Social) — Platform-specific captions
+
+**Plus Cora Orchestrator** — Listens to Telegram, posts tasks to dashboard, consolidates outputs
+
+## Impact
+
+- **Speed:** 4 hours → 30 min campaign launch (8x faster)
+- **Variations:** 2 → 6 per campaign (3x more A/B tests)
+- **Execution:** Sequential → Parallel (no bottlenecks)
+- **Manual work:** 120+ hrs/week → ~20 hrs/week (83% reduction)
+- **Cost:** $101-105/mo
+
+## Phase 1 Timeline
+- Feb 21-22: Supabase schema + agent prompts + UI design
+- Feb 24-26: Deploy, wire, test
+- Feb 26-28: Live test (GCG Q2), refinement, production
+
+## Decision Basis
+- Proven: SiteGPT (Bhanu Teja, $200K ARR, 51.8K YouTube views)
+- Low cost: $101-105/mo
+- Low risk: All APIs tested
+- Timeline: Realistic Feb 28 deadline`
+      },
+      {
+        slug: "journal/2026-02-22-major-decision-7-agent-team",
+        title: "February 21-22 — Major Decision: 7-Agent Marketing Team (BUILD STARTED)",
+        date: "2026-02-21",
+        tags: ["journal", "daily", "decision", "7-agent-team", "marketing", "automation", "high-impact"],
+        content: `# February 21-22 — Major Decision: 7-Agent Marketing Team
+
+**Decision date:** February 21, 2026 @ 15:45 EST  
+**Status:** ✅ APPROVED & Phase 1 BUILD IN PROGRESS  
+**Your decision:** "I'll go with your recommendation. Start now."
+
+---
+
+## What Happened (Feb 21)
+
+### 1. Analyzed ClickUp Bottlenecks
+- 120+ hrs/week manual work across 4 lists
+- Social content: 40-60 hrs (copywriting + scheduling)
+- Video scripting: 30-40 hrs (script development)
+- Campaign planning: 20-30 hrs (research + strategy)
+- Email sequences: 15-20 hrs (sequence building)
+
+### 2. Reviewed Jan's SiteGPT Model (Bhanu Teja)
+- 14 agents on single VPS, $200K ARR
+- Key: Parallel agents polling dashboard every 15 min
+- Better than linear pipeline (analysis → plan → create → publish)
+
+### 3. Designed 7-Agent Team
+- Vision (SEO), Apex (PPC), Nova (Analytics), Echo (Copy), Pixel (Design), Reel (Video), Social (Captions)
+- Each agent does ONE job (single responsibility)
+- All work simultaneously (parallel, not sequential)
+
+### 4. Created Complete Architecture
+- Google Doc with 7 agent profiles
+- Mission Control Dashboard spec (Supabase schema)
+- Workflow examples
+- API audit (what's available, what's manual)
+- Cost: $101-105/mo
+- Timeline: Feb 28 production-ready
+
+### 5. Got Approval
+- Decision: "Start now (Feb 21)"
+- Phase 1: Feb 21-28 (production-ready)
+
+---
+
+## Phase 1 Timeline
+
+**Feb 21-22:** Supabase schema + agent prompts + UI design  
+**Feb 24-26:** Deploy, wire agents, test  
+**Feb 26-28:** Live test (GCG Q2), refinement, production
+
+---
+
+## Why This Matters
+
+**Current:** You bottleneck on campaign planning/execution  
+**Post-launch:** You orchestrate via Telegram ("Plan Q2 campaign"), Cora + 7 agents deliver consolidated brief in 1 hour
+
+**Impact:**
+- 8x faster campaigns
+- 3x more A/B variations
+- 83% less manual work
+- 4x less your involvement
+
+---
+
+## Key Insights
+
+1. **Parallel beats sequential** — 4 hours → 30 min
+2. **SiteGPT model proven** — $200K ARR generated
+3. **Low cost, high impact** — $101-105/mo
+4. **API reality** — Full APIs for Google, Meta, Email; limited for LinkedIn, TikTok
+5. **Single responsibility** — 7 focused agents better than overloaded agents
+
+---
+
+## Status
+
+✅ APPROVED | ✅ BUILD IN PROGRESS | ✅ PHASE 1 DELIVERY: FEB 28`
+      },
+      {
         slug: "journal/2026-02-08",
         title: "2026-02-08 — Day 1 Full Log",
         date: "2026-02-08",
