@@ -4771,8 +4771,180 @@ Result: 3 platform-optimized assets with Berelvant brand colors + tone.
 - Integrate with ClickUp (auto-tag projects with brand)
 - Document brand evolution process`
       }
-    ];
+- Document brand evolution process`
+      },
+      {
+        slug: "concepts/2026-02-21-cora-orchestrator-7-agent-team",
+        title: "Cora Orchestrator: 7-Agent Marketing Team",
+        date: "2026-02-21",
+        tags: ["concepts", "agents", "orchestration", "marketing", "phase1"],
+        content: `# Cora Orchestrator: 7-Agent Marketing Team
 
+## Overview
+
+**Decision:** Build 7-agent marketing team with Cora as Orchestrator
+**Model:** SiteGPT/Bhanu Teja approach (Mission Control Dashboard + polling)
+**Timeline:** Phase 1 production-ready by Feb 28, 2026
+**Status:** BUILD IN PROGRESS
+
+## The 7 Agents
+
+1. **Vision (SEO Agent)** — GSC, GA4, Data4SEO keyword research
+2. **Apex (PPC Agent)** — SA360, Google Ads campaign optimization  
+3. **Nova (Analytics Agent)** — GA4, GTM, ROI tracking + insights
+4. **Echo (Copywriter Agent)** — Headlines, ad copy, email sequences (A/B variants)
+5. **Pixel (Designer Agent)** — Ad images, thumbnails, landing page layouts
+6. **Reel (Video Script Agent)** — Video scripts, production notes
+7. **Social (Organic Social Agent)** — Platform-specific captions (Instagram, Twitter, LinkedIn, TikTok)
+
+## Orchestration Model
+
+- **You** talk only to Cora (via Telegram/email)
+- **Cora** posts tasks to Mission Control Dashboard
+- **All 7 agents** poll dashboard every 15 minutes
+- **Agents** add expertise in parallel (not sequential)
+- **Cora** consolidates deliverables
+- **Final brief** ready for your review
+
+## Impact
+
+- **Campaign launch time:** 4 hours → 30 minutes (8x faster)
+- **A/B test variations:** 2 → 6 per campaign (3x more options)
+- **Execution:** Parallel (not linear handoffs)
+- **Communication:** Single interface (Cora, not 7 agents)
+
+## Cost
+
+**$101-105/month**
+- Data4SEO: $100/month (already subscribed)
+- Gemini API (images): $1-5/month
+- Everything else: Free tier
+
+## Phase 1 Timeline
+
+**Feb 21-22:** Supabase schema + agent system prompts  
+**Feb 24-26:** Deploy Mission Control + wire agents  
+**Feb 26-28:** Internal test + refinement  
+**Feb 28:** Production-ready
+
+## Next Steps
+
+1. ✅ Architecture approved (Feb 21)
+2. Build Supabase schema (in progress)
+3. Write agent prompts (Feb 22-23)
+4. Deploy dashboard (Feb 25)
+5. Live test: GCG Q2 campaign (Feb 26)
+6. Go live (Feb 28)
+`
+      },
+      {
+        slug: "journal/2026-02-21",
+        title: "Daily Capture: Feb 21",
+        date: "2026-02-21",
+        tags: ["journal", "daily", "agents", "orchestration"],
+        content: `# Daily Log — February 21, 2026
+
+## Major Work: 7-Agent Marketing Team Approved
+
+**Time:** Morning through evening (6:00 AM - 5:45 PM EST)  
+**Status:** Phase 1 BUILD STARTED
+
+### Analysis Phase
+
+1. **Reviewed ClickUp Backlog 2026**
+   - GCG 2026 (Forex client): Campaign briefs, landing pages, social content
+   - ORG Social: YouTube, TikTok, Instagram content (40-60 hrs/week manual work)
+   - Renzo Brand: Personal content calendar, email sequences
+   - CVRedi: Product work (out of marketing scope)
+
+2. **Identified Bottlenecks**
+   - Social content creation: 40-60 hrs/week
+   - Video scripting: 30-40 hrs/week
+   - Campaign planning: 20-30 hrs/week  
+   - Email sequences: 15-20 hrs/week
+   - **Total manual work:** ~100 hours/week
+
+3. **Reviewed Jan's SiteGPT Model**
+   - Downloaded OpenClaw Marketing Team folder (15+ skills)
+   - Analyzed Bhanu Teja's orchestration approach
+   - Key insight: Parallel agents >>> linear pipelines
+   - YouTube: 51.8K views; Jan's models generating $200K ARR
+
+4. **Designed Better Architecture**
+   - Single responsibility per agent (not multi-job agents)
+   - API-native (GSC, GA4, Data4SEO, SA360, Gemini)
+   - Mission Control Dashboard (Supabase + React) for coordination
+   - Cora as orchestrator (not separate "Jarvis")
+
+### Design Phase
+
+5. **7-Agent Architecture**
+   - Vision (SEO) — GSC, GA4, Data4SEO
+   - Apex (PPC) — SA360, Google Ads
+   - Nova (Analytics) — GA4, GTM, ROI
+   - Echo (Copywriter) — Copy, headlines, sequences
+   - Pixel (Designer) — Images, thumbnails, layouts
+   - Reel (Video) — Scripts, production notes
+   - Social (Social) — Platform captions
+
+6. **Complete Architecture Document**
+   - Google Doc: 8,000+ words
+   - Agent profiles with examples
+   - Mission Control schema (Supabase)
+   - Orchestration workflow
+   - API requirements
+   - Timeline + costs
+   - Success metrics
+
+7. **Got Approval**
+   - You approved: "I'll go with your recommendation"
+   - Decision: "Start now (Feb 21)"
+   - No waiting for Rome return
+
+### Build Phase (In Progress)
+
+8. **Phase 1 Kickoff**
+   - Supabase schema design: In progress
+   - Agent system prompts: Queued for Feb 22-23
+   - Mission Control UI: Queued for Feb 25
+   - Internal test: GCG Q2 campaign (Feb 26)
+   - Production: Ready by Feb 28
+
+## Systems Status
+
+✅ All autonomous systems running:
+- Telegram Memory Capture (every 30 min)
+- 2Brain cron (every 6 hours)
+- Cora Voice app (live)
+- OpenClaw Gateway (auto-start configured)
+- Mission Control (restarted + auto-starts on reboot)
+
+✅ Phase 1 build: 0% → 10% (kickoff complete)
+
+## Key Decisions Made
+
+1. **Orchestrator model:** Cora (not separate agent)
+2. **Communication:** Mission Control Dashboard (shared task board)
+3. **Polling:** Every 15 minutes (frequent coordination)
+4. **APIs:** Native integration (GSC, GA4, Data4SEO, SA360, Gemini)
+5. **Single responsibility:** Each agent does ONE job
+6. **Parallel execution:** All agents work simultaneously
+7. **Cost:** $101-105/month (minimal)
+
+## Blockers
+
+None for Phase 1. All APIs and infrastructure ready.
+
+## Next Steps
+
+- Build Supabase schema (tonight/Feb 22)
+- Write agent prompts (Feb 22-23)  
+- Deploy Mission Control (Feb 25)
+- Test with GCG Q2 campaign (Feb 26)
+- Go live (Feb 28)
+`
+      }
+    ];
     const contacts = [`
       {
         name: "Kate Mangan",
