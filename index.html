@@ -101,53 +101,111 @@
     const docs = [
       {
         slug: "journal/2026-02-23",
-        title: "February 23, 2026 — Auth Fix, Vercel Migration, App Merge",
+        title: "February 23, 2026 — Full Day: Auth Fix → Vercel → Merge → PRD → Phase 1 Rebuild",
         date: "2026-02-23",
-        tags: ["journal", "daily", "mission-control", "vercel", "architecture", "deployment"],
-        content: `# February 23, 2026 — Auth Fix, Vercel Migration, App Merge
+        tags: ["journal", "daily", "mission-control", "vercel", "architecture", "deployment", "prd", "supabase"],
+        content: `# February 23, 2026 — Full Day Recap
 
-**Date:** Monday, February 23, 2026 | **Status:** Mission Control unified on Vercel
+**Date:** Monday, February 23, 2026 | **Status:** Phase 1 rebuild complete, PRD written
 
-## Auth Loop Fix (7:20 AM)
+## Morning: Auth Loop Fix (7:20 AM)
 - Google OAuth redirect loop — callback page didn't handle hash fragments or PKCE exchange
-- Fake \`.env.local\` with dummy Supabase key was committed to git, overriding Railway env vars
-- \`NEXT_PUBLIC_\` vars unavailable at Docker build time; \`createClient()\` crashed at module level
+- Fake \`.env.local\` with dummy Supabase key committed to git, overriding Railway env vars
 - **Fix:** Rewrote callback with \`setSession()\`, removed fake .env.local, added Docker ARG/ENV
 
-## Vercel Migration
-- **Decision:** Move from Railway → Vercel (better Next.js fit, free tier, simpler deploys)
-- Deleted Dockerfile + railway.json
-- Moved agent-runner to \`/api/run-agents\` API route
-- Added vercel.json with 15-min cron for 7 parallel agents
+## Morning: Railway → Vercel Migration
+- **Decision:** Move from Railway → Vercel (better Next.js fit, simpler deploys)
+- Deleted Dockerfile + railway.json; moved agent-runner to API route
 - **Live:** marketing-agents-liard.vercel.app
-- Updated Supabase redirect URLs + Google Cloud authorized origins
+- Upgraded to Vercel Pro ($20/mo) for cron support
 
-## Onboarding Platform Merge
+## Morning: Onboarding Platform Merge
 - Merged onboarding platform into Mission Control (single internal app)
-- Ported: /clients, /team, /workflows, /settings, sidebar navigation, dashboard
-- Claude Code agent completed merge in ~25 min, clean build
-- Pushed: ef55cd1
+- Ported: /clients, /team, /workflows, /settings, sidebar nav, dashboard
+- Claude Code agent completed in ~25 min, clean build (ef55cd1)
 
-## Architecture (Current)
-\`\`\`
-Vercel (free)
-├── / — Dashboard overview
-├── /tasks — Campaign tasks
-├── /clients — Client CRUD
-├── /workflows — Workflow templates
-├── /team, /settings, /admin, /auth
-├── /api/run-agents — 7 agent runner (cron 15min)
-└── Supabase (ieirkjgfompuevwalzga)
-\`\`\`
+## Afternoon: PRD Written (684 lines)
+- Full PRD at \`projects/marketing-agents/PRD.md\`
+- **Key architecture decision:** Vercel = UI only, Mac mini = agent execution
+- **Wave system:** Wave 1 (Vision, Apex, Nova — data/strategy) → Wave 2 (Echo, Pixel, Reel, Social — creative)
+- **Output:** Google Drive folder structure per task/agent
+- **Skills integration:** Agents use existing skills (ogilvy, SA360, Data4SEO, nano-banana-pro)
+- **Structured handoff:** Wave 1 writes JSON to Supabase \`output_data\` for Wave 2
+- Telegram task creation supported (not just dashboard)
+- Partial failure tolerance — if one agent fails, others continue
+
+## Afternoon: Phase 1 Schema Rebuild
+- New SQL migration: \`003_phase1_rebuild.sql\`
+- New tables: clients (domain + tone_of_voice), tasks (client_id + drive_folder_url), agent_runs (wave + output_data JSONB + output_files JSONB), workflows
+- Dropped old tables: task_comments, deliverables, agent_status
+- Google Drive folder created: "Mission Control Output" (ID: 1k4134SCmsvXu29RoVf0JK-GpfFJbbUyy)
+- Task detail page rewritten with Wave 1 + Wave 2 agent cards
 
 ## Skills Installed
 - **skill-guard** — Pre-install security scanner for ClawHub skills
 - **skill-detector** — Always-on workflow pattern detector
 
-## Pending
-- Renzo to review merged app on Vercel
-- Agents still return hardcoded sample data (need real AI integration)
-- File storage for brand assets not built yet`
+## Architecture (End of Day)
+\`\`\`
+Vercel (UI only)
+├── Dashboard, Tasks, Clients, Workflows, Team, Settings, Admin, Auth
+└── No agent execution (removed /api/run-agents)
+
+Mac mini (execution engine)
+├── OpenClaw cron polls Supabase for pending tasks
+├── Wave 1 agents → output_data → Wave 2 agents
+├── Output → Google Drive via gog CLI
+└── Full tool access: gog, MCP servers, Data4SEO, Gemini
+
+Supabase
+├── clients, tasks, agent_runs, workflows
+└── Auth (Google OAuth @berelvant.com)
+\`\`\`
+
+## Next Steps (Phase 2)
+- Build orchestrator script on Mac mini
+- OpenClaw cron polls Supabase for pending tasks
+- Implement Wave 1 → Wave 2 handoff
+- Start with Vision agent (Phase 3)`
+      },
+      {
+        slug: "concepts/wave-based-agent-orchestration",
+        title: "Concept: Wave-Based Agent Orchestration",
+        date: "2026-02-23",
+        tags: ["concepts", "architecture", "agents", "mission-control"],
+        content: `# Wave-Based Agent Orchestration
+
+## Core Idea
+7 marketing agents execute in two waves with structured data handoff. Wave 1 (data/strategy) feeds Wave 2 (creative/execution).
+
+## Wave 1 — Data & Strategy
+- **Vision** — Brand audit, competitive analysis, market positioning
+- **Apex** — SEO/SEM strategy, keyword research, technical audit
+- **Nova** — Analytics insights, performance benchmarks, opportunity mapping
+
+## Wave 2 — Creative & Execution (depends on Wave 1 output)
+- **Echo** — Content strategy, blog posts, email campaigns
+- **Pixel** — Visual identity, ad creatives, brand assets
+- **Reel** — Video scripts, storyboards, social video
+- **Social** — Social media calendar, community strategy, engagement
+
+## Handoff Mechanism
+- Wave 1 agents write JSON to Supabase \`agent_runs.output_data\`
+- Wave 2 agents read Wave 1 output programmatically
+- No manual copy-paste — structured data flows automatically
+
+## Key Design Decisions
+- **Agents are "digital employees"** — they decide what to output based on the brief
+- **Each agent can create multiple files** (sheets AND docs), not limited to one format
+- **Partial failure tolerance** — if one agent fails, others continue
+- **Execution on Mac mini** (full tool access), not Vercel serverless
+- **Output to Google Drive** — one folder per task, subfolders per agent
+
+## Why This Matters
+- Eliminates the "one agent does everything" bottleneck
+- Strategy informs creative (not the other way around)
+- Clients see organized deliverables, not raw AI output
+- Scales: add more agents to either wave without restructuring`
       },
       {
         slug: "concepts/railway-to-vercel-migration",
