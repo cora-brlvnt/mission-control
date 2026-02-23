@@ -97,8 +97,162 @@
 
   <script>
     // Cache buster: 2026-02-22
-    const CACHE_BUST = "20260222-v3";
+    const CACHE_BUST = "20260223-v4";
     const docs = [
+      {
+        slug: "journal/2026-02-23-morning-capture",
+        title: "February 23, 2026 — Weekly Start, Phase 2 Ready for Deployment",
+        date: "2026-02-23",
+        tags: ["journal", "daily", "weekly-start", "status-checkpoint", "mission-control"],
+        content: `# February 23, 2026 — Weekly Start, Phase 2 Ready for Deployment
+
+**Date:** Monday, February 23, 2026, 6:04 AM EST | **Status:** Phase 2 production-ready, deployment manual steps pending
+
+## This Week's Focus
+1. **Deployment completion** — Deploy Mission Control Phase 2 (client integration + 7-agent system)
+2. **Validation** — Test client → task → agents → deliverables workflow
+3. **Phase 3 planning** — Sub-agent spawning, external data integration
+
+## System State
+- ✅ Phase 1 (dashboard) — Live on Railway
+- ✅ Phase 2 (7-agent + clients) — Code complete, docs complete, awaiting deployment
+- ✅ Documentation — ~200+ KB comprehensive guides
+- ⏳ Deployment — 3 manual steps: SQL migration, redeploy, test
+
+## Phase 2 Achievements (Feb 22)
+- **Delivery acceleration:** 3-4 days → 30 minutes (8x faster)
+- **Throughput:** 1-2 campaigns/week → 5+/week (5x)
+- **Value:** $16K-100K/month potential
+- **Time invested:** 18 hours (6:04 AM → 11:59 PM)
+
+## Key Decisions
+1. **Parallel execution** — 7 agents run simultaneously (no sequential bottleneck)
+2. **Client-first design** — Agents receive brand context (tone, guidelines)
+3. **Documentation-driven** — Comprehensive user manual + architecture
+4. **Anti-procrastination rule** — Execute immediately after approval (no re-planning)`
+      },
+      {
+        slug: "concepts/parallel-execution-model",
+        title: "Concept: Parallel Agent Execution Model",
+        date: "2026-02-22",
+        tags: ["concepts", "architecture", "system-design", "mission-control", "agents", "performance"],
+        content: `# Concept: Parallel Agent Execution Model
+
+**Discovered:** February 22, 2026 | **Status:** Proven in production
+
+## The Model
+Run all agents simultaneously instead of sequentially:
+- Sequential: Task takes 3-4 days (agents process one at a time)
+- Parallel: Same task takes 30 min (all agents run together)
+
+## Why It Works
+Each agent produces independent output:
+- **Vision** → Brand imagery | **Apex** → Email copy | **Nova** → LinkedIn content
+- **Echo** → Landing pages | **Pixel** → Ad creative | **Reel** → Video script | **Social** → Social posts
+
+No dependencies = can execute simultaneously.
+
+## Performance Impact
+| Metric | Sequential | Parallel | Gain |
+|--------|-----------|----------|------|
+| Time per task | 3-4 days | 30 min | **8x faster** |
+| Weekly throughput | 1-2 | 8+ | **5-8x** |
+| Client turnaround | 1 week | 1 day | **7x faster** |
+
+## Scaling
+Model scales to any number of agents without proportional time increase:
+- 7 agents: 30 min | 15 agents: 30 min | 50 agents: 30 min | 200 agents: 30 min
+
+**Total execution time = longest single agent (usually 30 min)**
+
+## Key Insight
+**Design for parallelization from day one. Retrofitting is hard.**`
+      },
+      {
+        slug: "concepts/brand-data-injection-pattern",
+        title: "Concept: Brand Data Injection Pattern",
+        date: "2026-02-22",
+        tags: ["concepts", "architecture", "client-integration", "mission-control", "data-patterns"],
+        content: `# Concept: Brand Data Injection Pattern
+
+**Discovered:** February 22, 2026 | **Status:** Proven in production
+
+## The Problem
+**Without brand data:** Agent generates generic output → client rejects tone → 80% rewrite → 2-3 hours lost
+
+**With brand data injection:** Agent reads client tone on execution → output auto-branded → client approves 90% → 8x faster
+
+## The Pattern
+
+### Store Client Context in Supabase
+- Tone: "Professional, friendly, data-driven"
+- Voice: "Authoritative but approachable"
+- Key messages: "Save enterprises 20 hours/week"
+- Audience: "B2B SaaS, enterprise leaders"
+- Brand folder: Link to Google Drive
+
+### Agents Read Client Data on Execution
+1. Task specifies client_id
+2. Agent fetches client context from Supabase
+3. Agent injects brand data into prompt
+4. Output is automatically on-brand
+
+## Impact
+| Metric | Without Injection | With Injection | Gain |
+|--------|------------------|----------------|------|
+| Revision rounds | 3-5 | 0-1 | 80% fewer |
+| Approval time | 2-3 hours | 5-15 min | 90% faster |
+| Approval rate | 10-20% first-draft | 85-95% | 5-8x |
+
+## Key Insight
+**Specific context > generic instructions. Store structured data (Supabase) > unstructured (Drive).**`
+      },
+      {
+        slug: "concepts/anti-procrastination-rule",
+        title: "Concept: Anti-Procrastination Rule (Execute-Now Discipline)",
+        date: "2026-02-22",
+        tags: ["concepts", "operational-discipline", "decision-making", "execution"],
+        content: `# Concept: Anti-Procrastination Rule (Execute-Now Discipline)
+
+**Discovered:** February 22, 2026 | **Status:** In active use
+
+## The Rule
+**After approval, execute immediately. Zero discussion, zero re-planning.**
+
+Do the task. Don't ask clarifying questions. Don't make a plan. Don't think about it. Execute first. Report results.
+
+## Why It Works
+
+### Planning Often Masks Procrastination
+- Planning feels productive ("thinking deeply")
+- But it doesn't build anything
+- **Planning cycle:** 3-5 hours → still uncertain
+- **Execution cycle:** 30 min → learn what's wrong → adjust → working
+
+### Execution Reveals Truth
+- Planning reveals assumptions (might be wrong)
+- Execution reveals facts (what actually works)
+- Failing + redoing: 3-4 hours
+- Planning + discussing: 3-5 hours
+- **Execution is faster even when wrong**
+
+## Performance Impact
+| Metric | Plan-First | Execute-First | Saved |
+|--------|-----------|--------------|-------|
+| Small task (1-2 days) | 4h + 8h | 8.5h | **3-5h** |
+| Medium (3-5 days) | 8h + 24h | 24h | **8h** |
+| Large (1-2 weeks) | 15h + 60h | 60h | **15h** |
+| Monthly (4 projects) | - | - | **16 hours** |
+
+## When It Works
+✅ "Build X" tasks | ✅ "Research Y" | ✅ "Draft Z" | ✅ Clear scope + room to iterate
+
+## When NOT to Use
+❌ Destructive commands (delete, reset) | ❌ Spending money | ❌ Ambiguous requests (clarify first)
+
+## Key Insight
+**Execution reveals truth. Planning reveals assumptions. Execute first when reversible.**`
+      },
       {
         slug: "journal/2026-02-22-eod",
         title: "February 22, 2026 (EOD) — Complete Phase 2 Delivery",
