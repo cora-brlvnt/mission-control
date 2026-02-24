@@ -96,8 +96,8 @@
   </div>
 
   <script>
-    // Cache buster: 2026-02-22
-    const CACHE_BUST = "20260223-v4";
+    // Cache buster: 2026-02-24
+    const CACHE_BUST = "20260224-v5";
     const docs = [
       {
         slug: "journal/2026-02-23",
@@ -3867,6 +3867,149 @@ None for Phase 1 build. Everything is API-ready.
         date: "2026-02-21",
         tags: ["concepts", "agents", "orchestration"],
         content: `# Cora Orchestrator: 7-Agent Marketing Team - APPROVED, BUILD IN PROGRESS - Phase 1 by Feb 28`
+      },
+      {
+        slug: "journal/2026-02-24-daily-capture",
+        title: "February 24, 2026 — Daily Capture (Feb 23 Work Review)",
+        date: "2026-02-24",
+        tags: ["journal", "daily", "mission-control", "vercel", "vision-agent", "data-pipeline", "google-apis"],
+        content: `# February 24, 2026 — Daily Capture (Feb 23 Work Review)
+
+**Date Logged:** Tuesday, February 24, 2026, 12:04 AM EST  
+**Work Period Reviewed:** Monday, February 23, 2026  
+**Status:** Phase 1 rebuild complete, data pipeline live, Vision agent producing output
+
+## Work Summary
+
+### Morning: Infrastructure Fixes (7:20 AM)
+- **Google OAuth Auth Loop** — Fixed redirect/PKCE exchange in Next.js callback
+- **Railway → Vercel Migration** — Moved from Railway to Vercel (better Next.js fit)
+  - Live: marketing-agents-liard.vercel.app
+  - Upgraded to Vercel Pro ($20/mo) for cron job support
+- **Onboarding Platform Merge** — Merged onboarding app into Mission Control
+  - Completed by Claude Code agent in ~25 min
+
+### Afternoon: Architecture & PRD (12:00 PM - 4:30 PM)
+- **PRD Written** — 684-line specification for marketing agents product
+- **Phase 1 Database Schema Rebuilt** — SQL migration 003_phase1_rebuild.sql
+  - New tables: clients, tasks, agent_runs, workflows
+  
+### Afternoon: Data Integration & Agent Build (4:30 PM - 8:00 PM)
+- **Data Sources Connected (All Working)**
+  - GSC MCP: berelvant.com 53 clicks/90 days, 1840 impressions
+  - Data4SEO API: Direct REST endpoint with full credentials
+  - GA4 MCP: Berelvant property (335179630), real traffic data
+  
+- **Vision Agent Built** — Pulls real data from GSC/Data4SEO/GA4 in parallel
+  - Creates: 1 Google Sheet (keyword data, 69 rows) + 1 Google Doc (strategy report)
+  
+- **Cost Optimization** — All 5 cron jobs switched from Opus to Haiku
+
+## Key Decisions
+1. **Skip Multi-Agent Demo** — Build ONE agent (Vision) properly first
+2. **Vercel for UI, Mac Mini for Execution** — Clear separation of concerns
+3. **Defer Schema Evolution** — Proof-of-concept first with flat model
+
+## Technical Learnings
+- gog CLI quirks: sheets update takes one row per call
+- Google Docs conversion: HTML → gog drive upload --convert → proper formatted Doc
+- Google Sheet API rate limits: ~60 writes/min/user; need throttling after 50 rows
+- Skill installations: skill-guard, skill-detector
+
+## Next Actions
+1. Get Renzo's feedback on Vision agent output quality
+2. Apply code updates to task detail page and API route
+3. Schedule orchestrator cron job for Wave 1 + Wave 2 execution`
+      },
+      {
+        slug: "concepts/google-api-automation-patterns",
+        title: "Concepts: Google API Automation Patterns",
+        date: "2026-02-24",
+        tags: ["concepts", "google-apis", "automation", "gog-cli", "engineering", "data-pipeline"],
+        content: `# Concepts: Google API Automation Patterns
+
+**Context:** Building data pipelines (GSC, GA4, Drive, Sheets, Docs) for marketing agents
+
+## Key Patterns
+
+### 1. Google Sheets Write Rate Limiting
+**Problem:** Naive approach loops over 60+ keywords → rateLimitExceeded
+
+**Solution:** Batch writes with controlled pacing
+- ~60 writes/min/user; expect rejection every 50+ consecutive rows
+- Add 5-10s pause after batch
+- Exponential backoff on rateLimitExceeded
+
+### 2. Google Drive File Conversion & Formatting
+**Solution:** Convert HTML → Google Doc with proper formatting
+- HTML with styles → gog drive upload --convert
+- Auto-converts to properly formatted Doc with heading styles, bold, tables
+
+### 3. Google Sheets Data Extraction
+**Pattern:** Pull data from GSC/Data4SEO, flatten to CSV rows, write to Sheets
+- Parameters must be numbers (not strings)
+- Pagination via startRow/limit
+
+### 4. File References & Folder Organization
+**Pattern:** Create per-client folder structure, embed file IDs in database
+- Store folder ID in task record (Supabase)
+- Agent outputs go to that folder
+
+### 5. Credential Management
+- **User Auth (gog CLI):** Good for personal workspace, interactive tools, full API scope
+- **Service Account:** Good for headless automation, cross-account access
+
+## Common Errors & Fixes
+- rateLimitExceeded → add sleep(5) every 50 rows
+- documentId vs file.id → update gog version
+- --to flag doesn't work → use --parent
+- HTML uploads as text/plain → add --convert flag
+
+## Architecture Recommendation
+1. Query phase (parallel, no writes) — GSC, Data4SEO, GA4 async
+2. Transform phase (local, no API calls) — parse responses, format output
+3. Write phase (serial, rate-limited) — batch Sheets, single Doc, move files`
+      },
+      {
+        slug: "concepts/marketing-agents-data-pipeline",
+        title: "Concepts: Marketing Agents Data Pipeline",
+        date: "2026-02-24",
+        tags: ["concepts", "architecture", "marketing-agents", "data-integration", "pipeline", "analytics"],
+        content: `# Concepts: Marketing Agents Data Pipeline
+
+**Status:** Vision agent (Wave 1) producing output; Wave 2 agents pending
+
+## The Problem
+Traditional marketing workflows fragmented: GSC (search), GA4 (traffic), Data4SEO (research) scattered across dashboards with no unified strategy.
+
+**Solution:** Automated pipeline pulls all signals, synthesizes analysis, outputs actionable strategy documents.
+
+## Vision Agent Architecture
+**Input:** Client domain + task parameters  
+**Output:** 1 Google Sheet (keyword data) + 1 Google Doc (strategy report)
+
+### Data Sources Connected
+1. **Google Search Console (GSC)** — Search performance (53 clicks, 1840 impressions, 2.88% CTR for berelvant.com)
+2. **Data4SEO** — Competitive/keyword research (1900 vol "AI Automation Agency")
+3. **Google Analytics 4 (GA4)** — Traffic behavior (335 users, 89 pageviews/month, 60% bounce)
+
+### Output Format
+**Google Sheet:** keyword | search_volume | difficulty | cpc | target_pages | priority
+**Google Doc:** Strategy report with market opportunity, top keywords, competitive landscape, traffic analysis, recommended actions
+
+## Technical Details
+- Vision Agent Script: /orchestrator/vision-agent.mjs
+- Rate Limiting: Parallel data collection, sequential Sheets writes (50 batch, 5s pause), single Doc upload
+- Test Data: Berelvant (client), berelvant.com (domain), 69-row sheet, formatted doc
+
+## Wave 2 Agents (Pending)
+- **Echo:** Email campaign strategy
+- **Pixel:** Conversion tracking audit
+- **Reel:** Short-form video content ideas
+- **Social:** Social media calendar
+
+## Key Learning
+Centralized pipeline prevents conflicting signals, enables downstream agents, creates audit trail, reduces manual entry errors.`
       }
     ];
 
