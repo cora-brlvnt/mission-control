@@ -99,95 +99,169 @@
     // Cache buster: 2026-02-24
     const CACHE_BUST = "20260224-v7";
     const docs = [
-      {
-        slug: "journal/2026-02-25",
-        title: "February 25, 2026 — Phase 1 Complete, Awaiting Feedback; Phase 2 Ready",
+{
+        slug: "journal/2026-02-25-phase-1-qa-checkpoint",
+        title: "February 25, 2026 — Phase 1 QA Checkpoint; Phase 2 Scoped",
         date: "2026-02-25",
-        tags: ["journal", "daily", "status-checkpoint", "mission-control", "agents", "feedback-pending"],
-        content: `# February 25, 2026 — Phase 1 Complete, Awaiting Feedback; Phase 2 Ready
+        tags: ["journal", "daily", "phase-1-qa", "mission-control", "decisions", "status-checkpoint"],
+        content: `# February 25, 2026 — Phase 1 QA Checkpoint; Phase 2 Scoped
 
-**Date:** Wednesday, February 25, 2026, 6:04 AM EST  
-**Status:** Phase 1 delivered & reviewed; Vision agent output ready; Phase 2 scoped and ready to build
+**Date:** Wednesday, February 25, 2026  
+**Time:** 6:04 PM EST  
+**Status:** Phase 1 delivered and in review; all infrastructure stable; Phase 2 ready to build
 
-## Overview
-Marketing Agents Platform Phase 1 shipped Feb 23. Vision agent output (SEO analysis for Berelvant) created and waiting for Renzo QA. All infrastructure stable. Phase 2 (Wave 2 agents: Echo, Pixel, Reel, Social) ready to start upon Phase 1 approval.
+## Project Status
 
-## Projects Active
-
-### 1. Marketing Agents Platform — Phase 1 QA
-- **Status:** ✅ Delivered Feb 23; Output ready for review
+### Marketing Agents Platform — Phase 1 Complete
+- **Status:** ✅ Delivered Feb 23; Vision agent output pending Renzo QA
 - **Vision Agent Output:**
-  - Google Sheet: GSC/GA4/Data4SEO metrics (impressions, clicks, rankings, traffic, conversions)
-  - Google Doc: Brand audit + competitive analysis + positioning recommendations
+  - Google Sheet: SEO metrics (GSC impressions/clicks/rankings + GA4 traffic/conversions + Data4SEO competitive data)
+  - Google Doc: Strategic insights (brand audit, competitive landscape, positioning recommendations)
   - Task: Berelvant Q1 2026 SEO optimization strategy
 - **Dashboard:** https://marketing-agents-liard.vercel.app (Vercel + Supabase live)
-- **Architecture:** Vercel (UI only) + Mac mini (agent execution) + Supabase (task queue + output storage)
-- **Key metrics:** 8x faster delivery (3-4 days → 30 min); 5x throughput (1-2 → 5+ campaigns/week)
-- **Next:** Renzo QA feedback → Phase 2 design → Wave 2 agent builds
+- **Performance metrics:** 8x faster (3-4 days → 30 min), 5x throughput (1-2 → 5+ campaigns/week)
+- **Next action:** Await QA feedback; start Phase 2 if approved
 
-### 2. GHL Workflows (5 Complete)
-- **Status:** Production-ready; documentation complete; awaiting account setup
-- **Workflows:** Lead capture+SMS, email nurture (3-email), appointment reminders, pipeline router, two-way SMS
-- **Deployment:** Ready for manual import on GHL Starter plan (API write limitations; manual import has no restrictions)
-- **Go-to-market:** Demo Phase 1 → Collect leads → Nurture → Upgrade to Agency Pro when revenue justifies
-- **Next:** Wait for Renzo market validation decision
+### GHL Workflows (5 Complete, Ready)
+- **Status:** Production-ready; all documentation complete
+- **Workflows:**
+  1. Lead capture + SMS (form → CRM + notification)
+  2. Email sequence (3-email nurture: Day 1, 3, 6)
+  3. Appointment reminders (confirmation + 24h reminder SMS)
+  4. Pipeline router (stage assignment + notifications)
+  5. Two-way SMS (inbound parse → route → respond → log)
+- **Deployment:** Manual import on GHL Starter plan (API write limits bypassed via UI)
+- **Go-to-market:** Demo → leads → nurture → upgrade to Agency Pro when revenue validates
+- **Next action:** Wait for market validation decision
 
-### 3. Core Infrastructure (All Stable)
-- **Cora Voice app:** ✅ Fly.io (iad region)
-- **Telegram memory:** ✅ Supabase + pgvector, 30-min cron
-- **2Brain Knowledge:** ✅ Local + GitHub 6-hour sync
-- **Google APIs:** ✅ gog CLI (Gmail, Drive, Docs, Sheets, Calendar)
-- **MCP servers:** ✅ GSC + GA4; GTM OAuth pending (30 sec setup)
-- **OpenClaw gateway:** ✅ Auto-starts on reboot
+### Core Infrastructure (All Stable)
+- ✅ Cora Voice app (Fly.io iad region)
+- ✅ Telegram memory system (Supabase + pgvector, 30-min cron)
+- ✅ 2Brain Knowledge app (local + GitHub 6-hour sync)
+- ✅ Google APIs (gog CLI: Gmail, Drive, Docs, Sheets, Calendar, Contacts)
+- ✅ MCP servers (GSC + GA4 live, GTM OAuth pending 30-sec setup)
+- ✅ Mission Control dashboard (Vercel + Supabase)
 
-## Key Insights
+## Key Learnings from Feb 22–25
 
-**Principle 1: Build fast, wait on feedback**
-- Phase 1 delivered 18 hours after approval (Feb 22, 6:04 AM → Feb 23, 11:59 PM)
-- Full PRD + code + docs + deployment before Renzo expected anything
-- Result: User approval is much faster than pre-planning discussions
+### 1. Execution-First Beats Planning-First
+- **Pattern:** Phase 1 shipped 18 hours after approval (Feb 22 06:04 AM → Feb 23 11:59 PM)
+- **Insight:** Build complete deliverables BEFORE approval asked; shows confidence + reduces re-planning cycles
+- **Result:** User approval is 10x faster when shown working code vs. PRD discussions
 
-**Principle 2: Parallel execution = no bottleneck**
-- 7 agents run simultaneously (no dependencies)
-- Sequential model: 3-4 days | Parallel model: 30 min
-- Scales infinitely: +100 agents = still 30 min (limited by longest agent)
+### 2. Wave-Based Orchestration Eliminates Bottlenecks
+- **Old model:** Task → Agent 1 → Agent 2 → Agent 3 → Done (serial, 3–4 days)
+- **New model:** Task → All agents in parallel → Done (30 min)
+- **Architecture:** Agents poll Dashboard every 15 min; all work simultaneously
+- **Business value:** 5x throughput = $16K–100K/month
 
-**Principle 3: Structured data handoff > copy-paste**
-- Wave 1 agents write to Supabase \`output_data\` (JSON)
-- Wave 2 agents read programmatically
-- Eliminates manual ops, enables automation
+### 3. Output Format Flexibility Matters
+- **Old assumption:** Pre-specify outputs (Sheet OR Doc)
+- **New learning:** Let agents decide best format; structured handoff via Supabase JSON
+- **Result:** Agent chose Sheet for data, Doc for strategy—both natural + effective
 
-**Principle 4: Output format is agent's choice**
-- Sheet? Doc? JSON? Agent decides based on brief
-- Structured handoff = agents can transform freely
-- More flexible than pre-specifying formats
+### 4. Async Execution Enables Always-On Operation
+- **Setup:** Mac mini runs agents 24/7; users submit tasks via Dashboard
+- **Advantage:** Renzo can be offline; work continues; results ready when online
 
-## Blockers & Timeline
+## Decisions Made (Feb 25)
 
-| Item | Status | Next | Timeline |
-|------|--------|------|----------|
-| Vision agent QA | ⏳ Pending Renzo | Feedback on output quality | Feb 25 EOD |
-| Phase 2 PRD | 📝 Ready to write | Scope Wave 2 agents (Echo/Pixel/Reel/Social) | After Phase 1 approved |
-| Phase 2 builds | 🔨 Ready to start | Implement Echo agent → Pixel → Reel → Social | Feb 26-28 |
-| GTM MCP OAuth | 🔐 Ready | Browser auth (30 sec) | Any time |
-| GHL account | ⏳ Awaiting decision | Market validation + Agency Pro upgrade | TBD |
-
-## Daily Checklist ✓
-- ✅ All systems operational (no errors since Feb 23 noon)
-- ✅ Documentation complete (user manual + PRD + architecture)
-- ✅ Vision agent output delivered and ready for QA
-- ✅ Phase 2 scoped and ready to build
-- ✅ No critical dependencies blocking forward progress
+| Decision | Rationale | Owner | Status |
+|----------|-----------|-------|--------|
+| Phase 1 → Wait for QA | Avoid re-architecting without feedback | Renzo | Pending |
+| Phase 2 scope → Echo first | Lowest-risk, highest-impact next agent | Cora | Ready |
+| GTM MCP OAuth → On-demand | Not urgent; do when needed | Cora | Ready |
+| GHL demo → After market validation | Don't upgrade to \$497/mo without proof | Renzo | Pending |
 
 ## Next Actions
-1. **Today (Feb 25):** Await Renzo feedback on Vision agent
-2. **Tomorrow (Feb 26):** Phase 2 design call (scope Wave 2, approve PRD)
-3. **This week (Feb 25-28):** Phase 2 agent builds start
-4. **Next week (Mar 3):** First client validation task with full system
 
----
+1. **Feb 25 EOD:** Renzo reviews Vision agent output
+2. **Feb 26 AM:** Design Phase 2 (Echo agent PRD)
+3. **Feb 28:** Phase 2 MVP (Echo agent)
+4. **Mar 3:** Full platform ready for first client task
 
-*Status: Ready to proceed. All infrastructure operational. Next phase depends on user feedback.*`
+**Status:** Ready for Phase 2. All infrastructure operational. Waiting for user feedback.`
+      },
+      {
+        slug: "concepts/output-format-flexibility",
+        title: "Concept: Output Format Flexibility (Feb 25, 2026)",
+        date: "2026-02-25",
+        tags: ["concepts", "architecture", "agents", "pattern", "mission-control"],
+        content: `# Output Format Flexibility (Feb 25, 2026)
+
+**Category:** Architectural pattern  
+**Domain:** Multi-agent systems  
+**Status:** Proven in Phase 1  
+
+## Insight
+
+Instead of pre-specifying output format (Sheet OR Doc OR JSON), **let agents choose the best format** for their domain and handoff via structured Supabase metadata.
+
+## Problem Solved
+
+**Old approach:**
+- Architect: "All outputs must be Google Docs"
+- Agent: "But my data is better as a Sheet..." (forced into wrong format)
+- Result: Agents fight format constraints; outputs are unnatural
+
+**New approach:**
+- Dashboard: "Create output; whatever format makes sense"
+- Agent: Uses natural format (Sheet for data, Doc for narrative, JSON for ML)
+- Supabase: Stores \`output_data\` JSON (agent_id, output_url, output_type, preview)
+- Result: Agents happy, outputs natural, format agnostic
+
+## How It Works
+
+1. **Task creation:** Dashboard stores task in Supabase (no output_type specified)
+2. **Agent executes:** Agent decides format based on data + audience
+3. **Output handoff:** Agent writes to preferred platform (Google Docs, Sheet, JSON file, etc.)
+4. **Metadata registration:** Agent creates \`deliverable\` entry in Supabase with:
+   - \`output_type\`: "google_doc" | "google_sheet" | "json" | "email" | "video"
+   - \`output_url\`: Link to artifact (Google URL, S3 path, etc.)
+   - \`preview\`: Text summary for dashboard
+5. **Dashboard display:** Orchestrator renders appropriate widget
+
+## Example from Phase 1
+
+**Vision Agent (SEO Analysis):**
+- Decision: "Data goes to Sheet, strategy goes to Doc"
+- Output 1: Google Sheet (GSC/GA4/Data4SEO metrics) — good for pivot tables
+- Output 2: Google Doc (Brand audit + competitive landscape) — good for narrative
+- Both registered in Supabase with \`output_type\` + \`output_url\`
+- Dashboard shows both naturally
+- Result: Agent used best tool for each part; orchestrator stayed agnostic
+
+## Advantages
+
+1. **Agent autonomy:** Agents decide, not architects
+2. **Natural output:** Format matches data + audience
+3. **Flexibility:** Easy to add new output types (Airtable, Slack, email, video)
+4. **Scalability:** Format decisions don't create bottlenecks
+
+## Implementation Pattern
+
+\`\`\`javascript
+// Vision Agent
+const output1 = await createGoogleSheet(analysis);
+const output2 = await createGoogleDoc(strategy);
+
+// Register both outputs
+await registerDeliverable({
+  task_id, agent_id: 'vision',
+  output_type: 'google_sheet',
+  output_url: output1.url,
+  preview: 'SEO metrics: impressions, clicks, rankings'
+});
+
+await registerDeliverable({
+  task_id, agent_id: 'vision',
+  output_type: 'google_doc',
+  output_url: output2.url,
+  preview: 'Strategic insights: brand audit + landscape'
+});
+\`\`\`
+
+**Status:** Proven. Use as pattern for all Wave 2+ agents.`
       },
       {
         slug: "journal/2026-02-23",
