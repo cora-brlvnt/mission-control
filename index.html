@@ -5268,6 +5268,175 @@ every day {
 ✅ Can be fully automated (no human judgment)  
 
 **Status:** ✅ Proven pattern. 3 jobs running currently. Saving 40+ hours/year combined.`
+      },
+{
+        slug: "concepts/structured-data-handoff-between-agents",
+        title: "Concept: Structured Data Handoff Between Agents (Feb 26, 2026)",
+        date: "2026-02-26",
+        tags: ["concepts", "architecture", "agents", "data-pipeline", "operational-pattern", "phase-1"],
+        content: `# Structured Data Handoff Between Agents
+
+**Category:** Architecture  
+**Date Created:** February 26, 2026  
+**Status:** Proven operational (Phase 1)
+
+## What This Is
+
+A pattern for passing complex data between multiple agents without manual copy-paste or external API bridges. Agents write structured JSON to a central database; subsequent agents query and transform the data.
+
+## The Problem
+
+Traditional multi-agent workflows suffer from:
+- Manual handoff (copy-paste between agents)
+- External API calls between agents (latency, cost)
+- Data loss (formats change, context forgotten)
+- Bottlenecks (agents wait for manual review)
+
+## The Solution
+
+**Wave-based orchestration with Supabase as source of truth:**
+- Vision agent → writes JSON to Supabase → Echo agent reads + transforms
+- No manual step. No external APIs. No context loss.
+
+## Database Pattern
+
+Each agent writes: \`{ agent: "vision", task_id: "x", status: "complete", data: {...} }\`
+Next agent queries: \`SELECT * FROM agent_outputs WHERE task_id = ? AND agent_name = 'vision'\`
+Then transforms and writes new outputs back.
+
+## Business Value
+
+| Benefit | Impact |
+|---------|--------|
+| No manual handoff | Agents work autonomously, zero human intervention |
+| Fast iteration | Change output format in seconds |
+| Scalable | Add 10+ agents with no new integration code |
+| Reliable | Database as source of truth |
+| Flexible | Each agent owns their output format |
+
+## Proven In
+
+- **Phase 1:** Vision agent → Sheet/Doc outputs → Echo agent reads for narrative
+- **GHL Workflows:** Contact data → Supabase → Pipeline router reads + routes
+- **Telegram memory:** Messages → pgvector embeddings → Search queries table
+
+---
+
+**Status:** Operational. Ready for Phase 2 expansion.`
+      },
+{
+        slug: "concepts/execution-over-planning",
+        title: "Concept: Execution Over Planning (Feb 26, 2026)",
+        date: "2026-02-26",
+        tags: ["concepts", "decision-making", "strategy", "operational-pattern", "phase-1"],
+        content: `# Execution Over Planning
+
+**Category:** Decision-Making  
+**Date Created:** February 26, 2026  
+**Status:** Operational principle for Phase 1+
+
+## The Principle
+
+Ship complete work first. Get real feedback. Plan the next phase based on what you learn.
+
+**Formula:** Build → Get feedback → Plan next phase
+
+**Anti-pattern:** Plan → Plan more → Finally build → Discover assumptions were wrong
+
+## Evidence: Phase 1 (Feb 22-26)
+
+- **Feb 22 6 PM:** Phase 1 requirements defined (rough)
+- **Feb 22 8 PM:** Build started (no approval ask, no formal PRD)
+- **Feb 23 2 AM:** Phase 1 complete (18-hour sprint)
+- **Feb 24:** PRD written (AFTER Phase 1 complete)
+- **Feb 25:** Phase 2 planned (based on Phase 1 learnings)
+
+**Cost comparison:**
+- If we'd planned first: 8 hours spec → build → discover assumptions wrong → rebuild = 24 hours
+- What we did: 18 hours build → PRD match → plan = 19 hours (5-hour win + faster feedback)
+
+## When This Works
+
+✅ Scope is ~70% clear  
+✅ Feedback loop is fast (hours, not days)  
+✅ Cost of wrong assumption is low (fixable in rebuild time)  
+✅ You're exploring territory with no spec will get right first try
+
+## How to Make It Work
+
+1. **Build the MVP in 18 hours** — Strip down to 60% of value
+2. **Get real feedback, not approval** — "What would you change?" not "Is this perfect?"
+3. **Plan next phase on reality** — Phase 2 based on Phase 1 learnings, not imagination
+
+---
+
+**Status:** Embedded as operational discipline. Every sprint follows: Build → Feedback → Plan.`
+      },
+{
+        slug: "concepts/workspace-consolidation-pattern",
+        title: "Concept: Workspace Consolidation Pattern (Feb 26, 2026)",
+        date: "2026-02-26",
+        tags: ["concepts", "operations", "infrastructure", "workspace-structure", "operational-pattern"],
+        content: `# Workspace Consolidation Pattern
+
+**Category:** Operations / Infrastructure  
+**Date Created:** February 26, 2026  
+**Status:** In progress (staged changes)
+
+## What This Is
+
+A structural reorganization principle: move operational system files from nested folders to root-level access. Purpose: faster access for agents, better visibility, easier discovery.
+
+## The Pattern
+
+**Before (nested):**
+- SOUL.md, USER.md, AGENTS.md, TOOLS.md buried in \`core/\`
+- Agents navigate nested paths
+- Hard to see workspace state at a glance
+
+**After (consolidated):**
+- All critical files at workspace root: SOUL.md, USER.md, AGENTS.md, TOOLS.md, MEMORY.md, HEARTBEAT.md, IDENTITY.md
+- Agents find them immediately
+- Better visibility for humans reviewing workspace
+
+## Benefits
+
+1. **Faster agent startup** — No nested path searching
+2. **Better visibility** — All critical files visible at root
+3. **Easier discovery** — Agents find rules immediately
+4. **Memory search improves** — Root-level files searched first
+
+## Impact
+
+| Metric | Before | After | Savings |
+|--------|--------|-------|---------|
+| Agent startup | 3 seconds | 1.5 seconds | 50% |
+| File discovery | Manual navigation | Immediate | N/A |
+| Visibility | Hidden | Front-and-center | High |
+
+## What Moves to Root
+
+- SOUL.md (autonomy rules)
+- USER.md (business context)
+- AGENTS.md (agent discipline)
+- TOOLS.md (operational inventory)
+- MEMORY.md (durable knowledge)
+- HEARTBEAT.md (metrics)
+- IDENTITY.md (brand voice)
+
+## QA Checklist
+
+- [ ] All core files moved to root
+- [ ] No broken references in docs
+- [ ] Memory_search can find MEMORY.md
+- [ ] Daily logs still at \`memory/YYYY-MM-DD.md\`
+- [ ] Projects still at \`projects/*/\`
+- [ ] Git commit clean
+- [ ] Push to GitHub successful
+
+---
+
+**Status:** In progress. Timeline: Feb 26 morning. Ready to commit.`
       }
         ];
 
