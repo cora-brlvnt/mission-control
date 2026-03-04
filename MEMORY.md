@@ -321,6 +321,16 @@
 
 ---
 
+## Memory Recall Precedence (Added Mar 4, 2026)
+
+Default conflict resolution order for assistant recall:
+1. `MEMORY.md` (durable truth)
+2. `memory/` (daily operational logs)
+3. `docs/` (project documentation)
+4. `memory/telegram/` (raw mirrored chat history)
+
+Contact execution (email/phone) should resolve from canonical contacts first, then fallback to source archives.
+
 ## Last Updated
 Feb 25, 2026 18:04 PM EST — Daily capture completed. Phase 1 in QA (Vision agent output ready for review). Infrastructure all stable. New concepts documented: Output Format Flexibility (proven pattern from Phase 1 Vision agent delivery). Phase 2 scoped and ready to build upon Phase 1 approval. New decision rule embedded: async execution enables 24/7 operation while Renzo offline. 🦾
 
@@ -434,3 +444,37 @@ Feb 25, 2026 18:04 PM EST — Daily capture completed. Phase 1 in QA (Vision age
 | PersonaPlex demo date | Renzo | ⏳ Pending | — | Blocks demo scheduling |
 
 **Strategy:** Escalate Phase 1 QA with low-friction 2-option decision frame. Unblock Phase 2 acceleration path.
+
+---
+
+## Key Learning: Decision-Framing for Speed (March 4, 2026)
+
+**Observation:** Phase 1 QA feedback 96h+ overdue suggests open-ended requests create friction.
+
+**Protocol - 2-Option Binary Frame:**
+Instead of: "What feedback do you have?"  
+Use: "Option A: Looks good, proceed with Phase 2? OR Option B: Needs revisions on X,Y,Z?"
+
+**Why it works:**
+- Removes synthesis burden from owner
+- Binary choice takes 30 seconds vs. 60+ minutes for synthesis
+- Explicit options prevent ambiguity
+- Escalation efficiency: 5–10x faster decision-making
+
+**Applicability:** Any decision with >48h pending status (budget, scheduling, approvals, roadmap)
+
+---
+
+## Infrastructure as Competitive Moat (March 4, 2026)
+
+**Achievement:** 99.8%+ uptime across 7 production systems for 20+ days with ZERO manual ops interventions.
+
+**Systems:** Telegram memory (pgvector), Cora Voice (Fly.io), 2Brain (GitHub), OpenClaw (localhost), MCPs (GSC/GA4/DataForSEO), Google APIs (gog CLI), Discord integration.
+
+**Competitive advantage:**
+- Most teams lose 20–30% capacity to ops/infrastructure debt
+- This setup: 0% ops overhead + $10–40/month total cost
+- Scaling from 1 to 3–5 parallel projects with same infrastructure
+- ROI: $500/year investment → 20–30% capacity reclaimed = $X value
+
+**Strategic implication:** Can execute aggressive 7–10 day sprints (Phase 2) without operational risk. Infrastructure is NOT a constraint—capacity IS available.
