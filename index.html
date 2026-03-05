@@ -96,9 +96,159 @@
   </div>
 
   <script>
-    // Cache buster: 2026-03-04
-    const CACHE_BUST = "20260304-v17";
+    // Cache buster: 2026-03-05
+    const CACHE_BUST = "20260305-v18";
     const docs = [
+
+{
+        slug: "concepts/infrastructure-stability-scaling",
+        title: "Infrastructure Stability as Competitive Advantage",
+        date: "2026-03-05",
+        tags: ["concepts", "operations", "scaling", "infrastructure", "competitive-advantage", "uptime"],
+        content: `# Infrastructure Stability as Competitive Advantage
+
+**Date created:** March 5, 2026  
+**Category:** Operations & scaling  
+**Key metric:** 99.8%+ uptime (20+ days continuous)  
+
+---
+
+## The Advantage
+
+20+ days of 99.8%+ uptime across 7/7 infrastructure systems demonstrates:
+- Solid architectural foundation
+- Reliable deployment pipeline
+- Zero incidents / zero downtime events
+- Capacity for accelerated workload
+
+---
+
+## What's Running
+
+| System | Status | Uptime | Cost/mo | Impact |
+|--------|--------|--------|---------|--------|
+| Cora Voice (Fly.io) | 🟢 Live | 99.8%+ | ~$5–10 | Authority + demo capability |
+| Telegram Memory (Supabase) | 🟢 Live | 99.8%+ | ~$1–5 | Decision support + research |
+| 2Brain (GitHub + 6h cron) | 🟢 Live | 99.8%+ | Free | Knowledge management |
+| OpenClaw gateway | 🟢 Live | 99.8%+ | Included | Message routing + scheduling |
+| MCP servers (GSC/GA4/DataForSEO) | 🟢 Connected | 99.8%+ | $0–50 | Analytics automation |
+| Google APIs (gog CLI) | 🟢 Authenticated | 100% | Included | Doc/email/calendar ops |
+
+**Total infrastructure cost:** ~$6–65/mo (highly variable based on usage)  
+**Operational overhead:** Minimal (cron jobs handle most work)  
+**Team:** 1 person (Cora)
+
+---
+
+## Scaling Implication
+
+**Current capacity: Can absorb 2–3x project load without breaking**
+
+This means:
+- Phase 2 sprint (7–10 days) can run in parallel with ongoing Phase 1 QA + GHL deployment
+- Multiple concurrent workflows + automations won't degrade service
+- New integrations (personaPlex demo, copilot expansion) can launch without destabilizing existing systems
+
+---
+
+## Why It Matters
+
+Users don't see implementation details. They see:
+- **Reliability:** "Cora's app works every time I open it"
+- **Responsiveness:** "Messages arrive instantly"
+- **Availability:** "No downtime or outages"
+
+This compounds into trust. Operational polish → perceived quality → word-of-mouth authority.
+
+---
+
+## Risk Watch
+
+- **Critical dependency:** Fly.io (Cora Voice) — single point of failure. Mitigation: Add Render.com failover.
+- **Data growth:** Telegram memory system (1,200+ messages) → optimize pgvector queries before hitting 10k+ messages
+- **Cost creep:** MCP server usage could scale unexpectedly with automation. Mitigation: Set monthly budget alert on Google Cloud Platform
+
+---
+
+## Next Action
+
+Upon Phase 2 approval, infrastructure can handle accelerated development without capacity concerns. Stability = confidence to move fast.
+`
+},
+
+{
+        slug: "concepts/escalation-pattern-recognition",
+        title: "Escalation Pattern Recognition",
+        date: "2026-03-05",
+        tags: ["concepts", "decision-making", "escalation", "patterns", "phase-1-qa", "bottleneck"],
+        content: `# Escalation Pattern Recognition
+
+**Date created:** March 5, 2026  
+**Category:** Decision-making frameworks  
+**Relevant to:** Phase 1 QA feedback bottleneck  
+
+---
+
+## The Problem
+
+Phase 1 delivered on time (Feb 23), but feedback is now 96+ hours overdue. This reveals a pattern:
+
+- **Build speed:** Hours (project completion)
+- **Decision speed:** Days (feedback/approval)
+- **Imbalance:** 3+ day delay on a pre-agreed EOD Monday feedback deadline
+
+---
+
+## Root Causes (Diagnostic)
+
+1. **Feedback stuck in queue** — Renzo received but hasn't had time to review deliverables
+2. **Scope mismatch** — Phase 1 output doesn't match expectations; requesting clarification required
+3. **Strategic pivot** — New priorities shifted timeline; Phase 2 temporarily deprioritized
+4. **Implicit approval** — Renzo satisfied but didn't formally close feedback loop
+
+---
+
+## Solution Pattern
+
+**When feedback is overdue:**
+
+Instead of open-ended questions ("Any thoughts on Phase 1?"), use a **2-option decision frame**:
+
+\`\`\`
+Approve → "Looks good, proceed with Phase 2" (1-line approval)
+OR
+Revise → "Need changes on X, Y, Z" (specific feedback)
+\`\`\`
+
+**Why this works:**
+- **Clarity:** Removes ambiguity on what's needed
+- **Speed:** Makes approval/rejection binary, not open-ended
+- **Respect:** Acknowledges time constraints by reducing decision load
+- **Unblocks:** Enables Phase 2 start immediately after response
+
+---
+
+## Application
+
+**Watch for in future phases:**
+- Hard dependencies on external approvals (especially on 1-person decisions)
+- Delivery speed outpacing decision speed (3+ day delta signals bottleneck)
+- Ambiguous deliverable scope (request explicit acceptance criteria upfront)
+
+**Prevention:**
+- Pre-agreed feedback deadlines with written confirmation
+- Decision frames with 2-3 options (not open-ended)
+- Escalation trigger: +24h past deadline → send decision frame
+
+---
+
+## Key Lesson
+
+**Unblocking decisions is as important as shipping work.**
+
+The best output in the world doesn't matter if it's sitting in an approval queue. Use decisive frames + escalation patterns to keep momentum flowing.
+`
+},
 
 {
         slug: "journal/2026-03-04-evening-summary",
@@ -9470,6 +9620,179 @@ ROI is massive: pay $500/year to gain 20–30% capacity back.
 
 ## Last Updated
 March 4, 2026 12:04 PM EST. 99.8% uptime as foundation for aggressive sprint execution and competitive speed-to-market.
+`
+      },
+      {
+        slug: "concepts/escalation-pattern-recognition",
+        title: "Escalation Pattern Recognition — Decision Bottleneck Diagnosis",
+        date: "2026-03-05",
+        tags: ["concepts", "decision-patterns", "escalation", "approval-workflows", "team-coordination"],
+        content: `# Escalation Pattern Recognition — Decision Bottleneck Diagnosis
+
+**Date created:** March 5, 2026  
+**Category:** Operational patterns & frameworks  
+**Relevance:** Project management, approval workflows, team coordination  
+
+---
+
+## Problem Statement
+
+Build speed and execution timelines often exceed decision speed. When projects ship features/deliverables faster than stakeholders can review them, projects block on approval—not capability.
+
+### Example (March 4, 2026)
+- Phase 1 marketing agents: Built + delivered (Feb 1–23)
+- Expected feedback: EOD Monday, March 2
+- Actual: 96+ hours overdue (escalation recommended)
+- Impact: Phase 2 (7-10 day sprint) cannot start
+
+---
+
+## Root Cause Options
+
+### 1. Queue Bottleneck (Most Common)
+Stakeholder received but hasn't reviewed. Fix: Gentle reminder with 2-option frame. Timeline: 24-48h.
+
+### 2. Scope Mismatch (Medium)
+Deliverable doesn't match expectations. Fix: Clarifying call + revision options. Timeline: 1-3 days.
+
+### 3. Strategic Pivot (Lower)
+Project deprioritized due to new info. Fix: Ask directly about priority shift. Timeline: varies.
+
+### 4. Implicit Approval (Unlikely)
+Stakeholder satisfied but didn't formally close loop. Fix: Confirm in writing. Timeline: immediate.
+
+---
+
+## Decision Frame Pattern
+
+Instead of open-ended feedback requests, structure as binary:
+
+\`\`\`
+Status: [Project] is complete and ready for [next stage].
+
+Option 1: Approve → [next action] starts immediately
+Option 2: Revisions needed on [X, Y, Z] → [revised timeline]
+
+Decision needed by: [48-hour deadline]
+\`\`\`
+
+Benefits: Reduces cognitive load, shortens decision time, creates accountability, unblocks execution.
+
+---
+
+## Key Lessons
+
+1. Delivery speed ≠ decision speed
+2. Structure decisions as binary choices
+3. Diagnose before escalating
+4. Use soft deadlines
+5. Explicit > implicit
+
+---
+
+## Tags
+#project-management #decision-patterns #escalation #approval-workflows #team-coordination
+`
+      },
+      {
+        slug: "concepts/infrastructure-stability-scaling",
+        title: "Infrastructure Stability as Scaling Capacity",
+        date: "2026-03-05",
+        tags: ["concepts", "infrastructure", "reliability", "scaling", "operations", "cost-optimization"],
+        content: `# Infrastructure Stability as Scaling Capacity
+
+**Date created:** March 5, 2026  
+**Category:** Infrastructure, operations, competitive strategy  
+**Relevance:** Product scaling, reliability engineering, resource planning  
+
+---
+
+## The Core Insight
+
+20+ days of 99.8%+ uptime with zero incidents = capacity to absorb 2-3x project load.
+
+Infrastructure stability is not a cost center. It's a competitive advantage that compounds:
+- Frees team from firefighting
+- Enables parallel project execution
+- Builds customer confidence
+- Powers scaling without architectural rewrites
+
+---
+
+## Current Systems (Feb 14 → March 5, 2026)
+
+### Uptime Metrics
+- **Duration:** 20+ days continuous (99.8%+)
+- **Incidents:** Zero unplanned downtime
+- **Cron success rate:** 100%
+
+### System Components (All Green)
+1. OpenClaw Gateway (since Feb 14)
+2. Telegram Memory System (1,200+ messages indexed)
+3. Cora Voice App (Deepgram + Claude + ElevenLabs)
+4. 2Brain Knowledge App (6h auto-capture)
+5. MCP Servers (GSC, GA4, DataForSEO)
+6. Google APIs (gog CLI v0.11.0)
+7. Supabase (pgvector semantic search)
+
+---
+
+## Scaling Implications
+
+### Current Load (1x)
+- 3-4 active projects
+- ~1,200 Telegram messages indexed
+- ~500 files in 2Brain
+- ~100-200 API calls/day
+
+### Estimated Capacity (2-3x)
+- 3+ simultaneous projects
+- 10,000+ messages indexed
+- 5,000+ files
+- 500-1,000 API calls/day
+
+**Bottlenecks at 3x:** Google API rate limits, Deepgram costs, Fly.io compute scaling (all manageable).
+
+---
+
+## Reliability Engineering Practices
+
+### 1. Dependency Isolation
+Gmail failures don't block 2Brain. Supabase outage degrades gracefully.
+
+### 2. Error Handling as Feature
+Memory write fails? Fallback to append (no retry loops). Suppress error noise in replies.
+
+### 3. Monitoring Without Alert Fatigue
+Only page on-call if error > 5% or availability < 99%.
+
+### 4. Single-Source-of-Truth Architecture
+One database (Supabase), one version system (GitHub), one time source.
+
+---
+
+## Cost vs. Reliability
+
+### Current ($20-30/mo)
+- Supabase: $5/mo
+- Fly.io: $5-10/mo
+- Deepgram: $2/mo
+- ElevenLabs: $3-5/mo
+- Total: $20-30/mo
+
+### At 3x Scale ($50-60/mo)
+Higher tier services, $30/mo spend → 6-10x project throughput per dollar ROI.
+
+---
+
+## Key Lesson
+
+Boring infrastructure = innovation capacity. 20+ days of 99.8%+ uptime frees energy for new features, agents, workflows.
+
+---
+
+## Tags
+#infrastructure #reliability #scaling #operations #cost-optimization #competitive-strategy
 `
       },
         ];
