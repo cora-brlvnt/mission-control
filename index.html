@@ -97,8 +97,243 @@
 
   <script>
     // Cache buster: 2026-03-05
-    const CACHE_BUST = "20260305-v18";
+    const CACHE_BUST = "20260306-v19";
     const docs = [
+
+{
+        slug: "journal/2026-03-06",
+        title: "March 6, 2026 — Morning Status (Friday, 6 AM)",
+        date: "2026-03-06",
+        tags: ["journal", "daily", "morning-heartbeat", "phase-1-qa-overdue", "phase-2-ready", "infrastructure-health", "escalation-due"],
+        content: `# March 6, 2026 — Morning Status (Friday, 6 AM)
+
+**Date:** Friday, March 6, 2026  
+**Time:** 06:04 AM EST  
+**Status:** ✅ All systems green | 🔴 Phase 1 QA feedback 120h+ overdue | Phase 2 ready  
+
+---
+
+## System Health
+
+### Infrastructure: 7/7 Green ✅
+- **Uptime streak:** 21+ days continuous (Feb 14 → March 6)
+- **Cron reliability:** 100% success rate
+- **Zero incidents:** No downtime events, no alerts
+- **Capacity:** Can absorb 2–3x project load without degradation
+
+**Active systems:**
+- Cora Voice (Fly.io): 99.8%+ uptime
+- Telegram Memory (Supabase): 1,200+ indexed messages
+- 2Brain (GitHub + 6h cron): Auto-capture active
+- Google APIs (gog CLI): All authenticated
+- MCP servers (GSC/GA4/DataForSEO): All connected
+- OpenClaw gateway: Running (localhost:18789)
+- Discord integration: Ready
+
+---
+
+## Project Status
+
+### Phase 1: Complete, Awaiting Approval
+- ✅ Delivered Feb 23
+- **Feedback deadline:** EOD Monday, Feb 24
+- **Current status:** 🔴 **120+ hours overdue** (5 days late)
+- **Blocker:** Prevents Phase 2 Echo agent build from starting
+- **Escalation:** Due by EOD today
+
+### Phase 2: 100% Ready to Launch
+- 🟢 Echo agent (research)
+- 🟢 Pixel agent (design)
+- 🟢 Reel agent (video)
+- 🟢 Social agent (distribution)
+- **Timeline:** 7–10 day sprint upon Phase 1 approval
+- **Target launch:** March 11–18, 2026
+
+### GHL Workflows: Production-Ready
+- ✅ 5/5 complete + documented
+- ⏳ Awaiting business timing decision (workshop date)
+- Ready to deploy immediately
+
+---
+
+## Critical Actions (Today)
+
+### 1. Escalate Phase 1 QA (DUE TODAY)
+**Action:** Send gentle reminder with 2-option decision frame
+
+\`\`\`
+Option A: "Phase 1 looks good, proceed with Phase 2"
+Option B: "Need revisions on X, Y, Z" (specify feedback)
+\`\`\`
+
+**Why:** 120h delay is the only constraint on Phase 2. Clear decision = immediate Phase 2 acceleration.
+
+### 2. Clarify GHL Timing
+**Question:** Workshop date confirmed? Needed for workflow deployment schedule.
+
+### 3. Propose PersonaPlex Demo
+**Suggestion:** March 24–26 window. Live video demo for authority positioning.
+
+---
+
+## Operational Notes
+
+**Decision velocity as bottleneck:**
+- Build speed: Hours
+- Decision speed: Days  
+- Gap: 120+ hours overdue on pre-agreed deadline
+
+This reveals a pattern: Build capacity >> Decision capacity. Future solution: Use pre-agreed 2-option decision frames to accelerate approvals.
+
+**Infrastructure as advantage:**
+- 21 days of continuous uptime = trust foundation
+- Enables fast iteration without reliability risk
+- Users see "it works every time"
+
+---
+
+## Next Steps
+
+**By EOD today:**
+- Send Phase 1 escalation with 2-option frame
+- Monitor for response
+
+**Upon Phase 1 approval:**
+- Immediately start Phase 2 Echo agent build
+- Full acceleration through March 18 target launch
+
+**This week:**
+- Clarify GHL workshop timing
+- Propose PersonaPlex demo window
+- Maintain baseline infrastructure health
+
+---
+
+**Last updated:** March 6, 2026 06:04 AM EST
+`
+},
+
+{
+        slug: "concepts/decision-velocity-bottleneck",
+        title: "Decision Velocity as Bottleneck",
+        date: "2026-03-06",
+        tags: ["concepts", "decision-making", "operations", "velocity", "bottleneck", "process-improvement", "phase-1-qa"],
+        content: `# Decision Velocity as Bottleneck
+
+**Date created:** March 6, 2026  
+**Category:** Operations & process improvement  
+**Key pattern:** Build speed >> Decision speed  
+
+---
+
+## The Problem
+
+Phase 1 was completed in hours (Feb 23). Approval feedback is now **120+ hours overdue** (5 days past pre-agreed EOD Monday deadline).
+
+This reveals a systemic pattern:
+- **Build capacity:** Hours (fast)
+- **Decision capacity:** Days (slow)
+- **Gap:** 3–5 day approval delays on single-person decisions
+
+---
+
+## Why It Happens
+
+1. **Open-ended requests** — "Any feedback on Phase 1?" creates ambiguity, delays response
+2. **Context switching** — Decision-maker juggling multiple priorities; delivery sits in queue
+3. **Implicit approval** — Stakeholder satisfied but doesn't formalize closure
+4. **Scope mismatch** — Deliverable doesn't match expectations; feedback pending clarification
+
+---
+
+## The Cost
+
+- Phase 1 delivered on time (Feb 23) ✅
+- Phase 2 blocked from starting (still waiting for Phase 1 approval)
+- Momentum lost: 120+ hours of idle time
+- Project timeline at risk: Phase 2 target launch March 11–18 depends on approval *this week*
+
+**Lesson:** Fast delivery doesn't matter if approvals are slow. Velocity is limited by the slowest decision-maker, not the fastest builder.
+
+---
+
+## Solution Pattern
+
+**Use a 2-option decision frame instead of open-ended questions:**
+
+\`\`\`
+INSTEAD OF: "Do you have feedback on Phase 1?"
+USE: "Phase 1 ready for Phase 2 launch. Options:
+  ✅ Approve & proceed (1-line response)
+  🔄 Revise X, Y, Z (specific feedback)"
+\`\`\`
+
+**Why this works:**
+- **Clarity:** Binary choice removes ambiguity
+- **Speed:** Reduces cognitive load (not open-ended)
+- **Respect:** Acknowledges time constraints
+- **Unblocks:** Enables next phase immediately
+
+---
+
+## Prevention Strategy
+
+### For future projects:
+1. **Pre-agreed decision deadlines** — Written confirmation: "Feedback by EOD Monday"
+2. **Structured decision frames** — Always use binary or 3-option frames, never open-ended
+3. **Escalation triggers** — +24h past deadline = gentle escalation with decision frame
+4. **Explicit closure** — Require written approval before starting next phase
+
+### Example workflow:
+\`\`\`
+Phase 1 delivered (Monday 2 PM)
+↓
+"Feedback by EOD Tuesday" (pre-agreed)
+↓
+(If no response by EOD Tuesday)
+Escalation: "Phase 1 ready for Phase 2. Options: A) Approve, B) Revise [X]. Reply by 10 AM Wed?"
+↓
+Response received
+↓
+Phase 2 starts immediately
+\`\`\`
+
+---
+
+## Key Insight
+
+**Decisions are as much a deliverable as code.**
+
+In fast-moving projects:
+- Build speed is easy (good engineers can iterate quickly)
+- Decision speed is hard (depends on single stakeholder, competing priorities)
+- The gap between these two creates bottlenecks
+
+Protect decision velocity the same way you protect build velocity: structured processes, clear deadlines, escalation triggers.
+
+---
+
+## Current Application
+
+**Phase 1 escalation (March 6):**
+- Send 2-option decision frame with pre-agreed response deadline
+- Estimate Phase 2 timeline (7–10 days) conditional on approval
+- Provide unblocking action: one-line approval = Phase 2 starts same day
+
+---
+
+## Broader Implications
+
+This pattern likely repeats in other approval processes:
+- GHL workflow deployment (awaiting workshop timing decision)
+- PersonaPlex demo scheduling (awaiting date confirmation)
+- Any multi-person workflow with external dependencies
+
+**Prevention:** Apply 2-option decision frames + escalation triggers across all approval gates.
+
+**Benefit:** Predictable velocity, reduced idle time, faster project delivery.
+`
+},
 
 {
         slug: "concepts/infrastructure-stability-scaling",
