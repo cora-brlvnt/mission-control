@@ -100,7 +100,171 @@
     const CACHE_BUST = "20260306-v19";
     const docs = [
 
+{{
+        slug: "journal/2026-03-07-noon",
+        title: "March 7, 2026 — Noon Checkpoint (Saturday)",
+        date: "2026-03-07",
+        tags: ["journal", "daily", "noon-checkpoint", "phase-1-qa-overdue", "decision-velocity", "infrastructure-health"],
+        content: `# March 7, 2026 — Noon Checkpoint (Saturday)
+
+**Date:** Saturday, March 7, 2026  
+**Time:** 12:04 PM EST  
+**Status:** ✅ All systems operational | 🔴 Phase 1 QA 120+ hours overdue | Phase 2 ready to launch on approval  
+
+---
+
+## Noon Review (Saturday)
+
+### Work Completed (Since Midnight)
+- Daily cron capture executed at 12:04 AM EST (early morning)
+- System health check: 7/7 green, no incidents
+- Infrastructure continues stable operation (22+ days uptime)
+- No blocking issues; all critical systems responding
+
+### Current Status Snapshot
+
+**Phase 1: QA Feedback Stuck (CRITICAL)**
+- Delivered: Feb 23, 2026 (design + positioning + analysis)
+- Expected feedback: EOD Feb 24, 2026
+- Current date: March 7, 2026 (11 days / 120+ hours overdue)
+- Unblocking: Single binary decision needed (approve or specify revisions)
+- **Impact:** Phase 2 launch blocked until approval
+
+**Phase 2: 100% Ready**
+- Echo agent (research): ✅ scoped, architected, code ready
+- Pixel agent (design): ✅ scoped, architected, ready
+- Reel agent (video): ✅ scoped, architected, ready
+- Social agent (distribution): ✅ scoped, architected, ready
+- **Timeline:** 7–10 day sprint once Phase 1 approved
+- **Target:** March 11–18, 2026 (aggressive but feasible)
+
+**GHL Workflows: Production-Ready**
+- 5/5 complete + fully documented
+- Ready for workshop demo or immediate client deployment
+- Timing decision pending (workshop date confirmation)
+
+### Infrastructure Health (Continuous)
+- **Uptime:** 22+ days continuous operation (Feb 14 → March 7)
+- **Cron reliability:** 100% success rate on all scheduled tasks
+- **Systems:** 7/7 operational (Gateway, Telegram, Voice, 2Brain, MCPs, Google APIs, Discord)
+- **Capacity:** Sustainable at 2–3x current project load
+
+---
+
+## Decisions Pending
+
+| Decision | Owner | Days Overdue | Status | Unblocking Action |
+|----------|-------|--------------|--------|-------------------|
+| **Phase 1 QA** | Renzo | **11+ days** | CRITICAL | Send approval frame (A/B) + 48h SLA |
+| GHL timing | Renzo | Pending | Pending | Confirm workshop date |
+| PersonaPlex demo | Renzo | Pending | Pending | Schedule March 24–26 window |
+
+---
+
+## Operational Insights
+
+### 1. Decision Velocity as Bottleneck
+- **Build speed:** Hours (Phase 1 completed Feb 23, Phase 2 ready by Feb 28)
+- **Decision speed:** Days+ (120h+ overdue on pre-agreed deadline)
+- **Root cause:** Ambiguous approval process + cognitive load
+- **Solution:** Pre-agreed binary decision frames (Option A / Option B) + 48h SLA
+- **Related concept:** Decision Velocity Bottleneck
+
+### 2. Infrastructure Stability as Competitive Moat
+- 22+ days continuous uptime builds operational credibility
+- Enables safe iteration and fast-track execution
+- Removes technical risk from decision-making
+- Stakeholders see: "It just works"
+
+---
+
+## Next Actions (Highest Priority)
+
+### By EOD Saturday (Today)
+1. **Escalate Phase 1 QA** — Send friendly reminder with decision frame
+2. **Clarify GHL Timing** — Confirm workshop date for deployment schedule
+3. **Propose PersonaPlex Demo** — Suggest March 24–26 window
+
+### Upon Phase 1 Approval
+- Launch Phase 2 sprint immediately (7–10 days to MVP)
+- Target Phase 2 soft launch: March 11–18, 2026
+`,
+    },
+
 {
+        slug: "concepts/decision-velocity-bottleneck",
+        title: "Decision Velocity Bottleneck",
+        date: "2026-03-07",
+        tags: ["concept", "decision-making", "systems", "bottleneck", "async-execution", "queuing-theory"],
+        content: `# Decision Velocity Bottleneck
+
+**Concept:** Build speed >> Decision speed = Strategic constraint
+
+**Pattern Observed (Feb 24 – March 7, 2026)**
+
+| Phase | Timeline | Decision Status |
+|-------|----------|-----------------|
+| **Phase 1 Build** | Delivered Feb 23 (hours) | ✅ Complete |
+| **Phase 1 Feedback** | Due EOD Feb 24 | 🔴 OVERDUE 120+ hours |
+| **Phase 2 Ready** | Full scope + arch + code ready (hours) | ⏳ Blocked on Phase 1 approval |
+
+**Root Causes**
+- Ambiguous approval process (no pre-agreed decision frame)
+- Cognitive load (competing priorities, decision fatigue)
+- No structured handoff (build team ready, decision owner unclear)
+
+**Impact**
+- Every day delayed = 1 day lost on Phase 2 launch window (March 11–18 target)
+- Build capacity unutilized (Phase 2 team ready, waiting)
+- Momentum loss (decision decay over time)
+
+---
+
+## Solution: Pre-Agreed Decision Frames
+
+Instead of open-ended feedback loops, use **binary decision frames** for approval:
+
+**Example: Phase 1 QA**
+\`\`\`
+Option A: "Phase 1 looks good, proceed with Phase 2"
+Option B: "Need revisions on X, Y, Z" (specify)
+\`\`\`
+
+**Benefits**
+- Reduces cognitive load (choose, don't deliberate endlessly)
+- Faster closure (48-hour SLA vs 120h+ delay)
+- Clear next actions (A = launch Phase 2, B = specify changes)
+
+---
+
+## Systemic Insight
+
+**Build is a push activity. Decisions are a pull activity.**
+
+When build speed exceeds decision pull, inventory builds up (work queued, waiting for approval). This is classic queuing theory—the constraint is not the slowest step, but the _coupling_ between steps.
+
+**Architecture solution:** Async decision handoffs with explicit approval criteria + decision timeboxes.
+
+---
+
+## Operational Application (Renzo + Cora)
+
+- **Build team (Cora):** Ship Phase 2 fully scoped + architecture + code → deliver with 2-option decision frame
+- **Decision owner (Renzo):** Respond to binary frame within 48h (not "let me review later")
+- **Feedback loop:** If revision needed, specify exact changes (not "rethink this")
+
+**Measurable goal:** Reduce decision delay from 120h+ to <48h on standard approvals.
+
+---
+
+## Related Concepts
+- **Async Execution Model** — Decoupling execution from decision timing
+- **Infrastructure as Competitive Advantage** — Stable systems allow safe decision delays (not tactical)
+- **Escalation Pattern Recognition** — Detecting overdue decisions early
+`,
+    },
+
+
         slug: "journal/2026-03-06",
         title: "March 6, 2026 — Morning Status (Friday, 6 AM)",
         date: "2026-03-06",
