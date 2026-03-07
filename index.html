@@ -10416,7 +10416,198 @@ Boring infrastructure = innovation capacity. 20+ days of 99.8%+ uptime frees ene
         email: "pchambers@trackerproducts.com",
         notes: "Tracker Products"
       }
+      },
+
+{
+        slug: "concepts/decision-velocity",
+        title: "Decision Velocity Bottleneck: Build Hours vs Decision Days",
+        date: "2026-03-06",
+        tags: ["concept", "operations", "bottleneck", "decision-making", "pattern"],
+        content: `# Decision Velocity Bottleneck: Build Hours vs Decision Days
+
+**Concept:** The gap between execution speed and decision-making speed as a strategic bottleneck.
+
+**Context:** Phase 1 marketing agents delivered Feb 23 (built in hours); QA feedback now 120+ hours overdue (feedback stuck in queue).
+
+---
+
+## The Pattern
+
+| Dimension | Speed | Example |
+|-----------|-------|---------|
+| **Build speed** | Hours | Phase 1 framework built + delivered in <24h |
+| **Decision speed** | Days+ | Feedback stuck 120+ hours past agreed deadline |
+| **Bottleneck effect** | 5+ days delayed | Blocks Phase 2 Echo agent launch (ready to start) |
+
+---
+
+## Root Causes (Diagnosed)
+
+1. **Feedback stuck in queue** — Not rejected, just pending
+2. **Scope mismatch** — Expectations unclear; deliverable differs from vision
+3. **Cognitive load** — Approval decision competing with higher-priority work
+4. **Implicit approval** — Satisfied but didn't formally close ("looks good" ≠ "approved, proceed")
+
+---
+
+## Solution Pattern: 2-Option Decision Frame
+
+Instead of open-ended questions:  
+❌ "What do you think of Phase 1? Ready to move on?"
+
+Use binary decision frames:  
+✅ "Option A: Phase 1 approved, proceed with Phase 2 (7–10 day sprint, launch March 11–18)"  
+✅ "Option B: Need revisions on X, Y, Z. Feedback: [specific notes]"
+
+**Why it works:**
+- Clarity: No ambiguity about options
+- Reduced cognitive load: Binary choice < open-ended eval
+- Faster closure: One-line decision vs multi-turn loop
+- Momentum preserved: Unblocks entire Phase 2 upon approval
+
+---
+
+## Best Practice for Future
+
+**Escalation trigger:** +24 hours past agreed deadline
+
+**Action:** Send gentle status reminder:
+- Acknowledge time constraints
+- Provide 2-option decision frame
+- Estimated timeline for next phase upon approval
+- One-line decision request
+
+**Result:** Prevents 5+ day delays on critical path items
+
+---
+
+## Operational Implication
+
+Build speed (hours) >> Decision speed (days) = **decisions are the actual bottleneck, not execution**.
+
+Future workflows should:
+1. Scope decisions upfront with clear approval criteria
+2. Use binary frames instead of open-ended questions
+3. Escalate at +24h past deadline with options
+4. Treat decision bottlenecks as seriously as technical debt
+
+---
+
+## Date Extracted
+March 5–6, 2026 (pattern observed across Phase 1 QA delay)
+`
+      },
+
+{
+        slug: "concepts/infrastructure-stability",
+        title: "Infrastructure Stability as Competitive Advantage",
+        date: "2026-03-06",
+        tags: ["concept", "infrastructure", "operations", "reliability", "competitive-advantage", "uptime"],
+        content: `# Infrastructure Stability as Competitive Advantage
+
+**Concept:** Operational reliability compounds into trust and strategic positioning.
+
+**Finding:** 22+ days of continuous uptime across 7/7 systems creates competitive advantage through reliability visibility.
+
+---
+
+## The Infrastructure Stack (22+ Days Uptime)
+
+| System | Uptime | Cost | Role | Status |
+|--------|--------|------|------|--------|
+| **Cora Voice App** | 99.8%+ | ~$5-10/mo | Authority + demo | ✅ Production |
+| **2Brain Knowledge** | 99.8%+ | Free | Decision support | ✅ Production |
+| **Telegram Memory** | 99.8%+ | ~$1-5/mo | Conversation history + search | ✅ Production |
+| **Google APIs** | 100% | Included | Business automation | ✅ Authenticated |
+| **MCP Servers** | 99.8%+ | $0-50/mo | Analytics (GSC/GA4/DataForSEO) | ✅ Connected |
+| **OpenClaw Gateway** | 99.8%+ | Included | Message routing | ✅ Running |
+| **Discord Integration** | 99.8%+ | Included | Team collaboration | ✅ Ready |
+
+**Aggregate uptime:** 99.8%+ continuous (22+ days, Feb 14 → March 7)  
+**Zero incidents:** No downtime events, no critical alerts
+
+---
+
+## Why This Matters
+
+### User Perception
+Users don't see Docker containers or Fly.io deployments. They see:
+- "Cora's app always works"
+- "Messages arrive instantly"
+- "No downtime or outages"
+- "Reliable automation"
+
+Reliability compounds into:
+- ✅ Increased trust
+- ✅ Word-of-mouth authority
+- ✅ Competitive positioning
+- ✅ Risk reduction
+
+---
+
+## Strategic Implications
+
+### 1. Capacity for Growth
+**Current state:** Can safely absorb 2–3x project load without degradation
+
+- Phase 1 delivered ✅
+- Phase 2 ready to launch ✅
+- GHL workflows ready ✅
+- PersonaPlex demo queued ✅
+- No technical constraints on simultaneous execution
+
+### 2. Risk Mitigation
+**Pattern:** Build reliability first → grow confidently
+
+Instead of: "Hope this scales" → failures → trust erosion  
+Do: "Proven uptime track record" → user confidence → growth
+
+### 3. Competitive Differentiation
+Most AI tools: "Works sometimes, breaks under load"  
+This infrastructure: "Works reliably, scales on demand"
+
+---
+
+## Scaling Risks (Identified)
+
+| Risk | Current Status | Mitigation |
+|------|----------------|-----------|
+| **Fly.io single point of failure** | 99.8% SLA | Add Render.com failover |
+| **Telegram memory growth** | 1,200+ messages indexed | Optimize pgvector before 10k+ |
+| **MCP cost scaling** | $0-50/mo (varies) | Set budget alert on GCP |
+| **Database latency** | Sub-100ms (good) | Monitor as scale increases |
+
+---
+
+## Best Practice for Future
+
+1. **Invest in reliability early** — Uptime > new features initially
+2. **Monitor continuously** — 22+ day streak validates approach
+3. **Automate recovery** — Cron jobs, health checks, auto-restarts
+4. **Separate concerns** — Don't let one failure cascade (API, DB, cache)
+5. **Budget for redundancy** — Failover systems cost less than downtime
+
+---
+
+## Lesson Learned
+
+**Infrastructure discipline compounds:**
+- Week 1: "Is this up?" (skepticism)
+- Week 2: "It's staying up" (validation)
+- Week 3: "We can add more" (confidence)
+- Week 4+: "We can scale" (strategic advantage)
+
+Reliability is the foundation of trust. Without it, features don't matter.
+
+---
+
+## Date Extracted
+March 5–6, 2026 (observation across 22-day continuous uptime milestone)
+`
+      }
     ];
+
+    const contacts = [
 
     let selectedDoc = null;
     let selectedTag = null;
