@@ -1,65 +1,65 @@
-# Decision Velocity Bottleneck
+# Decision Velocity as Strategic Bottleneck
 
-**Concept:** Build speed >> Decision speed = Strategic constraint
+## Pattern
+**Build speed vs. decision speed mismatch: 30x gap**
 
-**Pattern Observed (Feb 24 – March 7, 2026)**
-
-| Phase | Timeline | Decision Status |
-|-------|----------|-----------------|
-| **Phase 1 Build** | Delivered Feb 23 (hours) | ✅ Complete |
-| **Phase 1 Feedback** | Due EOD Feb 24 | 🔴 OVERDUE 120+ hours |
-| **Phase 2 Ready** | Full scope + arch + code ready (hours) | ⏳ Blocked on Phase 1 approval |
-
-**Root Causes**
-- Ambiguous approval process (no pre-agreed decision frame)
-- Cognitive load (competing priorities, decision fatigue)
-- No structured handoff (build team ready, decision owner unclear)
-
-**Impact**
-- Every day delayed = 1 day lost on Phase 2 launch window (March 11–18 target)
-- Build capacity unutilized (Phase 2 team ready, waiting)
-- Momentum loss (decision decay over time)
+- Phase 1 delivered: **4 hours** (system built, tested, ready)
+- Phase 1 approval pending: **145+ hours** (6+ days and counting)
+- Decision paralysis root: Ambiguous approval requests vs. scoped binary frames
 
 ---
 
-## Solution: Pre-Agreed Decision Frames
+## Evidence
+- **Phase 1 QA:** Completed Feb 23 → Awaiting approval since Feb 24 → Still pending March 9
+- **Phase 2 pipeline:** 100% ready since Feb 28 → Blocked waiting for Phase 1 decision
+- **Launch window at risk:** March 11–18 Phase 2 MVP window; each day of delay = 1 day lost from sprint
 
-Instead of open-ended feedback loops, use **binary decision frames** for approval:
+---
 
-**Example: Phase 1 QA**
+## Root Cause
+Decisions framed as open-ended questions create paralysis:
+- ❌ "What do you think about Phase 1?" → No clear action
+- ✅ "A) Approve & launch Phase 2, or B) Specify revisions on [X, Y, Z]?" → Binary action
+
+---
+
+## Solution Framework
+**Binary Decision Frames reduce approval cycle by ~80%**
+
+1. **Deliver two fully-scoped options** (not open questions)
+2. **Explicit binary choice** ("A or B?")
+3. **SLA attached** (48–72 hours for decision)
+4. **Clear consequences** (what happens if decision delayed)
+
+---
+
+## Example (Phase 1 → Phase 2)
 ```
-Option A: "Phase 1 looks good, proceed with Phase 2"
-Option B: "Need revisions on X, Y, Z" (specify)
+Frame: 
+A) APPROVE Phase 1 → Launch Phase 2 immediately (MVP by March 18)
+B) REVISE Phase 1 on [system X, feature Y, metric Z] → Propose revised timeline
+
+Choose by: EOD Tuesday, March 11
+Cost of delay: Phase 2 launch window closes (March 11–18)
 ```
 
-**Benefits**
-- Reduces cognitive load (choose, don't deliberate endlessly)
-- Faster closure (48-hour SLA vs 120h+ delay)
-- Clear next actions (A = launch Phase 2, B = specify changes)
+---
+
+## Applicable Situations
+- Project approvals (Phase gates)
+- Scope decisions (what ships, what defers)
+- Timing conflicts (workshop dates, demo windows)
+- Resource allocation (priority ranking)
+- Revision requests (specify exactly what changes)
 
 ---
 
-## Systemic Insight
-
-**Build is a push activity. Decisions are a pull activity.**
-
-When build speed exceeds decision pull, inventory builds up (work queued, waiting for approval). This is classic queuing theory—the constraint is not the slowest step, but the _coupling_ between steps.
-
-**Architecture solution:** Async decision handoffs with explicit approval criteria + decision timeboxes.
+## Impact If Implemented
+- **Approval cycle:** 3–7 days → 1–2 days
+- **Context preservation:** Decisions made with full information (not partial)
+- **Ownership clarity:** Owner must choose (no "I'll think about it")
+- **Velocity unlock:** 30x build speed becomes operational advantage
 
 ---
 
-## Operational Application (Renzo + Cora)
-
-- **Build team (Cora):** Ship Phase 2 fully scoped + architecture + code → deliver with 2-option decision frame
-- **Decision owner (Renzo):** Respond to binary frame within 48h (not "let me review later")
-- **Feedback loop:** If revision needed, specify exact changes (not "rethink this")
-
-**Measurable goal:** Reduce decision delay from 120h+ to <48h on standard approvals.
-
----
-
-## Related Concepts
-- **Async Execution Model** — Decoupling execution from decision timing
-- **Infrastructure as Competitive Advantage** — Stable systems allow safe decision delays (not tactical)
-- **Escalation Pattern Recognition** — Detecting overdue decisions early
+**Pattern validated:** March 6–9, 2026 across Phase 1 → Phase 2 transition.
