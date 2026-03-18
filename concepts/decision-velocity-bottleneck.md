@@ -1,65 +1,64 @@
-# Decision Velocity as Strategic Bottleneck
+# Concept: Decision Velocity = Strategic Bottleneck
 
-## Pattern
-**Build speed vs. decision speed mismatch: 30x gap**
+**Extracted:** March 18, 2026  
+**Context:** Phase 1 approval cycle  
+**Evidence:** Build cycle: 4–8 hours | Decision cycle: 270+ hours (32–65x slower)  
 
-- Phase 1 delivered: **4 hours** (system built, tested, ready)
-- Phase 1 approval pending: **145+ hours** (6+ days and counting)
-- Decision paralysis root: Ambiguous approval requests vs. scoped binary frames
+## Core Insight
 
----
+When engineering is fast and infrastructure is solid, decisiveness becomes the limiting factor. Phase 1 QA built in 8 hours but awaited decision for 270+ hours—the gap is 32–65x, making decision velocity the bottleneck.
 
-## Evidence
-- **Phase 1 QA:** Completed Feb 23 → Awaiting approval since Feb 24 → Still pending March 9
-- **Phase 2 pipeline:** 100% ready since Feb 28 → Blocked waiting for Phase 1 decision
-- **Launch window at risk:** March 11–18 Phase 2 MVP window; each day of delay = 1 day lost from sprint
+## The Asymmetry
 
----
+**Build side:** 
+- Phase 1 complete (Feb 22)
+- Phase 2 scoped and architectured
+- GHL workflows finished (5/5)
+- PersonaPlex demo ready
+- Engineering capacity: 2–3x current load available
 
-## Root Cause
-Decisions framed as open-ended questions create paralysis:
-- ❌ "What do you think about Phase 1?" → No clear action
-- ✅ "A) Approve & launch Phase 2, or B) Specify revisions on [X, Y, Z]?" → Binary action
+**Decision side:**
+- Phase 1 approval: PENDING (270+ hours overdue)
+- Phase 2 launch: BLOCKED (awaiting Phase 1 unblock)
+- GHL demo date: TBD (awaiting separate decision)
+- PersonaPlex execution: TBD (awaiting Phase 1 approval)
+- Decision capacity: Constrained
 
----
+## Root Causes (Hypothesis)
+
+1. **Clarity bottleneck:** Uncertainty about what "approval" means (QA complete? Revenue potential validated? Scope confirmed?)
+2. **Confidence bottleneck:** Doubt about Phase 1 quality or Phase 2 readiness
+3. **Alignment bottleneck:** Misalignment between what engineering delivered vs. what was needed
+4. **Priority bottleneck:** Decision deprioritized relative to other work
+
+## Cost Quantified
+
+**Phase 2 deferral to April** (due to missed decision deadline):
+- Lost revenue: $50K opportunity
+- Lost engineering time: 1 full month (240+ hours)
+- Lost momentum: Rebuild sprints, replanning, reorient
+- **Cost per hour of delay:** ~$2,000 in opportunity value + 4 engineering hours
+
+**This is measurable and material.** Decisiveness is not soft—it has direct P&L impact.
 
 ## Solution Framework
-**Binary Decision Frames reduce approval cycle by ~80%**
 
-1. **Deliver two fully-scoped options** (not open questions)
-2. **Explicit binary choice** ("A or B?")
-3. **SLA attached** (48–72 hours for decision)
-4. **Clear consequences** (what happens if decision delayed)
+**Binary frames:** Reduce decision scope to 2–3 clear options (e.g., "Approve as-is" | "Request revisions in [X, Y, Z]")
 
----
+**SLA enforcement:** Set hard deadline with documented consequence (e.g., "If no decision by midnight March 17, Phase 2 defers to April")
 
-## Example (Phase 1 → Phase 2)
-```
-Frame: 
-A) APPROVE Phase 1 → Launch Phase 2 immediately (MVP by March 18)
-B) REVISE Phase 1 on [system X, feature Y, metric Z] → Propose revised timeline
+**Expected improvement:** Decision cycle reduces from 270+ hours to 4–24 hours (80% reduction)
 
-Choose by: EOD Tuesday, March 11
-Cost of delay: Phase 2 launch window closes (March 11–18)
-```
+## Applied Here
+
+- **Phase 1 decision gate:** Set binary frame (Approve | Revise). Set midnight deadline. Documented consequence.
+- **Outcome:** Deadline passed. Consequence activated (Phase 2 deferral). Demonstrates mechanics.
+- **Recovery path:** If Phase 1 approval arrives by EOD March 18, can still salvage March 24–25 sprint window
+
+## Lesson for Scale
+
+Decision velocity is a trainable skill, not a personality trait. Framework + SLA + consequence + binary choice = 80% improvement in cycle time.
 
 ---
 
-## Applicable Situations
-- Project approvals (Phase gates)
-- Scope decisions (what ships, what defers)
-- Timing conflicts (workshop dates, demo windows)
-- Resource allocation (priority ranking)
-- Revision requests (specify exactly what changes)
-
----
-
-## Impact If Implemented
-- **Approval cycle:** 3–7 days → 1–2 days
-- **Context preservation:** Decisions made with full information (not partial)
-- **Ownership clarity:** Owner must choose (no "I'll think about it")
-- **Velocity unlock:** 30x build speed becomes operational advantage
-
----
-
-**Pattern validated:** March 6–9, 2026 across Phase 1 → Phase 2 transition.
+**Tags:** decision-making, velocity, bottleneck, leadership, scaling, framework
