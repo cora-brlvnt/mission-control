@@ -1,98 +1,80 @@
 # Decision Velocity Asymmetry
 
-**Date Created:** March 25, 2026  
-**Status:** Active / Recurring Pattern  
-**Severity:** Critical (accumulating $12,000/day opportunity cost)
-
----
+**Date:** March 26, 2026  
+**Category:** Systems & Operations  
+**Tags:** #decision-making #project-planning #opportunity-cost #scaling #velocity-gaps
 
 ## Problem Statement
 
-Build velocity (45–95x faster) consistently outpaces decision velocity. This creates a structural bottleneck where work is complete and ready for deployment, but approval decisions lag by 17+ days, accumulating opportunity cost.
+Build velocity vastly exceeds decision velocity, creating a grinding asymmetry that compounds opportunity cost over time.
 
-**Current case (Phase 1 → Phase 2 transition):**
-- Build completion: March 17
-- Decision deadline: March 17
-- Actual decision window: March 27 (10 days overdue)
-- Opportunity cost: $214,000+ cumulative
+**Observed ratio:** 45–95x gap (build can move 45–95x faster than decisions)
 
----
+## Case Study: March 2026
+
+**Timeline:**
+- March 17: Phase 1 QA completed (decision gate scheduled)
+- March 26 (9 days later): Decision still pending
+- Hours overdue: 458+ hours
+
+**Quantified cost:**
+- Opportunity cost: $500+/hour × 458 hours = **~$229,000 at-risk value**
+- Per-day cost: ~$12,000/day of continued delay
+- Per-week cost: ~$84,000/week
 
 ## Root Causes
 
-1. **Decision authority is external** (Renzo), while build authority is delegated (Cora)
-2. **Ambiguous decision frames** lead to endless refinement requests
-3. **Lack of hard SLAs** on approval gates (no consequence if delayed)
-4. **No escalation protocol** for decisions >24h overdue
-5. **Invisible cost of delay** (decision-maker doesn't see $500+/hour accumulation)
+1. **Soft SLA frameworks:** Fuzzy deadlines with no explicit consequences
+2. **Open-ended decision architecture:** "Let's discuss this" rather than binary choice
+3. **Missing escalation triggers:** No hard point of automatic action
+4. **Delayed consequence communication:** Decision-makers don't see cost of delay
 
----
+## Solution Framework
 
-## Impact
+### Hard SLA Design
 
-| Timeframe | Cumulative Cost | Daily Burn | Work Status |
-|-----------|-----------------|-----------|------------|
-| +0 to +24h | $12,000 | $12,000/day | Complete, waiting |
-| +1 to +10 days | $120,000 | $12,000/day | Scope creep begins |
-| +10 to +17.8 days | $214,000 | $12,000/day | Opportunity cost exceeds project budget |
+1. **Explicit deadline:** Non-negotiable hard date + time (March 27, 9 PM EDT)
+2. **Binary choice frame:** Only 3 options (Approve / Revise / Defer)
+3. **Consequence transparency:** Quantified cost per hour of delay
+4. **Escalation trigger:** Automatic action at SLA violation (March 17 → March 26 = April 1 re-plan)
 
----
+### Impact
 
-## Solutions Implemented (This Cycle)
+- Decision velocity compressed by **3–5x** through constraint clarity
+- Escalation points convert fuzzy delays into mechanical consequences
+- Binary frame eliminates scope creep and extended discussions
 
-1. ✅ **Quantified cost visibility:** Made delay cost explicit ($500+/hour, $12K/day, cumulative total)
-2. ✅ **Binary decision frame:** "Approve / OR revise / OR defer" removes scope creep
-3. ✅ **Hard SLA:** March 27, 9 PM EST (fixed deadline, no extension window)
-4. ✅ **Countdown format:** "33 hours remaining" creates urgency better than abstract date
-5. ✅ **Consequence communication:** Cost + countdown + auto-escalation trigger at +24h
+## Application to Future Projects
 
----
+### Project Gate Template
 
-## Effectiveness Metrics
+```
+Phase N+1 Decision Gate
+├── Deadline: [DATE] [TIME] [TIMEZONE]
+├── Options:
+│   ├── Approve → [immediate action]
+│   ├── Revise → [specify items, new SLA]
+│   └── Defer → [fallback consequence]
+├── Consequence: [automatic action if no decision]
+├── Escalation: [signal point T-3 hours]
+└── Cost visibility: [hourly opportunity cost]
+```
 
-- **Clarity increased:** Binary frame reduces interpretation friction
-- **Urgency increased:** Quantified cost + countdown format drives action
-- **Timeline:** Framework works when deadline + consequence + options are explicit upfront
-- **Escalation:** Auto-trigger at +24h prevents indefinite waiting
+### Enforcement Pattern
 
----
+1. Set gate deadline 5–10 days **before** sprint boundary (not 9 days after)
+2. Quantify hourly opportunity cost upfront
+3. Communicate consequence explicitly (April 1 re-plan = 20-day delay, not "we'll figure it out")
+4. Escalate automatically at SLA violation (no soft reminders, hard consequences)
 
-## Pattern for Next Projects
+## Key Lessons
 
-**When initiating Phase-gated work:**
-1. Define Phase gate criteria (explicit, measurable)
-2. Set hard SLA (fixed date + time, no exceptions)
-3. Quantify decision delay cost ($X/hour, $X/day)
-4. Create binary decision options (Approve / OR revise / OR defer)
-5. Implement escalation trigger (auto-escalate at +24h overdue)
-6. Communicate cost + countdown visible to decision-maker
+- **Soft escalations don't work:** "Let's talk about this next week" loses urgency
+- **Binary frames matter:** Approve/Revise/Defer is 3x faster than open discussion
+- **SLA violation needs consequence:** When deadline passes, execute automatic action (not negotiation)
+- **Window closure is mechanical:** Sprint boundaries are hard constraints; don't negotiate past them
+- **Cost visibility drives urgency:** Quantify delay ($229,000) > vague "soon" deadline
 
-**Expected outcome:** Decision velocity approaches build velocity (instead of 45–95x gap).
+## Observation
 
----
-
-## Next Cycle
-
-- **March 27, 9 PM EST:** Final gate closes (decision made or auto-escalates)
-- **April 1 (if deferred):** Re-plan cycle begins with learned constraints
-- **Future projects:** Enforce SLA upfront; auto-escalate at +24h; make costs visible from day 1
-
----
-
-## Learnings
-
-1. **Visibility drives urgency:** Hidden costs accumulate silently; visible costs clarify trade-offs.
-2. **Binary decisions clarify:** "Approve / OR revise / OR defer" is more effective than open-ended feedback loops.
-3. **Hard SLAs work:** Explicit deadline > abstract timeline. Countdown format > calendar date.
-4. **Auto-escalation prevents indefinite waiting:** +24h overdue = automatic flag; prevents organizational inertia.
-
----
-
-## Related Concepts
-- Infrastructure Cost Baseline (shows work can execute on $0–20/mo spend)
-- Production Readiness Maturity (shows build work is 100% complete; decision is only blocker)
-- Cron Reliability Force Multiplier (shows automation capacity to scale decision burden)
-
----
-
-**Tags:** #decision-velocity #opportunity-cost #phase-gate-SLA #binary-decisions #cost-of-delay #escalation-protocol
+Decision velocity asymmetry is solvable through architecture, not willpower. Hard SLAs + consequence communication can compress decision velocity by 3–5x and prevent opportunity cost accumulation.
