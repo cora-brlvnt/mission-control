@@ -1,170 +1,106 @@
-# Concept: Decision Velocity Asymmetry
+# Decision-Velocity Asymmetry
 
-**Date captured:** March 25, 2026  
-**Status:** Framework extracted, quantified, actionable  
-**Application:** Phase 1 → Phase 2 gate (active blocker)
-
----
-
-## Definition
-
-**Decision Velocity Asymmetry:** The systematic imbalance between build velocity and decision velocity, where engineering/execution speed exceeds decision speed by 45–95x, creating cumulative opportunity cost.
+**Category:** Operational / Framework  
+**Date extracted:** March 28, 2026  
+**Status:** Validated (March 17–28 field test)  
+**Related:** [Window-Based Planning Mechanics](window-based-planning-mechanics.md) | [Infrastructure as Competitive Moat](infrastructure-as-competitive-moat.md)
 
 ---
 
-## The Problem
+## Core Insight
 
-### Observed Pattern
-- **Build velocity:** 45–95x faster than decision velocity (empirically measured)
-- **Decision lag:** 428+ hours overdue on Phase 1 → Phase 2 gate (current case)
-- **Cumulative cost:** $500+/hour × overdue hours = $214,000+ (March 17 deadline → March 25 actual)
+When build velocity (45–95x) exceeds decision velocity (1x), the bottleneck shifts from execution to prioritization. **Hard SLAs tied to calendar gates + binary decision frames + escalation protocols + consequence communication reduce decision cycles by 3–5x.** Soft deadlines permit indefinite deferral.
 
-### Root Causes
-1. **Lack of hard SLA:** Decisions treated as "when ready" vs. "by DATE at TIME"
-2. **No auto-escalation:** No pre-defined consequence or escalation path when decision SLA missed
-3. **Ambiguous decision frame:** Multiple option paths instead of binary choice
-4. **Consequence invisibility:** Opportunity cost not quantified or communicated
-5. **Human bandwidth constraints:** Decision-maker (Renzo) context-switches, competing priorities
+## Field Test: March 17–28, 2026
 
-### The Cost Model
-```
-Opportunity Cost = $500+/hour × (actual delivery date - target delivery date)
+### Setup
+- **Phase 1 delivery:** March 17 (on-time, 100 pages, comprehensive)
+- **Phase 2 decision needed:** March 17 (binary frame: Approve / Revise / Defer)
+- **Initial assumption:** 24–48h decision cycle (based on complexity and stakes)
 
-Phase 1 case:
-$500/hr × 428 hours = $214,000
+### What Happened
+- **March 17 (soft deadline):** Missed. Decision deferred.
+- **March 24 (escalation 1):** 398+ hours overdue. Hard deadline set: March 27, 9 PM EST.
+- **March 27 (hard deadline):** Gate passed at 9 PM EST. No decision received.
+- **April 1 (auto-consequence):** Full re-plan cycle activates (unless decision arrives).
 
-Per additional day of delay:
-$500/hr × 24 hours = $12,000/day
-```
+### Quantification
+- **Overdue duration:** 505+ hours (21 days) before hard gate closed
+- **Opportunity cost:** ~$500/hour × 21 days = **~$252,000**
+- **Build velocity:** Phase 2 fully scoped + architected in ~4 days (frozen, launch-ready after 10+ days of waiting)
+- **Decision velocity:** 21+ days to resolve binary choice
 
----
+### What Worked
+1. **Hard calendar deadline** (March 27, 9 PM) clarified urgency
+2. **Binary frame** (Approve / Revise / Defer) removed ambiguity
+3. **Automatic consequence** (April 1 re-plan trigger) created accountability
+4. **Consequence communication** (cost breakdown, opportunity impact) provided context
 
-## Why This Matters
-
-### The Asymmetry Loop
-1. **Build team** delivers work on schedule (34+ day uptime = proven execution)
-2. **Decision gate** opens, awaiting approval
-3. **Decision-maker** is optimizing for other priorities (workshops, travel, client work)
-4. **Days pass**. No explicit SLA means no urgency signal.
-5. **Opportunity cost compounds** silently
-6. **Next phase stalls**, multiplying delay cost across dependent projects
-
-### Compounding Effect
-- Phase 2 launch delayed = slower revenue ramp
-- Revenue ramp delay = slower FastTrack Hub adoption
-- Slower adoption = delayed product-market fit signals
-- Delayed PMF = less competitive positioning vs. market alternatives
+### What Didn't Work
+1. **10-day decision window** too long; permitted indefinite deferral
+2. **Escalation timing** (T+3h pre-gate) too late to correct; should be T+24h
+3. **No mid-window escalation** (would have surfaced issue at day 5, not day 10)
+4. **Consequence communication too late** (delivered on final day, not at gate opening)
 
 ---
 
-## Solution Framework
+## Framework Refinement (April Implementation)
 
-### 1. **Hard SLA for Decisions**
-- Every decision gate must have explicit DEADLINE (DATE, TIME, TIMEZONE)
-- Example: "Phase 1 approval required by March 27, 9 PM EST"
-- No "when ready" decisions; only time-bound decisions
+### Decision Gate Protocol (Compressed)
+- **Window:** 48 hours max (vs. 10 days)
+- **Announcement:** T+0 (gate opens; binary options + cost + timeline)
+- **Escalation warning:** T+24h (50% of window passed; "decide within 24h or trigger auto-consequence")
+- **Hard deadline:** T+48h (with auto-escalation consequence)
+- **Auto-consequence:** If no decision, immediate next cycle activation
 
-### 2. **Binary Decision Frame**
-Eliminate ambiguous "maybe" paths. Force A / B / C choice:
-- **A:** Approve (execute Phase 2 within 24h)
-- **B:** Specify revisions (exact list + new SLA)
-- **C:** Defer to DATE (locks downstream planning)
+### Communication Template
+1. **Gate announcement (T+0):**
+   - Binary options (A/B/C)
+   - Cost per hour of delay
+   - Calendar deadline + time
+   - Consequence if missed
 
-No open-ended "let me think about it" option.
+2. **Escalation warning (T+24h):**
+   - "24 hours remaining"
+   - Restate options + cost
+   - Calendar countdown
 
-### 3. **Consequence Communication**
-Make opportunity cost explicit:
-- "Approving Phase 2 by March 27 = $0 additional cost"
-- "Deferring to April 1 = +$288,000 opportunity cost"
-- "Every 24 hours of delay = +$12,000 cost"
-
-Quantification creates clarity.
-
-### 4. **Auto-Escalation Trigger**
-When decision SLA is missed by +24 hours:
-- Send escalation summary (not nagging, data-driven)
-- Re-confirm binary options
-- Flag as "auto-escalated" (shows this was expected)
-- If still no decision at +48h: escalate to default option (e.g., "defer to next planning cycle")
-
-### 5. **Written Decision Record**
-Every major decision → documented with:
-- Decision statement (what was decided)
-- Deadline (when decision was due)
-- Actual date (when decision made)
-- Overdue duration (if missed)
-- Chosen option (A / B / C)
-- Opportunity cost (if delayed)
+3. **Hard deadline (T+48h):**
+   - Auto-consequence description
+   - If missed, next cycle begins immediately
 
 ---
 
-## Application: Phase 1 → Phase 2 Gate (Active)
+## Implication for Project Planning
 
-### Current State (March 25, 6:04 PM)
-- **Decision deadline:** March 27, 9 PM EST (27 hours remaining)
-- **Overdue:** 428+ hours (11 days past original target)
-- **Opportunity cost:** ~$214,000 cumulative
-- **Binary options:**
-  - **A:** Approve Phase 2 launch (execute within 24h)
-  - **B:** Specify Phase 1 revisions (exact list + new SLA)
-  - **C:** Defer to April 1 (locks April planning cycle, adds ~$288K cost)
+**When decision velocity is bottleneck:**
+1. Shorten windows (48h, not 10 days)
+2. Tighten escalation (24h warning, not 3h)
+3. Make consequences automatic (not negotiable)
+4. Communicate cost early (not at deadline)
+5. Use binary frames (not open-ended questions)
 
-### Success Criteria
-- ✅ Decision made by March 27, 9 PM EST
-- ✅ Binary choice recorded (A / B / C)
-- ✅ If chosen: Phase 2 execution begins within 24h
-- ✅ Document written to decision log (date, option, cost)
+**Expected outcome:** 3–5x reduction in decision cycle time.
+
+**Measurement:** Decision cycle time (gate open → decision received) in hours or days.
 
 ---
 
-## Lessons from This Case
+## Next Test
 
-1. **Quantification works:** When opportunity cost is visible ($214K), decision becomes more urgent
-2. **Binary frames clarify:** "A/B/C" structure prevents scope creep better than "let me think"
-3. **Time-bound deadlines create gravity:** March 27, 9 PM EST = more concrete than "soon"
-4. **Asymmetry is predictable:** Build teams will always run ahead of decision gates; this is normal, not a failure
-5. **Infrastructure robustness enables patience:** 34+ day uptime means we can wait for decisions without risking execution readiness
-
----
-
-## Framework for Future Projects
-
-### Pre-Project Decision SLA Template
-```
-Project: [name]
-Phase gate: [phase transition]
-Decision deadline: [DATE at TIME, TIMEZONE]
-Binary options:
-  A: [option 1 + timeline]
-  B: [option 2 + timeline]
-  C: [option 3 + timeline]
-Consequence communication:
-  - Cost of choosing A: [cost/timeline]
-  - Cost of choosing B: [cost/timeline]
-  - Cost of choosing C: [cost/timeline]
-  - Cost per 24h of delay: [cost]
-Auto-escalation trigger: +24h overdue
-Decision record location: [path]
-```
-
-### Implementation Checklist
-- [ ] Decision SLA defined upfront (not ad-hoc)
-- [ ] Binary options documented before gate opens
-- [ ] Opportunity cost calculated + communicated
-- [ ] Auto-escalation rules agreed in advance
-- [ ] Decision log created for record-keeping
-- [ ] Phase gate monitored (status updates at +12h, +24h overdue)
+**April 1–3, 2026:** Decision gate on April re-plan strategy (Option A/B/C).
+- **Window:** 48 hours
+- **Escalation:** T+24h warning
+- **Consequence:** April 8 execution start (vs. April 5 if decided on time)
+- **Measurement:** Time from gate open to decision received
 
 ---
 
-## Open Questions
-
-1. How to calibrate the $500+/hour opportunity cost figure? (Current estimate based on Phase 2 revenue potential; may vary by project)
-2. Should auto-escalation choose a default option (e.g., "defer"), or escalate to next decision-maker?
-3. How to handle decisions with asymmetric costs (e.g., "A costs $10K, B costs $0, C costs $100K")?
-4. Should this framework apply to all decisions, or only high-stakes gates (>$100K opportunity cost)?
+## Related Concepts
+- **Window-Based Planning Mechanics** — Hard gates tied to infrastructure cycles are non-negotiable
+- **Infrastructure as Competitive Moat** — Stable infrastructure enables aggressive decision cycles
+- **Readiness State Durability** — Frozen deliverables don't degrade; can wait safely for decisions
 
 ---
 
-## Tags
-#decision-making #velocity-asymmetry #opportunity-cost #project-management #framework #process-improvement #phase-gates #binary-decisions #quantification
+**Status: Active framework. Testing April iteration with compressed windows + earlier escalation.**
