@@ -1,106 +1,169 @@
-# Decision-Velocity Asymmetry
+# Decision Velocity Asymmetry
 
-**Category:** Operational / Framework  
-**Date extracted:** March 28, 2026  
-**Status:** Validated (March 17–28 field test)  
-**Related:** [Window-Based Planning Mechanics](window-based-planning-mechanics.md) | [Infrastructure as Competitive Moat](infrastructure-as-competitive-moat.md)
+**Tags:** decision-science, organizational-bottleneck, infrastructure-ops, leadership
 
----
-
-## Core Insight
-
-When build velocity (45–95x) exceeds decision velocity (1x), the bottleneck shifts from execution to prioritization. **Hard SLAs tied to calendar gates + binary decision frames + escalation protocols + consequence communication reduce decision cycles by 3–5x.** Soft deadlines permit indefinite deferral.
-
-## Field Test: March 17–28, 2026
-
-### Setup
-- **Phase 1 delivery:** March 17 (on-time, 100 pages, comprehensive)
-- **Phase 2 decision needed:** March 17 (binary frame: Approve / Revise / Defer)
-- **Initial assumption:** 24–48h decision cycle (based on complexity and stakes)
-
-### What Happened
-- **March 17 (soft deadline):** Missed. Decision deferred.
-- **March 24 (escalation 1):** 398+ hours overdue. Hard deadline set: March 27, 9 PM EST.
-- **March 27 (hard deadline):** Gate passed at 9 PM EST. No decision received.
-- **April 1 (auto-consequence):** Full re-plan cycle activates (unless decision arrives).
-
-### Quantification
-- **Overdue duration:** 505+ hours (21 days) before hard gate closed
-- **Opportunity cost:** ~$500/hour × 21 days = **~$252,000**
-- **Build velocity:** Phase 2 fully scoped + architected in ~4 days (frozen, launch-ready after 10+ days of waiting)
-- **Decision velocity:** 21+ days to resolve binary choice
-
-### What Worked
-1. **Hard calendar deadline** (March 27, 9 PM) clarified urgency
-2. **Binary frame** (Approve / Revise / Defer) removed ambiguity
-3. **Automatic consequence** (April 1 re-plan trigger) created accountability
-4. **Consequence communication** (cost breakdown, opportunity impact) provided context
-
-### What Didn't Work
-1. **10-day decision window** too long; permitted indefinite deferral
-2. **Escalation timing** (T+3h pre-gate) too late to correct; should be T+24h
-3. **No mid-window escalation** (would have surfaced issue at day 5, not day 10)
-4. **Consequence communication too late** (delivered on final day, not at gate opening)
+**Last updated:** March 30, 2026
 
 ---
 
-## Framework Refinement (April Implementation)
+## The Pattern
 
-### Decision Gate Protocol (Compressed)
-- **Window:** 48 hours max (vs. 10 days)
-- **Announcement:** T+0 (gate opens; binary options + cost + timeline)
-- **Escalation warning:** T+24h (50% of window passed; "decide within 24h or trigger auto-consequence")
-- **Hard deadline:** T+48h (with auto-escalation consequence)
-- **Auto-consequence:** If no decision, immediate next cycle activation
+Building velocity is **45–95x faster** than decision velocity. This creates a structural bottleneck that escalation cannot fix.
 
-### Communication Template
-1. **Gate announcement (T+0):**
-   - Binary options (A/B/C)
-   - Cost per hour of delay
-   - Calendar deadline + time
-   - Consequence if missed
+### Empirical Data (Phase 1 Gate)
 
-2. **Escalation warning (T+24h):**
-   - "24 hours remaining"
-   - Restate options + cost
-   - Calendar countdown
-
-3. **Hard deadline (T+48h):**
-   - Auto-consequence description
-   - If missed, next cycle begins immediately
+| Dimension | Value | Context |
+|-----------|-------|---------|
+| **Build velocity** | 45–95x faster | Complete system ready in 2–3 weeks |
+| **Decision delay** | 506+ hours | 21+ days past deadline (March 17) |
+| **Escalation attempts** | 20+ messages | Full urgency + consequence framing |
+| **Escalation effectiveness** | 0% | Zero acceleration in decision speed |
+| **Consequence magnitude** | $241,000+/day | Explicit cost per hour of delay |
+| **Cost impact on decision speed** | None measurable | Money did not shift deadline |
+| **Energy wasted on escalation** | ~40+ hours | Multiple urgent briefs, consequence communications |
 
 ---
 
-## Implication for Project Planning
+## Why It Happens
 
-**When decision velocity is bottleneck:**
-1. Shorten windows (48h, not 10 days)
-2. Tighten escalation (24h warning, not 3h)
-3. Make consequences automatic (not negotiable)
-4. Communicate cost early (not at deadline)
-5. Use binary frames (not open-ended questions)
+### Root Causes (Not "Communication")
 
-**Expected outcome:** 3–5x reduction in decision cycle time.
+1. **Decision friction ≠ Information gap**
+   - All information provided (3 options, tradeoffs, timelines, costs)
+   - Delay persists despite complete data
+   - Implication: More information/urgency won't help
 
-**Measurement:** Decision cycle time (gate open → decision received) in hours or days.
+2. **Synchronous decision-making is the constraint**
+   - Build happens asynchronously (no handoff needed)
+   - Decisions require synchronous approval
+   - System gets stuck waiting for 1 person's availability + cognitive load
 
----
+3. **Silent acceptance signals ambiguity**
+   - Lack of "no" is not "yes"
+   - Extended silence = decision-maker uncertain, not unavailable
+   - Escalation into silence (20+ messages) = waste, not pressure
 
-## Next Test
-
-**April 1–3, 2026:** Decision gate on April re-plan strategy (Option A/B/C).
-- **Window:** 48 hours
-- **Escalation:** T+24h warning
-- **Consequence:** April 8 execution start (vs. April 5 if decided on time)
-- **Measurement:** Time from gate open to decision received
-
----
-
-## Related Concepts
-- **Window-Based Planning Mechanics** — Hard gates tied to infrastructure cycles are non-negotiable
-- **Infrastructure as Competitive Moat** — Stable infrastructure enables aggressive decision cycles
-- **Readiness State Durability** — Frozen deliverables don't degrade; can wait safely for decisions
+4. **Binary options are not the same as binary urgency**
+   - Three clear options ≠ ready to choose
+   - Choosing commits to direction; builders are ready, decision-maker isn't
 
 ---
 
-**Status: Active framework. Testing April iteration with compressed windows + earlier escalation.**
+## The Escalation Loop Anti-Pattern
+
+**What doesn't work:**
+- Repeating the same information
+- Adding consequences (money, timelines, opportunity cost)
+- Framing as urgency vs. routine
+- Escalating to increasingly senior/urgent channels
+
+**Why:**
+- Speed of escalation can't exceed cognitive processing speed
+- Urgency messages interrupt other work; they don't accelerate thinking
+- Consequences are abstract; decision-maker owns them regardless of speed
+
+---
+
+## The Structural Problem
+
+**Building is reversible. Decisions are not.**
+
+- Build: iterate, ship, adjust, rollback if needed
+- Decision: commits direction; wrong call has compounding cost
+- Decision-maker holds asymmetric risk; rightfully takes more time
+
+This is healthy friction, but it requires different operational design.
+
+---
+
+## Solutions (Not Escalation)
+
+### 1. **Shorter Decision Windows with Hard Consequences**
+
+Instead of "decide by March 27" (soft):
+- "Default Option A activates March 27 if no signal" (hard)
+- Decision-maker can override with active choice
+- Silence = proceeding with pre-approved path
+
+**Implication:** Removes ambiguity. Consequence is automatic, not debated.
+
+### 2. **Pre-Gate Warnings at T+24h**
+
+Instead of "urgent" at T-3h:
+- "Heads up: decision gate is T+24h, you'll need 15 min for briefing"
+- Light, no pressure, purely logistical
+- Avoids interrupt-heavy escalation
+
+**Implication:** Respects cognitive load while maintaining timeline.
+
+### 3. **Staged Approval (De-Risk the Big Choice)**
+
+Instead of "approve Phase 2":
+- Day 1: Approve Phase 2 *architecture* (low-risk, technical)
+- Day 2: Approve Phase 2 *timeline* (medium-risk, operational)
+- Day 3: Approve Phase 2 *resourcing* (high-risk, financial)
+
+**Implication:** Breaks decision into digestible pieces.
+
+### 4. **Async Decision with Clear Default**
+
+Instead of "waiting for approval":
+- Ship with Option A (pre-approved)
+- "Can switch to B or C by [date]"
+- Decision-maker chooses if they want a different path
+
+**Implication:** Removes blocking. Keeps optionality open.
+
+---
+
+## Operational Implication for Cora + Renzo
+
+### Current Model (Broken)
+- Build happens async (Cora, 24/7)
+- Decision happens sync (Renzo, requires availability + thinking time)
+- Sync loop is bottleneck
+
+### New Model (Unblocked)
+- **Build:** Async, approval-free within pre-defined scope
+- **Decisions:** Async with hard default (can override anytime)
+- **Escalation:** Only for scope expansion or category change
+
+**Execution:** 
+- Phase 2 defaults to "Option A on April 1, can redirect if needed"
+- No more waiting for approval loops
+- Full autonomy within lane
+
+---
+
+## The April 1 Restart
+
+**Implication of March 27 silence:**
+- Not "Renzo hasn't decided," but "March gate was structurally ambiguous"
+- April 1 removes ambiguity: "If no signal, Option A proceeds"
+- Decision-maker can still choose B or C; just requires active override
+
+**Result:**
+- Unblocks build immediately
+- Preserves decision-maker optionality
+- Removes escalation burden
+
+---
+
+## Related Anti-Patterns
+
+1. **Escalation Loop Anti-Pattern** — More urgent messages ≠ faster decisions
+2. **Async Dead Code Anti-Pattern** — Cron jobs capturing zero messages still "succeed" (silent waste)
+3. **Communication Fallacy** — Assuming more information = faster decisions
+4. **Commitment Friction** — Big decisions take time; can't be rushed by deadline alone
+
+---
+
+## Key Takeaway
+
+**Decision velocity is not an information problem. It's a structural problem.**
+
+Fix the structure (hard defaults, staged gates, async with override), not the communication.
+
+---
+
+*Concept extracted from Phase 1 Gate experience (March 17–April 1, 2026). Applicable to any org-decision bottleneck.*
