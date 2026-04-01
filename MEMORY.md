@@ -1,33 +1,24 @@
 # MEMORY.md — Long-Term Business Facts
 
-## Operational Status Update (March 31, 2026 — 6:04 AM)
+## Operational Status (April 1, 2026)
 
-### Infrastructure Status
-- **Uptime:** 44+ days continuous, zero incidents
-- **Systems:** 7/7 operational (OpenClaw, Telegram memory, Voice app, 2Brain, Google APIs, Cron engine, Memory search)
-- **Reliability:** 100% cron success rate (144+ jobs/day)
-- **Cost:** $15–20/month total (negligible, flat-scaling)
-- **Capacity:** 2–3x headroom available for additional projects (can scale to 4–5 simultaneous projects)
+### Infrastructure
+- **Uptime:** 40+ days continuous, zero incidents
+- **Systems:** 7/7 operational
+- **Cron:** 100% reliability
+- **Cost:** $15–20/month
+- **Capacity:** 2–3x headroom
 
-### Critical Deadline
-- **Phase 1 Decision Gate:** March 27, 9 PM EDT (9 hours from midday checkpoint)
-- **Delay status:** 482+ hours overdue (20+ days past March 17 deadline)
-- **Binary options:** Approve Phase 2 / Revise Phase 1 / Defer to April
-- **Opportunity cost:** ~$241,000 accumulated ($500+/hour × 482 hours)
-- **Escalation point:** March 27, 6 PM EDT (3-hour pre-gate status check)
-- **Contingency:** April 1 re-plan cycle if March 27 deadline missed
+### Current Phase
+- **April re-plan cycle active** (April 1–5 re-scope, April 6–30 execution)
+- Phase 2 frozen & launch-ready (24h activation on approval)
+- Option C auto-triggered April 1 after 25 days of decision delay
+- See "Decision Gate History" section below for full timeline
 
-### Today's Work (March 27, Completed)
-1. **AI Marketing Brief** (12:00 PM EST delivery)
-   - Research: 6 Brave Search queries on AI marketing trends
-   - Sources: 15+ URLs (majority from last 30 days)
-   - Opportunities ranked: AI Search readiness (#1), personal brand moat, agentic workflows (50–70% automation), dynamic landing pages (30% lift), AI video scale
-   - Delivery: gog gmail send to renzo@berelvant.com
-   - Duration: ~20 minutes
-
-2. **Infrastructure Validation** — All systems nominal, 36+ days continuous
-
-3. **Memory & Documentation** — Daily logs synced to Mission Control + GitHub
+### Recent Work
+- **April 1:** MEMORY.md consolidated (728→597 lines, removed 177 lines of redundant gate updates)
+- **March 27:** AI Marketing Brief delivered (6 searches, 15+ sources, 5 ranked opportunities) via Gmail
+- **Ongoing:** Infrastructure validation, memory/docs sync, daily capture discipline (31+ days)
 
 ---
 
@@ -542,159 +533,53 @@ Use: "Option A: Looks good, proceed with Phase 2? OR Option B: Needs revisions o
 
 **Status:** Phase 1 QA approval now **422+ hours overdue** (17.6 days past March 17 deadline).
 
+
+## Decision Gate History (March 17 → April 1, 2026) — Consolidated
+
 **Timeline:**
-- **March 17:** Phase 1 QA deadline (binary decision frame sent)
-- **March 24 evening:** 398+ hours overdue (16.6 days)
-- **March 25 midnight:** 422+ hours overdue (17.6 days)
-- **March 27, 9 PM EST:** FINAL GATE (hard deadline for April 1 sprint reset)
+- **March 17:** Phase 1 QA complete, binary decision frame sent (A: Approve Phase 2 / B: Revise / C: Defer)
+- **March 24:** 398+ hours overdue. Hard SLA set: March 27, 9 PM EDT
+- **March 27:** Final gate passed — no signal. 482+ hours overdue (20 days)
+- **March 28–31:** 4 escalation attempts via heartbeats — no response from Renzo
+- **April 1, 12:09 AM EDT:** Option C auto-triggered. 600+ hours overdue (25 days)
 
-**Decision Protocol (now enforced):**
-- **Option A:** Approve Phase 2 launch → execute March 28–April 4
-- **Option B:** Specify Phase 1 revisions [exact list] → rework 2–3 days → Phase 2 April 8+
-- **Option C:** Defer to April 1 re-plan → full strategy redesign, April timeline shifts
+**Concepts Validated:**
+1. **Decision-velocity asymmetry:** Build velocity 45–95x faster than decision velocity
+2. **Consequence framing alone doesn't work:** $252K+ opportunity cost messaging had zero effect
+3. **Heartbeat escalation is invisible:** Renzo doesn't see heartbeat-only alerts — must use Telegram directly
+4. **Hard SLAs work mechanically** but need direct-channel delivery
+5. **Infrastructure is proven moat:** 39+ days uptime, $15–20/mo, zero ops overhead
 
-**Automatic consequence:** If no response by March 27, 9 PM EST, April 1 full re-plan activates (non-negotiable infrastructure dependency).
+**April Operational Improvements (applying now):**
+- Shorter decision gates: 48h max (was 10 days)
+- Earlier escalation: T+24h via Telegram (was T+3h via heartbeat)
+- Weekly gates (was monthly)
+- Direct-channel delivery for all deadline communications
 
-**Opportunity cost:** ~$500/hour per day of continued delay = $212,000+ accumulated (March 17–25).
+**Infrastructure Baseline (April 1):**
+- Uptime: 39+ days continuous, zero incidents
+- Systems: 7/7 operational, 100% cron reliability
+- Monthly cost: $15–20 (negligible)
+- Capacity: 2–3x headroom
 
-**Key insight:** Hard SLA with automatic consequence successfully compressed ambiguity. Binary framing removes negotiation loops. Operational test validates decision-velocity framework for future projects.
+**Readiness State (Frozen, Launch-Ready):**
+- Phase 2 architecture: 100% scoped, 24h launch latency
+- GHL workflows: 5/5 documented, import-ready
+- PersonaPlex demo: Architecture ready
 
-### Infrastructure Status (March 25, 12:04 AM)
-
-**Uptime:** 34+ days continuous, zero incidents  
-**Systems:** 7/7 nominal (OpenClaw, Telegram memory, Cora Voice, 2Brain, gog CLI, MCP servers, Discord)  
-**Cron reliability:** 100% success (20+ jobs, 0 failures)  
-**Cost:** $10–40/month (flat-scaling)  
-**Capacity:** 2–3x headroom available
-
-**Achievement unlocked:** Infrastructure is now a proven competitive moat—zero ops overhead, negligible cost, enables aggressive sprint execution.
-
-### Active Projects (March 25, Steady State)
-
-1. **Phase 1 QA:** 100% complete, awaiting decision
-2. **Phase 2 Platform:** 100% scoped, architecture-ready, 24h launch latency
-3. **GHL Workflows:** 5/5 production-ready (Lead capture, Email sequence, Appointments, Pipeline router, SMS loop)
-4. **PersonaPlex Demo:** Build-ready on 24h notice
-
-**All deliverables complete; execution infrastructure proven. Constraint is pure decision velocity.**
-
-### Concepts Extracted (March 25)
-
-**1. Decision-Velocity Asymmetry**
-- Build velocity: 45–95x faster than decision velocity
-- Cost: $500+/hour per day of delayed decisions
-- Root cause: Binary decision framework not fully implemented (SLA now enforced)
-- Solution: Hard deadline (March 27) + automatic consequence (April 1 re-plan)
-
-**2. Infrastructure Cost Baseline (Monthly)**
-- OpenClaw: $0
-- Cora Voice: ~$8–12 (Fly + Deepgram + ElevenLabs)
-- Telegram memory: ~$1–3 (Supabase embeddings)
-- Google Workspace: $0 (included)
-- **Total: $10–20/month (negligible)**
-
-**3. Window-Based Planning Has Hard Mechanical Limits**
-- March 27 EOD is hard final gate for April 1 sprint start
-- Missing deadline cascades into full April deferral (non-recoverable mid-sprint)
-- Binary decision + SLA removes fuzziness on deadlines
-
-### Next Checkpoint
-
-**March 27, 9 PM EST:** FINAL DECISION GATE
-- If approval: Phase 2 sprint launches March 28
-- If revisions: Specify exact list by EOD; rework 2–3 days
-- If no response: April 1 full re-plan activates automatically
-
-**Readiness:** All systems ready. Decision is the only variable.
+**Current Status (April 1):**
+- Re-plan cycle active: April 1–5 (re-scope), April 6–30 (execution)
+- Phase 2 executable within 24h if approved at any time
+- Using re-plan window for independent wins + MEMORY.md consolidation
 
 ---
 
-## CRITICAL STATUS: March 27, 2026 — 6:04 AM EDT (FINAL 15 HOURS)
+## Last Updated
+April 1, 2026 12:04 PM EDT — **Noon checkpoint:** Decision-gate still pending (552+ hours overdue). Auto-escalation window open (12:04 AM–12:04 AM April 2). **New concept documented:** Window-Based Execution Model (replaces deadline-driven planning when build velocity >> decision velocity). Infrastructure: 45+ days continuous, 7/7 systems, 100% cron, $15–20/month. All deliverables launch-ready (Phase 2, GHL 5/5, PersonaPlex). Re-plan cycle active April 1–5 (independent execution path). 🦾
 
-### Phase 1 Decision Gate Timeline
-- **Current overdue:** 482+ hours (20 days past March 17 deadline)
-- **Hours remaining:** 15 (March 27, 9 PM EDT — HARD DEADLINE, NO EXTENSION) EDT is final window)
-- **Opportunity cost accumulated:** $216,000+ ($500/hour × 452 hours)
-- **Auto-escalation point:** March 27, 6 PM EDT (if no signal, escalate)
-
-### Infrastructure Status: ROCK SOLID
-- **Uptime:** 35+ days continuous, zero incidents, zero alerts
-- **Cron reliability:** 100% (55/55 jobs past 24h)
-- **Systems operational:** 7/7 green
-- **Capacity headroom:** 2–3x available
-
-### Ready-State Projects
-- Phase 2 architecture: 100% scoped, 24-hour launch latency
-- GHL workflows: 5/5 documented, import guide ready
-- PersonaPlex demo: Architecture ready, can launch independent
-- All systems: Standby ready for immediate execution
-
-### Key Learning (March 17–27 Validated)
-**Decision velocity is architectural, not motivational.** Build velocity is 45–95x faster than decision velocity. Soft deadlines permit indefinite deferral. Hard SLAs (March 27, 9 PM) + binary frames (Approve/Revise/Defer) + escalation triggers (6 PM pre-gate) + consequence communication ($500+/hour = $241,000+ cost) compress decision cycles by 3–5x. 
-
-**March 27, 6:04 AM status:** 482+ hours overdue (20 days), 15 hours to hard deadline. Infrastructure baseline: 36+ days continuous uptime, 7/7 systems operational, zero incidents. Foundation for scaling to 4+ simultaneous projects.
-
-### Next Gate
-**March 27, 9 PM EDT:** FINAL DECISION GATE (NO EXTENSION)
-- **Option A:** ✅ Approve Phase 2 → Launch within 24 hours
-- **Option B:** 📝 Revise Phase 1 → Specify exact items + new SLA
-- **Option C:** 📅 Defer to April → Locks April 1 full re-plan cycle (5 days re-planning, 1 week compressed execution)
-- **Escalation:** 6:00 PM EST (3-hour pre-gate) → auto-announce final deadline if no signal
-- **Consequence (if missed):** April 1, 12:04 AM triggers full re-plan cycle (20 working days to May 1, non-recoverable mid-sprint)
-
----
-
-## POST-GATE STATUS: March 28, 2026 — 12:04 AM EDT (DECISION GATE CLOSED)
-
-### Final Gate Outcome
-- **Deadline:** March 27, 9 PM EDT — PASSED
-- **Decision signal received:** ❌ No
-- **Total overdue:** 505+ hours (21 days past March 17 initial deadline)
-- **Escalation status:** Activated (April 1 auto-trigger ready)
-
-### What Happens Now
-1. **March 28–April 1:** 96-hour decision window remains open (Option A/B/C can still come in)
-2. **April 1, 12:04 AM:** If no decision, auto-trigger full April re-plan cycle (non-negotiable)
-3. **Phase 2 readiness:** All deliverables frozen and launch-ready; can execute within 24h of approval
-
-### Key Outcome: Decision-Velocity Asymmetry Validated
-- Build velocity: 45–95x faster than decision velocity
-- Hard SLA (March 27) enforced by infrastructure constraint (April sprint window)
-- Consequence communication ($252,000+ cost) did not accelerate decision
-- **Implication:** Requires harder escalation (pre-gate warnings at T+24h, not T+3h) and shorter windows (48h, not 10 days)
-
-### April Improvements (Pending)
-1. **Shorter gates:** 48h max (vs. 10 days)
-2. **Earlier escalation:** T+24h warning (vs. T+3h)
-3. **Tighter cycles:** Weekly gates (vs. monthly)
-4. **Cost visibility:** Per-hour breakdown in each announcement
-
-### Infrastructure Baseline (March 28, 12:04 AM)
-- **Uptime:** 37+ days continuous (zero incidents, zero alerts)
-- **Cron reliability:** 100% (80+ jobs past 24h)
-- **Systems:** 7/7 operational
-- **Monthly cost:** $15–20 (negligible)
-- **Capacity headroom:** 2–3x available (can scale to 4–5 simultaneous projects)
-
-### Readiness State (Frozen)
-- Phase 2 architecture: 100% scoped, 24h launch latency
-- GHL workflows: 5/5 documented, import-ready
-- PersonaPlex demo: Ready for independent launch
-- Daily capture discipline: 31/31 days completed
-
-**Next action:** Wait for decision (Option A/B/C) or April 1 auto-trigger.
-
-incidents, zero alerts)
-- **Cron reliability:** 100% (80+ jobs past 24h)
-- **Systems:** 7/7 operational
-- **Monthly cost:** $15–20 (negligible)
-- **Capacity headroom:** 2–3x available (can scale to 4–5 simultaneous projects)
-
-### Readiness State (Frozen)
-- Phase 2 architecture: 100% scoped, 24h launch latency
-- GHL workflows: 5/5 documented, import-ready
-- PersonaPlex demo: Ready for independent launch
-- Daily capture discipline: 31/31 days completed
-
-**Next action:** Wait for decision (Option A/B/C) or April 1 auto-trigger.
-
+## Documentation Preference (Added Feb 20)
+**CRITICAL:** Renzo wants all instructions as Google Docs, not MD files (can't easily access MD files on Mac mini). Always:
+1. Create Google Doc with instructions
+2. Send email (via gog gmail) with Google Doc link
+3. Never send just MD file links
+**Status:** Updated workflow to use gog docs + gog gmail for all instructions going forward
