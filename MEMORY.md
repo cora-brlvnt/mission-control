@@ -35,32 +35,23 @@
 
 ---
 
-## Immediate Priorities (as of Feb 15)
+## Priorities (Updated April 1, 2026)
 
-### 1. GHL Automation Strategy (URGENT — Feb 15 deadline)
-- **Blocker:** API write access restricted on Starter plan ($0). Workaround: GHL MCP protocol (HTTP-based, AI-native, no SDK cost)
-- **Build:** 5 workflows (lead capture+SMS, email sequence, appointment+reminders, pipeline, two-way SMS)
-- **Timeline:** Due by 1 PM EST (before 7:30 PM Rome flight)
-- **Resale model:** Demo workflows Monday workshop → collect leads → nurture → sales → upgrade to Agency Pro ($497/mo) when revenue justifies
-- **Strategic value:** Shows automation capability (Authority) + generates leads (Revenue) + enables resale (Product)
+### 🔴 Blocked (needs Renzo decision)
+1. **Phase 2 Agent Ecosystem Launch** — 100% scoped, 24h activation. Blocked on Phase 1 QA approval (25 days overdue).
+2. **GHL Workflow Deployment** — 5/5 workflows documented + import guide ready. Blocked on GHL account setup + market validation signal.
 
-### 2. FastTrack Hub ($39/mo community)
-- **Model:** Circle platform, ~200-500 members, dynamic pricing (+$5/50 members)
-- **Content:** Weekly Q&As with Renzo, marketing/tech support, co-built sessions, peer network
-- **Status:** Research phase pending
-- **Go-to-market:** Organic + SCORE-sponsored free tier + upsell from workshops
+### 🟡 Ready to Build (independent, no approval needed)
+3. **PersonaPlex Demo** — Architecture ready, can launch independently on RunPod A100 (~$1.20/hr). Authority play.
+4. **Cora Copilot (Chrome Extension)** — Scaffold built, repo on GitHub. Blocked on Chrome display session (needs VNC or Renzo's Mac for testing).
+5. **FastTrack Hub** — Research phase. Circle platform, $39/mo, SCORE funnel. Needs market validation.
 
-### 3. PersonaPlex / RunPod Demo
-- **Goal:** Live video of Cora + Renzo interviewing on-camera, showcases AI capability
-- **Cost:** ~$1.20/hr on RunPod A100
-- **Status:** Pending (after Rome trip, Feb 24+)
-- **Strategic value:** Authority (proves sophistication) + Lead gen (viral demo potential)
-
-### 4. Cora Copilot (Chrome Extension)
-- **Scope:** Real-time call transcription (Google Meet, Zoom, Teams) + AI insights in side panel
-- **Architecture:** BlackHole audio capture → Deepgram Nova-3 STT → Claude analysis → Chrome UI
-- **Status:** URGENT, paused until after Rome (Feb 23)
-- **Strategic value:** Authority + revenue (positions for enterprise deals)
+### 🟢 Shipped & Running
+6. **GHL Workflows** — 5/5 complete (Lead capture, Email sequence, Appointments, Pipeline, SMS). Import guide ready.
+7. **Mission Control / Onboarding Platform** — Live on Railway. 7-agent system coded, SQL migration pending.
+8. **Marketing Asset Generator** — Production-ready skill. 10+ platforms supported.
+9. **Brand Management System** — Centralized library at `/workspace/brands/`.
+10. **AI Marketing Brief** — Delivered March 27 via Gmail. 15+ sources, ranked opportunities.
 
 ---
 
@@ -213,15 +204,11 @@
 
 ---
 
-## Blockers & Open Questions
+## Open Questions (Pending Renzo Input)
 
-**Q1:** What does success look like for FastTrack Hub in year 1? (target members, revenue, churn, retention)
-
-**Q2:** How to validate PersonaPlex/RunPod ROI before investing? (test with limited demo, measure engagement)
-
-**Q3:** Which Berelvant Phase 1 automation to prioritize? (lead gen? CRM? email? GA4?) 
-
-**Q4:** How to structure SCORE workshop funnel to FastTrack Hub? (free tier → upsell → community → Berelvant)
+1. FastTrack Hub year 1 targets? (members, revenue, churn)
+2. PersonaPlex ROI validation approach? (limited demo → measure engagement?)
+3. SCORE workshop → FastTrack Hub funnel design? (free tier → upsell path)
 
 ---
 
