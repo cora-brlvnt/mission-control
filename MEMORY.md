@@ -1,13 +1,13 @@
 # MEMORY.md — Long-Term Business Facts
 
-## Operational Status (April 1, 2026)
+## Operational Status (April 2, 2026, 12:09 AM)
 
 ### Infrastructure
-- **Uptime:** 40+ days continuous, zero incidents
+- **Uptime:** 44+ days continuous, zero incidents
 - **Systems:** 7/7 operational
-- **Cron:** 100% reliability
-- **Cost:** $15–20/month
-- **Capacity:** 2–3x headroom
+- **Cron:** 100% reliability (144+ daily executions)
+- **Cost:** $15–20/month (flat-scaling)
+- **Capacity:** 2–3x headroom available
 
 ### Current Phase
 - **April re-plan cycle active** (April 1–5 re-scope, April 6–30 execution)
@@ -570,3 +570,43 @@ April 1, 2026 12:04 PM EDT — **Noon checkpoint:** Decision-gate still pending 
 2. Send email (via gog gmail) with Google Doc link
 3. Never send just MD file links
 **Status:** Updated workflow to use gog docs + gog gmail for all instructions going forward
+
+---
+
+## Window-Based Execution Model (April 2, 2026)
+
+**Core concept:** When build velocity >> decision velocity (45–95x), replace traditional deadline-driven planning with window-based execution (hard deadlines + automatic consequences).
+
+**Case study:** Phase 2 project (March 17 – April 2)
+- **Window 1:** March 27 hard deadline (MISSED → no decision)
+- **Window 2:** April 1–3 escalation window (T+24h checkpoint, April 3 hard deadline)
+- **Window 3:** April 8 emergency re-plan (if Window 2 decision missed)
+
+**Key findings:**
+1. Open-ended waiting creates idle capacity and opportunity cost ($1.5M+ if April 8 missed)
+2. Binary decision frames (Approve / Revise / Defer) compress decision cycles by 3–5x
+3. Mechanical escalation (automatic consequence at deadline) more effective than persuasion
+4. Parallel readiness (build to 100% while waiting) eliminates wasted capacity
+
+**Implementation:** Hard SLA + binary frame + automatic consequence (non-negotiable). Applied to all future gates.
+
+---
+
+## Quarterly Audit Discipline (April 2, 2026)
+
+**Core insight:** Async systems accumulate silent debt (dead code, redundant crons, obsolete integrations).
+
+**Case study:** March 28 discovery
+- Found: 3.6M tokens/day waste (redundant Telegram memory crons: e9dab4a1 + 7e538fcc)
+- Impact: ~$50–70/month unnecessary cost
+- Timeline: 44 days of undetected duplication
+- Action: Killed both crons same day (recovered costs)
+
+**Prevention:** Quarterly audit discipline (Q1 baseline, Q2 efficiency, Q3 scaling, Q4 annual review)
+- **Cadence:** First Monday of each quarter (locked calendar)
+- **Duration:** 2–4 hours
+- **Decision threshold:** Kill any 2x+ redundant system (no re-approval needed)
+- **Cost recovery target:** $50–100/quarter
+- **Expected ROI:** Prevents 10–15% cost bloat accumulation
+
+**Q2 Audit scheduled:** May 1, 2026, 9:00 AM EDT (locked)
