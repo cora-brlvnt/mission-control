@@ -100,64 +100,6 @@
     const CACHE_BUST = "20260403-v62";
     const docs = [
         {
-          slug: "journal/2026-04-03-evening",
-          title: "Journal: April 3, 2026 — 6:04 PM (Post-Auto-Escalation Status Check, Systems Stable)",
-          date: "2026-04-03",
-          tags: ["journal", "april-3-evening", "post-escalation", "systems-stable", "45-days-continuous", "infrastructure-operational", "fasttrack-hub-research-win", "security-hardening-complete", "openclaw-update-v4.1", "async-operating-model-proven", "deliverables-frozen", "april-8-emergency-replan-active"],
-          content: `# Journal: April 3, 2026 — 6:04 PM
-
-**Date:** Friday, April 3, 2026 | **Time:** 6:04 PM EDT  
-**Status:** Auto-escalation window expired (12:04 AM). Systems nominal. April 8 emergency re-plan cycle ACTIVE.
-
-## Infrastructure: 45+ Days Continuous ✅
-- All 7 systems operational | Zero incidents | Cost: $15–20/mo
-
-## Work Completed (April 2 Evening – April 3 6:04 PM)
-
-### 1. FastTrack Hub Platform Analysis ✅
-- **Selected:** Skool Pro ($99/mo) | Revenue: 50 members = $1,950 MRR, 200 members = $7,800 MRR | Launch: <1 day
-
-### 2. System Hardening ✅
-- **Before:** 6 critical findings → **After:** 0 | Status: Agency deployment-ready
-
-### 3. OpenClaw v2026.4.1 Update ✅
-- Gateway + CLI aligned | Symlink repairs complete
-
-### 4. Auto-Escalation Window Mechanics ✅
-- T+24h checkpoint held | Hard deadline execution | Auto-consequence triggered | Window model validated
-
-### 5. Autonomous Operating Model ✅
-- Daily execution: zero friction | Approval friction: zero | Autonomy rate: 90%+
-
-## Deliverables Status (All Frozen, Ready for April 8+)
-
-| Deliverable | Status | Launch Timeline | Notes |
-|---|---|---|---|
-| Phase 2 Ecosystem | 100% scoped | 24h on approval | 7-day build |
-| GHL Workflows 5/5 | Complete | Production-ready | 5 complete workflows |
-| PersonaPlex Demo | Independent-ready | Any time | Authority play |
-| FastTrack Hub | Research complete | <1 day | Skool Pro selected |
-| Mission Control | Live | Operational | 7-agent system |
-
-## Key Insights
-
-1. **Decision-Velocity Asymmetry** — 45–95x build-to-decision ratio; hard SLAs compress by 12.5x
-2. **Window-Based Execution Model** — 48-hour gates proven; auto-consequences trigger on schedule
-3. **Hard SLAs as System Design** — Structural clarity (not pressure); solvable like server uptime SLAs
-4. **Infrastructure as Moat** — 45+ days, $15–20/mo, enables 4–5 simultaneous projects
-5. **Async Operating Model** — 90%+ autonomy; bottleneck is decision-making, not execution
-
-## April 8 Emergency Re-Plan (Locked In)
-
-- **Start:** April 8, 12:04 AM EDT (automatic)
-- **Planning:** April 8–12 (5 days)
-- **Execution:** April 13–20 (7 days)
-- **Delivery:** April 20 (preserved)
-
-*Session: cron daily capture | Auto-escalation complete | April 8 emergency re-plan ACTIVE | 45+ days continuous, zero incidents, 100% success.*`
-        },
-
-        {
           slug: "journal/2026-04-03",
           title: "Journal: April 3, 2026 (Midnight — Decision Deadline Auto-Escalation Triggered, April 8 Emergency Re-Plan Now Active)",
           date: "2026-04-03",
