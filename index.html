@@ -100,6 +100,158 @@
     const CACHE_BUST = "20260404-v63";
     const docs = [
         {
+          slug: "journal/2026-04-06",
+          title: "Journal: April 6, 2026 — 1:29 AM (Pre-Replan Weekend, Perplexity Added, April 8 T-2 Days)",
+          date: "2026-04-06",
+          tags: ["journal", "april-6", "perplexity-integration", "api-credit-issue", "april-8-replan-t-minus-2", "infrastructure-gap-recovered", "ai-marketing-brief", "week-8-day-6"],
+          content: `# Journal: April 6, 2026 — 1:29 AM
+
+**Date:** Monday, April 6, 2026 | **Time:** 1:29 AM EDT  
+**Week:** 8, Day 6 | **Status:** Pre-replan weekend. April 8 emergency re-plan T-2 days.
+
+## Key Events (April 4–6 Weekend)
+
+### 1. Perplexity Web Search Integration ✅
+- Renzo added Perplexity as research tool in OpenClaw
+- Confirmed working (<4s response time)
+- **Updated stack:** Codex (coding) + Perplexity (research) + Claude (strategy/analysis)
+- Expands autonomous research capability significantly
+
+### 2. Daily AI Marketing Brief — April 6
+Sent to renzo@berelvant.com. Four opportunities:
+1. **GEO as a Service Offering** — #1 ranked, wide-open agency market
+2. **Agentic AI Workflows** — 5x conversion improvements, 20+ tools launched last week
+3. **Employee Advocacy as Anti-AI Moat** — Low effort, high trust signal
+4. **AI Brand Mention Monitoring** — Execute-now action (<1 hour, shareable content)
+
+All sourced from 15+ web sources (last 30 days), each with 2-3 direct links.
+
+### 3. Infrastructure Gap & Recovery
+- ~33-hour cron gap detected (Apr 4 16:13 → Apr 6 01:20)
+- Cause: Mac likely entered sleep mode during weekend
+- Recovery: Automatic on wake, all crons resumed normally
+- Tailscale health: ✅ Healthy post-recovery, no restarts needed
+- **Lesson:** Weekend sleep/wake cycles can cause cron gaps; not critical but worth monitoring
+
+### 4. Anthropic API Credit Change
+- Main session hit billing error: "Third-party apps now draw from extra usage"
+- $100 credit available to claim at claude.ai/settings/usage
+- Some cron jobs affected during outage window
+- **Action needed:** Renzo claim credit at claude.ai/settings/usage
+
+## Infrastructure Status (47+ Days Total, Gap-Adjusted)
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| OpenClaw Gateway v2026.4.1 | ✅ | Recovered from sleep |
+| Telegram Memory System | ✅ | 0 new messages during gap |
+| Cora Voice Web App | ✅ | Fly.io, continuous |
+| 2Brain App | ✅ | GitHub-synced |
+| Google APIs (gog CLI) | ✅ | All 6 services |
+| Cron Jobs (20+) | ✅ | Resumed post-wake |
+| Tailscale | ✅ | Healthy, no restarts |
+
+## April 8 Re-Plan Countdown: T-2 Days
+
+### Status: LOCKED IN, NO CHANGES
+- **Start:** April 8, 12:04 AM EDT (automatic)
+- **Planning phase:** April 8–12 (5 days)
+- **Execution phase:** April 13–20
+- **Delivery date:** April 20 (preserved)
+- **Messaging:** Forward-looking, clean-slate, binary decision frames
+- **All materials pre-prepared** ✅
+
+### Deliverables Still Frozen & Valid
+1. Phase 2: 7-Agent Marketing Ecosystem (7-day build)
+2. GHL Workflows 5/5 (production-ready)
+3. PersonaPlex Demo (independent launch path)
+4. FastTrack Hub / Skool Pro (launch <1 day)
+5. Mission Control Platform (live on Railway)
+
+## Insights
+
+### Tool Stack Evolution
+Perplexity addition completes the autonomous research loop:
+- **Before:** Claude-only (good reasoning, no live web data)
+- **After:** Perplexity (live research) → Claude (analysis/strategy) → Codex (implementation)
+- **Impact:** Can now do real-time market research, competitive analysis, trend monitoring without manual web browsing
+
+### Weekend Operations Model
+- Crons pause during Mac sleep (expected behavior)
+- Critical cloud services (Fly.io, Supabase) remain up regardless
+- No data loss during gaps; capture resumes automatically
+- Weekend = low-activity period; gap impact minimal
+
+## Next Actions
+1. ⏰ April 8, 12:04 AM — Emergency re-plan cycle auto-starts
+2. 🔧 Renzo: Claim Anthropic $100 credit (claude.ai/settings/usage)
+3. 📋 Prepare clean-slate roadmap presentation for April 8
+`
+        },
+        {
+          slug: "concepts/tool-stack-evolution",
+          title: "Tool Stack Evolution: Research-Analysis-Implementation Loop",
+          date: "2026-04-06",
+          tags: ["concept", "tool-stack", "perplexity", "claude", "codex", "autonomous-research", "infrastructure"],
+          content: `# Tool Stack Evolution: Research-Analysis-Implementation Loop
+
+**Date:** April 6, 2026 | **Type:** Infrastructure Concept
+
+## The Three-Layer Stack
+
+### Layer 1: Research (Perplexity)
+- **Role:** Live web data, market research, trend monitoring
+- **Strength:** Real-time sources, citation-backed, broad coverage
+- **Added:** April 5, 2026
+
+### Layer 2: Analysis (Claude)
+- **Role:** Strategy, reasoning, document creation, decision support
+- **Strength:** Deep reasoning, context retention, structured output
+- **Active since:** Day 1
+
+### Layer 3: Implementation (Codex)
+- **Role:** Code generation, feature builds, automated PRs
+- **Strength:** Code-native, file operations, testing
+- **Added:** Week 7
+
+## Before vs. After
+
+| Capability | Before (Claude-only) | After (3-layer) |
+|-----------|---------------------|------------------|
+| Live web research | ❌ Manual browsing | ✅ Perplexity autonomous |
+| Market analysis | ⚠️ Stale data | ✅ Real-time + reasoning |
+| Competitive intel | ❌ No access | ✅ Perplexity + Claude synthesis |
+| Code implementation | ⚠️ Inline edits | ✅ Codex full-file ops |
+| End-to-end automation | ❌ Gaps in pipeline | ✅ Research → Analyze → Build |
+
+## Operational Impact
+
+### Daily AI Marketing Brief (Example)
+1. **Perplexity** scans 15+ sources for trends (< 30 seconds)
+2. **Claude** synthesizes into actionable opportunities with recommendations
+3. **Result:** Research-backed daily brief, zero manual research required
+
+### Future Applications
+- Competitive monitoring (automated weekly reports)
+- Client industry trend alerts
+- Content research for authority positioning
+- Technology evaluation for Berelvant offerings
+
+## Key Insight
+Each tool excels in its lane. The stack value is multiplicative, not additive:
+- Perplexity alone = data without synthesis
+- Claude alone = reasoning without fresh data
+- Codex alone = implementation without direction
+- **Together = autonomous research-to-implementation pipeline**
+
+## Cost
+- Perplexity: Included in OpenClaw (API key)
+- Claude: ~$5-15/day (Anthropic API)
+- Codex: Included in OpenAI subscription
+- **Total marginal cost of 3-layer stack:** ~$0/month incremental
+`
+        },
+        {
           slug: "journal/2026-04-04-morning",
           title: "Journal: April 4, 2026 — 6:04 AM (Post-Auto-Escalation Interim, Systems Stable, April 8 Locked In)",
           date: "2026-04-04",
